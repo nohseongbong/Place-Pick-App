@@ -1,9 +1,9 @@
-import {SCREEN_NAME, NANIGATOR_NAME} from '../../constants/navigation';
+import {SCREEN_NAME, STACK_NAME} from '../../constants/navigation';
 
 export type RootStackParamList = {
-  [NANIGATOR_NAME.TAB]: undefined;
-  [NANIGATOR_NAME.MAIN]: undefined;
-  [NANIGATOR_NAME.AUTH]: undefined;
+  [STACK_NAME.TAB]: undefined;
+  [STACK_NAME.MAIN]: undefined;
+  [STACK_NAME.AUTH]: undefined;
   [SCREEN_NAME.SPLASH]: undefined;
   [SCREEN_NAME.HOME]: undefined;
   [SCREEN_NAME.COLLECTION]: undefined;

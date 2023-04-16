@@ -3,7 +3,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import {View, StyleSheet} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation/pramsType';
-import {NANIGATOR_NAME, SCREEN_NAME} from '../constants/navigation';
+import {STACK_NAME, SCREEN_NAME} from '../constants/navigation';
 import {palette} from '../constants/palette';
 import CustomText from '../components/customComponents/CustomText';
 
@@ -13,7 +13,7 @@ const SplashScreen = ({navigation}: SplashScreenProps) => {
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {
-        navigation.reset({routes: [{name: NANIGATOR_NAME.MAIN}]});
+        navigation.reset({routes: [{name: STACK_NAME.MAIN}]});
       }, 2000);
     }, []),
   );

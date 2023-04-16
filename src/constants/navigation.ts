@@ -5,7 +5,7 @@ export enum SCREEN_NAME {
   COLLECTION = 'CollectionScreen',
 }
 
-export enum NANIGATOR_NAME {
+export enum STACK_NAME {
   TAB = 'TabNavigator',
   MAIN = 'MainNavigator',
   AUTH = 'AuthNavigatior',

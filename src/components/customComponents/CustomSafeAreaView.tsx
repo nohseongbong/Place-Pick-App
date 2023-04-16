@@ -1,3 +1,4 @@
+import React from 'react';
 import {SafeAreaView as RNSafe, Platform, StyleSheet} from 'react-native';
 import {SafeAreaView as ContextSafe} from 'react-native-safe-area-context';
 import {palette} from '../../constants/palette';

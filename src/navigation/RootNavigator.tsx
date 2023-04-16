@@ -1,7 +1,8 @@
+import React from 'react';
 import {StatusBar} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation/pramsType';
-import {SCREEN_NAME, NANIGATOR_NAME} from '../constants/navigation';
+import {SCREEN_NAME, STACK_NAME} from '../constants/navigation';
 import {palette} from '../constants/palette';
 import SplashScreen from '../screens/SplashScreen';
 import MainNavigator from './MainNavigator';
@@ -21,9 +22,9 @@ const RootNavigator = () => {
         }}
         initialRouteName={SCREEN_NAME.SPLASH}>
         <RootStack.Screen name={SCREEN_NAME.SPLASH} component={SplashScreen} />
-        <RootStack.Screen name={NANIGATOR_NAME.MAIN} component={MainNavigator} />
+        <RootStack.Screen name={STACK_NAME.MAIN} component={MainNavigator} />
         <RootStack.Group screenOptions={{animation: 'slide_from_bottom'}}>
-          <RootStack.Screen name={NANIGATOR_NAME.AUTH} component={AuthNavigator} />
+          <RootStack.Screen name={STACK_NAME.AUTH} component={AuthNavigator} />
         </RootStack.Group>
       </RootStack.Navigator>
     </CustomSafeAreaView>
