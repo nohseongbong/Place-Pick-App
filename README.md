@@ -11,7 +11,6 @@
 
   - customComponents: react native 컴포넌트 커스텀
   - home: home screen 관련 컴포넌트
-  - ....
 
 - constants: 상수 폴더
 
