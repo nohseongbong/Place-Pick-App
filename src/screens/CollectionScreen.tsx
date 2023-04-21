@@ -1,12 +1,7 @@
-import {View} from 'react-native';
-import CustomText from '../components/customComponents/CustomText';
+import CollectionContainer from '../features/collection/components/CollectionContainer';
 
 const CollectionScreen = () => {
-  return (
-    <View>
-      <CustomText>서랍 페이지.</CustomText>
-    </View>
-  );
+  return <CollectionContainer />;
 };
 
 export default CollectionScreen;

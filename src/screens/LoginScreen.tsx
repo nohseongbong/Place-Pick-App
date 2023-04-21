@@ -1,12 +1,7 @@
-import {View} from 'react-native';
-import CustomText from '../components/customComponents/CustomText';
+import LoginContainer from '../features/login/components/LoginContainer';
 
 const LoginScreen = () => {
-  return (
-    <View>
-      <CustomText>로그인 페이지.</CustomText>
-    </View>
-  );
+  return <LoginContainer />;
 };
 
 export default LoginScreen;

@@ -2,11 +2,11 @@ import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
-import style from './styleSheet';
-import CustomText from '../customComponents/CustomText';
-import {STACK_NAME} from '../../constants/navigation';
-import {RootStackParamList} from '../../types/navigation/pramsType';
-import {IMG, SVG_IMG} from '../../assets/images';
+import style from '../styles/homeContainerStyle';
+import CustomText from '../../../shared/components/customComponents/CustomText';
+import {STACK_NAME} from '../../../shared/constants/navigation';
+import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
+import {IMG, SVG_IMG} from '../../../assets/images';
 
 const HomeContainer = () => {
   const styles = style();

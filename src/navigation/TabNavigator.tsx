@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {RootStackParamList} from '../types/navigation/pramsType';
-import {SCREEN_NAME} from '../constants/navigation';
+import {RootStackParamList} from '../shared/types/navigation/pramsType';
+import {SCREEN_NAME} from '../shared/constants/navigation';
 import HomeScreen from '../screens/HomeScreen';
 import CollectionScreen from '../screens/CollectionScreen';
 

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {palette} from '../../constants/palette';
-import {ht, wt} from '../../lib/responsiveSize';
+import {palette} from '../../../shared/constants/palette';
+import {ht, wt} from '../../../lib/responsiveSize';
 
 const style = () => {
   return StyleSheet.create({
