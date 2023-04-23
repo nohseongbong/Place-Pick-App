@@ -12,3 +12,9 @@ export interface ResType<T> {
 export interface LoginRes {
   data: User;
 }
+export interface GooglePlaceListRes {
+  data: any;
+}
+export interface GooglePlaceDetailRes {
+  data: any;
+}

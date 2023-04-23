@@ -1,9 +1,17 @@
 import axios from 'axios';
 import {config as basedConfig} from './config';
+import {GOOGLE_PLACE_API_KEY} from '@env';
 
 export const axiosInstance = axios.create({
   baseURL: `${basedConfig.apiBaseUrl}/api/v1/`,
   withCredentials: true,
+});
+export const axiosInstanceGoogleApi = axios.create({
+  baseURL: `${basedConfig.googlePlaceApiUrl}`,
+  withCredentials: true,
+  params: {
+    key: GOOGLE_PLACE_API_KEY,
+  },
 });
 
 axiosInstance.interceptors.request.use(

@@ -12,8 +12,10 @@ import CustomSafeAreaView from '../shared/components/customComponents/CustomSafe
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
   return (
-    <CustomSafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={palette.BACKGROUND} />
+    <>
+      {/* <CustomSafeAreaView style={{flex: 1}}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={palette.BACKGROUND} /> */}
+      <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
       <RootStack.Navigator
         screenOptions={{
           headerShown: false,
@@ -27,7 +29,8 @@ const RootNavigator = () => {
           <RootStack.Screen name={STACK_NAME.AUTH} component={AuthNavigator} />
         </RootStack.Group>
       </RootStack.Navigator>
-    </CustomSafeAreaView>
+      {/* </CustomSafeAreaView> */}
+    </>
   );
 };
 

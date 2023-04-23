@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 위치정보 -->
+    <!-- 권한 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
       android:name=".MainApplication"
@@ -25,7 +27,7 @@
       </activity>
 
       <!-- 구글 api 키 -->
-      <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_api_key" />
+      <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GOOGLE_MAP_ANDROID_API_KEY" />
       <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 </manifest>

@@ -1,128 +1,272 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {PermissionsAndroid, Platform, View} from 'react-native';
+import {View} from 'react-native';
+import {GOOGLE_PLACE_API_KEY} from '@env';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import MapView, {Marker, MapViewProps, Region, Details} from 'react-native-maps';
+import MapView, {Marker, MapViewProps, Region, Details, PROVIDER_GOOGLE} from 'react-native-maps';
 import style from '../styles/homeMapStyle';
 import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
-import Geolocation from '@react-native-community/geolocation';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-
-type RegionType = {
-  latitude: number;
-  longitude: number;
-  latitudeDelta: number;
-  longitudeDelta: number;
-};
+import {PlaceType} from 'react-native-google-places-autocomplete';
+import {requestLocationPermission} from '../../../shared/utils/permission';
+import {RegionType} from '../types/RegionType';
+import {api} from '../../../shared/api/api';
 
 const HomeMap = () => {
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
-  const [region, setRegion] = useState({
+  const [region, setRegion] = useState<RegionType>({
     latitude: 37.521661,
     longitude: 127.023333,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   });
-  const [markers, setMarkers] = useState([]);
+  const [markers, setMarkers] = useState<PlaceType[]>([]);
   const [location, setLocation] = useState({lat: 0, lng: 0});
 
   const handleMapRegionChange = useCallback((region: RegionType) => {
-    setRegion(region);
+    // setRegion(region);
   }, []);
 
   const handlePlaceSelected = useCallback(async (latitude: number, longitude: number) => {
     // Call Google Places API to get nearby restaurants
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&type=restaurant&key=AIzaSyAsDTMB-Vk1B83JbfYygFy7bflCRKvh8DM`,
-    );
-    const data = await response.json();
-    // console.log(JSON.stringify(data.results), ' : 결과');
+    const response = await api.getGooglePlaceList({latitude, longitude});
+    const data = response.data.results;
+    // console.log(data, ' : 결과');
     // console.log(data.results.length, ' : 결과');
-    const markers = data?.results.map(place => ({
+    console.log(data[0].photos[0].html_attributions);
+    const markers = data?.map((place: any) => ({
       coordinate: {
         latitude: place.geometry.location.lat,
         longitude: place.geometry.location.lng,
       },
       title: place.name,
       description: place.vicinity,
+      icon: place.icon,
+      place_id: place.place_id,
+      rating: place.rating,
+      user_ratings_total: place.user_ratings_total,
+      types: place.types,
     }));
 
-    fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${'ChIJ6YJrRtxaezUR7-ENDWH1O_8'}&fields=name,formatted_address,website&key=AIzaSyAsDTMB-Vk1B83JbfYygFy7bflCRKvh8DM`,
-    )
-      .then(response => response.json())
-      .then(data => {
-        const {result} = data;
-        console.log(result, ' 이겅');
-      });
+    const response2 = await api.getGooglePlaceDetail({place_id: 'ChIJ6YJrRtxaezUR7-ENDWH1O_8'});
+    console.log(response2.data.result, ' 디테일');
 
     setMarkers(markers);
   }, []);
-  const geoLocation = async () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const latitude = JSON.stringify(position.coords.latitude);
-        const longitude = JSON.stringify(position.coords.longitude);
-        // setRegion({
-        //   latitude: Number(latitude),
-        //   longitude: Number(longitude),
-        //   latitudeDelta: 0.001,
-        //   longitudeDelta: 0.001,
-        // });
-        handlePlaceSelected(37.521661, 127.023333);
-      },
-      error => {
-        console.log(error.code, error.message);
-      },
-    );
-  };
 
-  const requestLocationPermission = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
-        title: 'Location Permission',
-        message: 'App needs access to your location',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      });
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('Location permission granted');
-        // 위치 권한이 부여되었을 때 수행할 로직 추가
-      } else {
-        console.log('Location permission denied');
-      }
-    } catch (error) {
-      console.warn(error);
-    }
-  };
   useEffect(() => {
-    // requestLocationPermission();
-    geoLocation();
+    requestLocationPermission();
+    handlePlaceSelected(37.521661, 127.023333);
   }, []);
+
+  const mapStyle = [
+    {
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'off',
+        },
+      ],
+    },
+    {
+      featureType: 'administrative.country',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'administrative.land_parcel',
+      stylers: [
+        {
+          visibility: 'off',
+        },
+      ],
+    },
+    {
+      featureType: 'administrative.locality',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'administrative.neighborhood',
+      stylers: [
+        {
+          visibility: 'off',
+        },
+      ],
+    },
+    {
+      featureType: 'administrative.province',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'administrative.province',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'landscape.man_made',
+      stylers: [
+        {
+          visibility: 'off',
+        },
+      ],
+    },
+    {
+      featureType: 'landscape.man_made',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'landscape.natural.terrain',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.business',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'off',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.government',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.medical',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.park',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.place_of_worship',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.school',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'poi.sports_complex',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'road',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          lightness: 60,
+        },
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'road.highway',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'transit',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+    {
+      featureType: 'transit.station',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'on',
+        },
+      ],
+    },
+  ];
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map_wrap}
-        provider={Platform.OS === 'android' ? 'google' : undefined}
-        mapType={Platform.OS === 'ios' ? 'mutedStandard' : 'standard'}
+        customMapStyle={mapStyle}
+        provider={'google'}
         region={region}
         onRegionChangeComplete={handleMapRegionChange}>
         {markers.map(marker => (
-          <Marker key={marker.title} coordinate={marker.coordinate} title={marker.title} />
+          <Marker key={marker.place_id} coordinate={marker.coordinate} title={marker.title} image={marker.icon} />
         ))}
       </MapView>
-      <GooglePlacesAutocomplete
+      {/* <GooglePlacesAutocomplete
         placeholder="Search"
         fetchDetails
         onPress={handlePlaceSelected}
         query={{
-          key: 'AIzaSyAsDTMB-Vk1B83JbfYygFy7bflCRKvh8DM',
+          key: GOOGLE_PLACE_API_KEY,
           language: 'en',
           types: '(cities)',
         }}
-      />
+      /> */}
     </View>
   );
 };
