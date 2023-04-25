@@ -17,8 +17,8 @@ const HomeMap = () => {
   const [region, setRegion] = useState<RegionType>({
     latitude: 37.521661,
     longitude: 127.023333,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
   });
   const [markers, setMarkers] = useState<PlaceType[]>([]);
   const [location, setLocation] = useState({lat: 0, lng: 0});
@@ -252,6 +252,8 @@ const HomeMap = () => {
         customMapStyle={mapStyle}
         provider={'google'}
         region={region}
+        mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
+        showsUserLocation={true}
         onRegionChangeComplete={handleMapRegionChange}>
         {markers.map(marker => (
           <Marker key={marker.place_id} coordinate={marker.coordinate} title={marker.title} image={marker.icon} />

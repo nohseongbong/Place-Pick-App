@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
@@ -8,19 +8,33 @@ import {STACK_NAME} from '../../../shared/constants/navigation';
 import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
 import {IMG, SVG_IMG} from '../../../assets/images';
 import HomeMap from './HomeMap';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 const HomeContainer = () => {
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
+  // ref
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['5%', '35%', '120%'], []);
+
+  // callbacks
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
   return (
     <View style={styles.container}>
       {/* <CustomText>홈 페이지.</CustomText>
       <SVG_IMG.LOGO width={24} />
       <Image source={IMG.FOOD_CATEGORY} />
       <TouchableOpacity style={styles.test_PR_btn} onPress={() => navigation.navigate(STACK_NAME.AUTH)}>
-        <CustomText>로그인 페이지 이동</CustomText>
-      </TouchableOpacity> */}
+      <CustomText>로그인 페이지 이동</CustomText>
+    </TouchableOpacity> */}
       <HomeMap />
+      <BottomSheet ref={bottomSheetRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
+        <View></View>
+      </BottomSheet>
     </View>
   );
 };
