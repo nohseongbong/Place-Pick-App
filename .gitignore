@@ -64,3 +64,14 @@ yarn-error.log
 
 # .env files
 .env
+
+# gradle properties
+gradle.properties
+
+# firebase file
+android/app/google-services.json
+ios/GoogleService-Info.plist
+
+# lock file
+*.lock
+package-lock.json

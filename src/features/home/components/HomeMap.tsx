@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {GOOGLE_PLACE_API_KEY} from '@env';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import MapView, {Marker, MapViewProps, Region, Details, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, MapMarkerProps, MapViewProps, Region, Details, PROVIDER_GOOGLE} from 'react-native-maps';
 import style from '../styles/homeMapStyle';
 import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
 import {PlaceType} from 'react-native-google-places-autocomplete';
@@ -20,7 +20,7 @@ const HomeMap = () => {
     latitudeDelta: 0.1,
     longitudeDelta: 0.1,
   });
-  const [markers, setMarkers] = useState<PlaceType[]>([]);
+  const [markers, setMarkers] = useState<MapMarkerProps[]>([]);
   const [location, setLocation] = useState({lat: 0, lng: 0});
 
   const handleMapRegionChange = useCallback((region: RegionType) => {
@@ -42,7 +42,7 @@ const HomeMap = () => {
       title: place.name,
       description: place.vicinity,
       icon: place.icon,
-      place_id: place.place_id,
+      id: place.place_id,
       rating: place.rating,
       user_ratings_total: place.user_ratings_total,
       types: place.types,
@@ -256,7 +256,7 @@ const HomeMap = () => {
         showsUserLocation={true}
         onRegionChangeComplete={handleMapRegionChange}>
         {markers.map(marker => (
-          <Marker key={marker.place_id} coordinate={marker.coordinate} title={marker.title} image={marker.icon} />
+          <Marker key={marker.id} coordinate={marker.coordinate} title={marker.title} image={marker.icon} />
         ))}
       </MapView>
       {/* <GooglePlacesAutocomplete

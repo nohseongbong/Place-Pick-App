@@ -16,7 +16,7 @@ export class Api {
     axiosInstanceGoogleApi.get('/place/details/json', {
       params: {
         place_id: place_id,
-        fields: 'name,formatted_address,website',
+        fields: 'name,formatted_address,website,url',
       },
     });
 }

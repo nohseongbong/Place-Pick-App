@@ -9,20 +9,12 @@ import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
 import {IMG, SVG_IMG} from '../../../assets/images';
 import HomeMap from './HomeMap';
 import BottomSheet from '@gorhom/bottom-sheet';
+import HomeBottomSheet from './HomeBottomSheet';
 
 const HomeContainer = () => {
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
-  // ref
-  const bottomSheetRef = useRef<BottomSheet>(null);
 
-  // variables
-  const snapPoints = useMemo(() => ['5%', '35%', '120%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
   return (
     <View style={styles.container}>
       {/* <CustomText>홈 페이지.</CustomText>
@@ -32,9 +24,7 @@ const HomeContainer = () => {
       <CustomText>로그인 페이지 이동</CustomText>
     </TouchableOpacity> */}
       <HomeMap />
-      <BottomSheet ref={bottomSheetRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
-        <View></View>
-      </BottomSheet>
+      <HomeBottomSheet />
     </View>
   );
 };
