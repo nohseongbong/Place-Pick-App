@@ -7,5 +7,6 @@ export type RootStackParamList = {
   [SCREEN_NAME.SPLASH]: undefined;
   [SCREEN_NAME.HOME]: undefined;
   [SCREEN_NAME.COLLECTION]: undefined;
+  [SCREEN_NAME.SEARCH]: undefined;
   [SCREEN_NAME.LOGIN]: undefined;
 };
