@@ -7,5 +7,6 @@ export const showPlacePickToast = () => {
     visibilityTime: 2000,
     autoHide: true,
     position: 'bottom',
+    bottomOffset: 60,
   });
 };

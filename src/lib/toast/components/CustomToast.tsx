@@ -2,13 +2,13 @@
 import {View} from 'react-native';
 import Toast, {BaseToast, ErrorToast} from 'react-native-toast-message';
 import CustomText from '../../../shared/components/customComponents/CustomText';
-import style from '../styles/customToast';
+import style from '../styles/customToastStyle';
 
 const styles = style();
 const toastConfig = {
   placePick: ({text1, props}: any) => (
     <View style={styles.container}>
-      <CustomText>{text1}</CustomText>
+      <CustomText style={styles.text}>{text1}</CustomText>
     </View>
   ),
 };

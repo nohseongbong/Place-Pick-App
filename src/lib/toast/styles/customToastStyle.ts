@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {palette} from '../../../shared/constants/palette';
-import {ht, wt} from '../../../lib/responsiveSize';
+import {ht, wt} from '../../responsiveSize';
 
 const style = () => {
   return StyleSheet.create({
@@ -9,7 +9,11 @@ const style = () => {
       height: ht(60),
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'blue',
+      backgroundColor: '#FF78EF',
+      borderRadius: 10,
+    },
+    text: {
+      color: '#fff',
     },
   });
 };
