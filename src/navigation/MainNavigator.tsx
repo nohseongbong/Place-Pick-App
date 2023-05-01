@@ -10,7 +10,7 @@ const MainNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName={STACK_NAME.TAB}
-      screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
+      screenOptions={{headerShown: false, animation: 'fade_from_bottom'}}>
       <Stack.Screen name={STACK_NAME.TAB} component={TabNavigator} />
       <Stack.Screen name={SCREEN_NAME.SEARCH} component={SearchScreen} />
     </Stack.Navigator>

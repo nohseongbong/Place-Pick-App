@@ -11,6 +11,7 @@ export const axiosInstanceGoogleApi = axios.create({
   withCredentials: true,
   params: {
     key: GOOGLE_PLACE_API_KEY,
+    language: 'ko',
   },
 });
 

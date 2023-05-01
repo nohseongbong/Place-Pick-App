@@ -4,7 +4,6 @@ import HomeDetailHeader from '../shared/components/header/components/HomeDetailH
 const SearchScreen = () => {
   return (
     <>
-      <HomeDetailHeader />
       <SearchContainer />
     </>
   );

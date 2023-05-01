@@ -1,276 +1,86 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {View, Image} from 'react-native';
 import {GOOGLE_PLACE_API_KEY} from '@env';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import MapView, {Marker, MapMarkerProps, MapViewProps, Region, Details, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView from 'react-native-map-clustering';
+import {Marker, MapMarkerProps, MapViewProps, Region, Details, PROVIDER_GOOGLE} from 'react-native-maps';
+import {observer} from 'mobx-react-lite';
 import style from '../styles/homeMapStyle';
 import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
-import {PlaceType} from 'react-native-google-places-autocomplete';
+import {GooglePlacesAutocomplete, PlaceType} from 'react-native-google-places-autocomplete';
 import {requestLocationPermission} from '../../../shared/utils/permission';
 import {RegionType} from '../types/RegionType';
 import {api} from '../../../shared/api/api';
+import CustomText from '../../../shared/components/customComponents/CustomText';
+import {mapStyle} from '../constants/mapStyle';
+import {getGeoLocation} from '../../../shared/utils/getGeoLocation';
+import {homeStore} from '../store/homeStore';
+import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
+import {MarKerType} from '../../../shared/types/place/markerType';
+import MarkerView from './MarkerView';
 
-const HomeMap = () => {
+const HomeMap = observer(() => {
+  const store = homeStore;
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
   const [region, setRegion] = useState<RegionType>({
-    latitude: 37.521661,
-    longitude: 127.023333,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
+    latitude: 37.4979052,
+    longitude: 127.0275777,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
   });
-  const [markers, setMarkers] = useState<MapMarkerProps[]>([]);
-  const [location, setLocation] = useState({lat: 0, lng: 0});
 
-  const handleMapRegionChange = useCallback((region: RegionType) => {
-    // setRegion(region);
-  }, []);
+  const [markers, setMarkers] = useState<MarKerType[] | []>([]);
 
   const handlePlaceSelected = useCallback(async (latitude: number, longitude: number) => {
-    // Call Google Places API to get nearby restaurants
-    const response = await api.getGooglePlaceList({latitude, longitude});
-    const data = response.data.results;
-    // console.log(data, ' : 결과');
-    // console.log(data.results.length, ' : 결과');
-    console.log(data[0].photos[0].html_attributions);
-    const markers = data?.map((place: any) => ({
-      coordinate: {
-        latitude: place.geometry.location.lat,
-        longitude: place.geometry.location.lng,
-      },
-      title: place.name,
-      description: place.vicinity,
-      icon: place.icon,
-      id: place.place_id,
-      rating: place.rating,
-      user_ratings_total: place.user_ratings_total,
-      types: place.types,
-    }));
-
     const response2 = await api.getGooglePlaceDetail({place_id: 'ChIJ6YJrRtxaezUR7-ENDWH1O_8'});
-    console.log(response2.data.result, ' 디테일');
-
-    setMarkers(markers);
+    // console.log(response2.data.result, ' 디테일');
   }, []);
+
+  const setLocation = async () => {
+    if (await requestLocationPermission()) {
+      console.log('실행');
+      setRegion(await getGeoLocation());
+    }
+  };
 
   useEffect(() => {
-    requestLocationPermission();
-    handlePlaceSelected(37.521661, 127.023333);
+    setLocation();
   }, []);
 
-  const mapStyle = [
-    {
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.country',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.land_parcel',
-      stylers: [
-        {
-          visibility: 'off',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.locality',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.neighborhood',
-      stylers: [
-        {
-          visibility: 'off',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.province',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.province',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'landscape.man_made',
-      stylers: [
-        {
-          visibility: 'off',
-        },
-      ],
-    },
-    {
-      featureType: 'landscape.man_made',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'landscape.natural.terrain',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.business',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.government',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.medical',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.park',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.place_of_worship',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.school',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.sports_complex',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'road',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          lightness: 60,
-        },
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'road.highway',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'transit',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-    {
-      featureType: 'transit.station',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'on',
-        },
-      ],
-    },
-  ];
+  const getMapCenter = useCallback((e: any) => {
+    store.setSearchLocation(e);
+  }, []);
+
+  const onPressNearPlaceBtn = async () => {
+    const markers = await store.getFetchNearPlaceList();
+    setMarkers(markers);
+  };
+
   return (
     <View style={styles.container}>
+      <CustomTouchable onPress={onPressNearPlaceBtn} style={styles.near_place_btn}>
+        <CustomText>주변 검색</CustomText>
+      </CustomTouchable>
       <MapView
         style={styles.map_wrap}
         customMapStyle={mapStyle}
-        provider={'google'}
-        region={region}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={region}
+        onRegionChangeComplete={getMapCenter}
+        followsUserLocation={true}
+        userLocationCalloutEnabled={true}
+        showsCompass={false}
+        showsTraffic={true}
         mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
-        showsUserLocation={true}
-        onRegionChangeComplete={handleMapRegionChange}>
-        {markers.map(marker => (
-          <Marker key={marker.id} coordinate={marker.coordinate} title={marker.title} image={marker.icon} />
+        showsUserLocation={true}>
+        {markers?.map((marker: any, index) => (
+          <MarkerView marker={marker} key={index} />
         ))}
       </MapView>
-      {/* <GooglePlacesAutocomplete
-        placeholder="Search"
-        fetchDetails
-        onPress={handlePlaceSelected}
-        query={{
-          key: GOOGLE_PLACE_API_KEY,
-          language: 'en',
-          types: '(cities)',
-        }}
-      /> */}
     </View>
   );
-};
+});
 
 export default HomeMap;
