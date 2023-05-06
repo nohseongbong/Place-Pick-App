@@ -23,7 +23,7 @@ export class Api {
     axiosInstanceGoogleApi.get('/place/details/json', {
       params: {
         place_id: place_id,
-        fields: 'name,formatted_address,website,url',
+        fields: 'name,formatted_address,rating,user_ratings_total,url,place_id',
       },
     });
   searchGooglePlaces = ({query, type}: GooglePlaceSearchReq): Promise<GooglePlaceSearchRes> =>
