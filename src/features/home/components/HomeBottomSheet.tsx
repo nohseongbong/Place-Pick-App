@@ -11,13 +11,11 @@ import CustomText from '../../../shared/components/customComponents/CustomText';
 import {SCREEN_NAME} from '../../../shared/constants/navigation';
 import {showPlacePickToast} from '../../../lib/toast/showToast';
 import PlaceDetail from './bottomSheetContents/PlaceDetail';
-import {homeStore} from '../store/homeStore';
+import {placeDetailStore} from '../store/placeDetailStore';
 
 const HomeBottomSheet = observer(() => {
-  const store = homeStore;
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
-  const [bottomSheetInx, setBottomSheetInx] = useState<number>(0);
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -26,18 +24,16 @@ const HomeBottomSheet = observer(() => {
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
     if (index === 2) {
       // navigation.navigate(SCREEN_NAME.SEARCH);
     }
   }, []);
 
   useEffect(() => {
-    if (store.isDetailFocused) {
-      console.log('실행');
+    if (placeDetailStore.isDetailFocused) {
       bottomSheetRef.current?.snapToIndex(1);
     }
-  }, [store.isDetailFocused]);
+  }, [placeDetailStore.isDetailFocused]);
 
   useFocusEffect(
     useCallback(() => {
@@ -50,15 +46,12 @@ const HomeBottomSheet = observer(() => {
       ref={bottomSheetRef}
       index={0}
       handleStyle={{paddingBottom: 30}}
-      handleIndicatorStyle={{backgroundColor: 'blue'}}
       snapPoints={snapPoints}
-      enableHandlePanningGesture={!store.isDetailFocused}
-      enableOverDrag={!store.isDetailFocused}
-      enableContentPanningGesture={!store.isDetailFocused}
+      enableHandlePanningGesture={!placeDetailStore.isDetailFocused}
+      enableOverDrag={!placeDetailStore.isDetailFocused}
+      enableContentPanningGesture={!placeDetailStore.isDetailFocused}
       onChange={handleSheetChanges}>
-      <ScrollView style={{flex: 1}}>
-        <PlaceDetail />
-      </ScrollView>
+      <ScrollView style={{flex: 1}}>{placeDetailStore.isDetailFocused && <PlaceDetail />}</ScrollView>
     </BottomSheet>
   );
 });

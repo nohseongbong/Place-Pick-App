@@ -9,16 +9,10 @@ class HomeStore {
     latitude: 37.4979052,
     longitude: 127.0275777,
   };
-  nearPlaceList: MarKerType[] = [];
-  isDetailFocused: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
-
-  setIsDetailFocused = (state: boolean) => {
-    this.isDetailFocused = state;
-  };
 
   setSearchLocation = ({latitude, longitude}: any) => {
     this.searchLocation = {
@@ -31,7 +25,6 @@ class HomeStore {
     try {
       const response = await api.getGooglePlaceList(this.searchLocation);
       const result = response.data.results;
-      console.log(result, ' 리스트');
       return this._filterList(result);
     } catch (error) {
       console.log(error);

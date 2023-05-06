@@ -23,7 +23,7 @@ const style = () => {
       position: 'absolute',
       top: ht(60),
       zIndex: 1000,
-      backgroundColor: 'red',
+      backgroundColor: palette.BACKGROUND,
     },
   });
 };
