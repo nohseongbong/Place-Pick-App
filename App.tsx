@@ -3,9 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import RootNavigator from './src/navigation/RootNavigator';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {CustomToast} from './src/lib/toast/components/CustomToast';
-import {observer} from 'mobx-react-lite';
 
-const App = observer(() => {
+const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
@@ -16,6 +15,6 @@ const App = observer(() => {
       </KeyboardAvoidingView>
     </GestureHandlerRootView>
   );
-});
+};
 
 export default App;

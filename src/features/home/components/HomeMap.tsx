@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {Fragment, useCallback, useEffect, useState} from 'react';
 import {View, Image} from 'react-native';
 import {GOOGLE_PLACE_API_KEY} from '@env';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
@@ -18,45 +18,21 @@ import {homeStore} from '../store/homeStore';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import MarkerView from './MarkerView';
+import {userStore} from '../../../shared/store/userStore';
+import {initLocation} from '../constants/initLocation';
 
-const HomeMap = observer(() => {
-  const store = homeStore;
+const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
-
-  const [region, setRegion] = useState<RegionType>({
-    latitude: 37.4979052,
-    longitude: 127.0275777,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
-  });
-
-  const [markers, setMarkers] = useState<MarKerType[] | []>([]);
 
   const handlePlaceSelected = useCallback(async (latitude: number, longitude: number) => {
     const response2 = await api.getGooglePlaceDetail({place_id: 'ChIJ6YJrRtxaezUR7-ENDWH1O_8'});
     // console.log(response2.data.result, ' 디테일');
   }, []);
 
-  const setLocation = async () => {
-    if (await requestLocationPermission()) {
-      console.log('실행');
-      setRegion(await getGeoLocation());
-    }
-  };
-
-  useEffect(() => {
-    setLocation();
-  }, []);
-
   const getMapCenter = useCallback((e: any) => {
-    store.setSearchLocation(e);
+    homeStore.setSearchLocation(e);
   }, []);
-
-  const onPressNearPlaceBtn = async () => {
-    const markers = await store.getFetchNearPlaceList();
-    setMarkers(markers);
-  };
 
   return (
     <View style={styles.container}>
@@ -67,7 +43,7 @@ const HomeMap = observer(() => {
         style={styles.map_wrap}
         customMapStyle={mapStyle}
         provider={PROVIDER_GOOGLE}
-        initialRegion={region}
+        region={{...userStore.userLocation}}
         onRegionChangeComplete={getMapCenter}
         followsUserLocation={true}
         userLocationCalloutEnabled={true}
@@ -75,8 +51,10 @@ const HomeMap = observer(() => {
         showsTraffic={true}
         mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
         showsUserLocation={true}>
-        {markers?.map((marker: any, index) => (
-          <MarkerView marker={marker} key={index} />
+        {markers.map((marker: any) => (
+          <Fragment key={marker.place_id}>
+            <MarkerView marker={marker} />
+          </Fragment>
         ))}
       </MapView>
     </View>
