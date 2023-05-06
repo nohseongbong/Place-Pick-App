@@ -18,3 +18,6 @@ export interface GooglePlaceListRes {
 export interface GooglePlaceDetailRes {
   data: any;
 }
+export interface GooglePlaceSearchRes {
+  data: any;
+}

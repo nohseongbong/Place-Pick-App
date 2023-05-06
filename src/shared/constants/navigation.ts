@@ -3,6 +3,7 @@ export enum SCREEN_NAME {
   LOGIN = 'LoginScreen',
   HOME = 'HomeScreen',
   COLLECTION = 'CollectionScreen',
+  SEARCH = 'SearchScreen',
 }
 
 export enum STACK_NAME {

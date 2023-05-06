@@ -5,25 +5,16 @@ import {ht, wt} from '../../../lib/responsiveSize';
 const style = () => {
   return StyleSheet.create({
     container: {
-      width: '100%',
-      height: '100%',
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
-    map_wrap: {
-      width: '100%',
-      height: '100%',
-    },
-    near_place_btn: {
-      width: wt(80),
-      height: ht(30),
-      borderRadius: 50,
+    test_PR_btn: {
+      width: wt(150),
+      height: ht(50),
+      backgroundColor: palette.PRIMARY,
       justifyContent: 'center',
       alignItems: 'center',
-      position: 'absolute',
-      top: ht(60),
-      zIndex: 1000,
-      backgroundColor: 'red',
     },
   });
 };
