@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Button, PanResponder, Platform, View} from 'react-native';
 import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 
 import style from '../styles/homeBottomSheetStyle';
@@ -45,13 +45,14 @@ const HomeBottomSheet = observer(() => {
     <BottomSheet
       ref={bottomSheetRef}
       index={0}
-      handleStyle={{paddingBottom: 30}}
       snapPoints={snapPoints}
       enableHandlePanningGesture={!placeDetailStore.isDetailFocused}
       enableOverDrag={!placeDetailStore.isDetailFocused}
       enableContentPanningGesture={!placeDetailStore.isDetailFocused}
       onChange={handleSheetChanges}>
-      <ScrollView style={{flex: 1}}>{placeDetailStore.isDetailFocused && <PlaceDetail />}</ScrollView>
+      <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>{placeDetailStore.isDetailFocused && <PlaceDetail />}</ScrollView>
+      </BottomSheetScrollView>
     </BottomSheet>
   );
 });
