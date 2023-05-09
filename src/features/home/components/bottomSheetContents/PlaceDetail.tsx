@@ -4,11 +4,11 @@ import {Image, TouchableOpacity, View} from 'react-native';
 import style from '../../styles/placeDetailStyle';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
-import {homeStore} from '../../store/homeStore';
 import {observer} from 'mobx-react-lite';
+import {placeDetailStore} from '../../store/placeDetailStore';
 
 const PlaceDetail = observer(() => {
-  const store = homeStore;
+  const store = placeDetailStore;
   const styles = style();
 
   const onPressHidePlaceDetail = () => {
