@@ -1,20 +1,19 @@
 import {StyleSheet} from 'react-native';
-import {palette} from '../../../shared/constants/palette';
-import {ht, wt} from '../../../lib/responsiveSize';
+import {fontWt, palette} from '../../../shared/constants/palette';
+import {fs, ht, wt} from '../../../lib/responsiveSize';
 
 const style = () => {
   return StyleSheet.create({
-    container: {
+    marker_container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
-    test_PR_btn: {
-      width: wt(150),
-      height: ht(50),
-      backgroundColor: palette.PRIMARY,
-      justifyContent: 'center',
-      alignItems: 'center',
+    marker_text: {
+      color: palette.TEXT,
+      fontSize: fs(11),
+      fontFamily: fontWt.Bold,
+      marginTop: ht(3),
     },
   });
 };

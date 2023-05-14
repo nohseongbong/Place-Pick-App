@@ -1,10 +1,11 @@
 import {TextProps, Text, StyleSheet} from 'react-native';
-import {palette} from '../../constants/palette';
+import {fontWt, palette} from '../../constants/palette';
 
 const CustomText = ({children, style, ...props}: TextProps) => {
   const styles = StyleSheet.create({
     text: {
       color: palette.TEXT,
+      fontFamily: fontWt.Regular,
     },
   });
 

@@ -39,6 +39,7 @@
 		423591A029F536A50043B28D /* AIRGoogleMapPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4235918529F536A50043B28D /* AIRGoogleMapPolygon.m */; };
 		423591A129F536A50043B28D /* AIRGMSMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4235918629F536A50043B28D /* AIRGMSMarker.m */; };
 		423591A229F536A50043B28D /* AIRGoogleMapCalloutSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 4235918729F536A50043B28D /* AIRGoogleMapCalloutSubview.m */; };
+		425508E22A10C92B0090638F /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 425508E02A10C92B0090638F /* Fonts */; };
 		7699B88040F8A987B510C191 /* libPods-PlacePick-PlacePickTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-PlacePick-PlacePickTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		4235918529F536A50043B28D /* AIRGoogleMapPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRGoogleMapPolygon.m; sourceTree = "<group>"; };
 		4235918629F536A50043B28D /* AIRGMSMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRGMSMarker.m; sourceTree = "<group>"; };
 		4235918729F536A50043B28D /* AIRGoogleMapCalloutSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRGoogleMapCalloutSubview.m; sourceTree = "<group>"; };
+		425508E02A10C92B0090638F /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-PlacePick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacePick.release.xcconfig"; path = "Target Support Files/Pods-PlacePick/Pods-PlacePick.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-PlacePick-PlacePickTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacePick-PlacePickTests.debug.xcconfig"; path = "Target Support Files/Pods-PlacePick-PlacePickTests/Pods-PlacePick-PlacePickTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-PlacePick.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlacePick.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +279,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				425508E02A10C92B0090638F /* Fonts */,
 				13B07FAE1A68108700A75B9A /* PlacePick */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PlacePickTests */,
@@ -419,6 +422,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425508E22A10C92B0090638F /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

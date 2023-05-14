@@ -2,8 +2,11 @@ export interface LoginReq {
   accessToken: string | null;
 }
 export interface GooglePlaceListReq {
-  latitude: number;
-  longitude: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  category: string;
 }
 export interface GooglePlaceDetailReq {
   place_id: string;

@@ -10,13 +10,13 @@ import {
 
 export class Api {
   login = ({accessToken}: LoginReq): Promise<ResType<LoginRes>> => axiosInstance.post('/login', {accessToken});
-  getGooglePlaceList = ({latitude, longitude}: GooglePlaceListReq): Promise<GooglePlaceListRes> =>
+  getGooglePlaceList = ({location, category}: GooglePlaceListReq): Promise<GooglePlaceListRes> =>
     axiosInstanceGoogleApi.get('/place/nearbysearch/json', {
       params: {
-        location: `${latitude},${longitude}`,
-        radius: 2000,
+        location: `${location.latitude},${location.longitude}`,
+        radius: 1000,
         language: 'ko',
-        type: 'food',
+        type: category,
       },
     });
   getGooglePlaceDetail = ({place_id}: GooglePlaceDetailReq): Promise<GooglePlaceDetailRes> =>

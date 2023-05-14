@@ -7,11 +7,12 @@ const style = () => {
   return StyleSheet.create({
     container: {
       flexDirection: 'row',
-      height: ht(80),
+      height: ht(100),
       alignItems: 'center',
       backgroundColor: colors.BACKGROUND,
       overflow: 'hidden',
-      paddingBottom: ht(20),
+      paddingBottom: ht(50),
+      paddingTop: ht(10),
     },
     icon: {
       flex: 1,

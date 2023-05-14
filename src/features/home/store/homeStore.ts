@@ -2,13 +2,15 @@ import {makeAutoObservable, runInAction} from 'mobx';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {api} from '../../../shared/api/api';
 
-const rank = ['park', 'bar', 'store', 'cafe', 'food', 'point_of_interest'];
+const rank = ['park', 'bar', 'restaurant', 'store', 'cafe', 'point_of_interest'];
 
 class HomeStore {
   searchLocation = {
     latitude: 37.4979052,
     longitude: 127.0275777,
   };
+
+  category: string = 'restaurant';
 
   constructor() {
     makeAutoObservable(this);
@@ -23,8 +25,9 @@ class HomeStore {
 
   getFetchNearPlaceList = async (): Promise<MarKerType[]> => {
     try {
-      const response = await api.getGooglePlaceList(this.searchLocation);
+      const response = await api.getGooglePlaceList({location: this.searchLocation, category: this.category});
       const result = response.data.results;
+      console.log(result, '데이터');
       return this._filterList(result);
     } catch (error) {
       console.log(error);
@@ -50,12 +53,12 @@ class HomeStore {
   };
 
   private _categoryType(types: any) {
-    for (let type of types) {
-      if (rank.includes(type)) {
+    for (let type of rank) {
+      if (types.includes(type)) {
         return type;
       }
     }
-    // return 'point_of_interest';
+    return 'point_of_interest';
   }
 }
 

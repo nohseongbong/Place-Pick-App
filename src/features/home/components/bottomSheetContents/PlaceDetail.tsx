@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Image, LayoutChangeEvent, View} from 'react-native';
 
 import style from '../../styles/placeDetailStyle';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
@@ -7,7 +7,7 @@ import CustomTouchable from '../../../../shared/components/customComponents/Cust
 import {observer} from 'mobx-react-lite';
 import {placeDetailStore} from '../../store/placeDetailStore';
 
-const PlaceDetail = observer(() => {
+const PlaceDetail = observer(({onLayout}: {onLayout: LayoutChangeEvent}) => {
   const store = placeDetailStore;
   const styles = style();
 
