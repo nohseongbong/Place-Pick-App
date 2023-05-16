@@ -18,7 +18,6 @@ class PlaceDetailStore {
         return;
       }
       const result = response.data.result;
-      console.log(result, ' : data');
     } catch (error) {
       console.log(error);
       return [];

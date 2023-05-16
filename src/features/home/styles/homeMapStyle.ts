@@ -36,6 +36,18 @@ const style = () => {
       fontFamily: fontWt.Bold,
       marginTop: ht(3),
     },
+    my_location_btn_wrap: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: wt(40),
+      height: ht(40),
+      borderRadius: 10,
+      position: 'absolute',
+      right: wt(10),
+      top: ht(55),
+      zIndex: 1000,
+      backgroundColor: palette.BACKGROUND,
+    },
   });
 };
 
