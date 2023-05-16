@@ -1,10 +1,14 @@
 import {makeAutoObservable, runInAction} from 'mobx';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {api} from '../../../shared/api/api';
+import {RegionType} from '../types/RegionType';
+import {initLocation} from '../constants/initLocation';
 
 const rank = ['park', 'bar', 'restaurant', 'store', 'cafe', 'point_of_interest'];
 
 class HomeStore {
+  mapLocation: RegionType = initLocation;
+
   searchLocation = {
     latitude: 37.4979052,
     longitude: 127.0275777,
@@ -15,6 +19,11 @@ class HomeStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  setMapLocation = ({latitude, longitude}: {latitude: number; longitude: number}) => {
+    this.mapLocation.latitude = latitude;
+    this.mapLocation.longitude = longitude;
+  };
 
   setSearchLocation = ({latitude, longitude}: any) => {
     this.searchLocation = {
@@ -27,13 +36,16 @@ class HomeStore {
     try {
       const response = await api.getGooglePlaceList({location: this.searchLocation, category: this.category});
       const result = response.data.results;
-      console.log(result, '데이터');
       return this._filterList(result);
     } catch (error) {
       console.log(error);
       return [];
     }
   };
+
+  get getMapLocation() {
+    return this.mapLocation;
+  }
 
   private _filterList = (data: any): MarKerType[] | [] => {
     if (!data) {

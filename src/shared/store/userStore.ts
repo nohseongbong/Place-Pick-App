@@ -10,10 +10,8 @@ class UserStore {
   }
 
   setUserLocation = ({latitude, longitude}: {latitude: number; longitude: number}) => {
-    runInAction(() => {
-      this.userLocation.latitude = latitude;
-      this.userLocation.longitude = longitude;
-    });
+    this.userLocation.latitude = latitude;
+    this.userLocation.longitude = longitude;
   };
 
   get getUserLocation() {
