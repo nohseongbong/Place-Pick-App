@@ -1,35 +1,24 @@
-import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
-import {View, Image} from 'react-native';
-import {GOOGLE_PLACE_API_KEY} from '@env';
+import React, {useCallback, useRef} from 'react';
+import {View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import MapView from 'react-native-map-clustering';
-import {MapMarkerProps, MapViewProps, Region, Details, PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapViewClustering from 'react-native-map-clustering';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {observer} from 'mobx-react-lite';
 import style from '../styles/homeMapStyle';
 import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
-import {GooglePlacesAutocomplete, PlaceType} from 'react-native-google-places-autocomplete';
-import {requestLocationPermission} from '../../../shared/utils/permission';
-import {RegionType} from '../types/RegionType';
-import {api} from '../../../shared/api/api';
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import {mapStyle} from '../constants/mapStyle';
-import {getGeoLocation} from '../../../shared/utils/getGeoLocation';
 import {homeStore} from '../store/homeStore';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 import {MarKerType} from '../../../shared/types/place/markerType';
-import MarkerView from './MarkerView';
 import {userStore} from '../../../shared/store/userStore';
-import {initLocation} from '../constants/initLocation';
 import {placeDetailStore} from '../store/placeDetailStore';
 import {SVG_IMG} from '../../../assets/images';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
+  const mapRef = useRef<MapView>(null);
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
-  const handlePlaceSelected = useCallback(async (latitude: number, longitude: number) => {
-    const response2 = await api.getGooglePlaceDetail({place_id: 'ChIJ6YJrRtxaezUR7-ENDWH1O_8'});
-    // console.log(response2.data.result, ' 디테일');
-  }, []);
 
   const fetchPlaceDetail = async (place_id: string) => {
     await placeDetailStore.fetchPlaceDetail(place_id);
@@ -38,7 +27,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const onPressMarker = useCallback(
     (marker: MarKerType) => {
       fetchPlaceDetail(marker.place_id);
-      userStore.setUserLocation({
+      homeStore.setMapLocation({
         latitude: marker.location.latitude,
         longitude: marker.location.longitude,
       });
@@ -46,6 +35,16 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
     },
     [markers],
   );
+
+  const onPressMyLocation = () => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion({...userStore.userLocation}, 500);
+    }
+  };
+
+  const getMapCenter = useCallback((e: any) => {
+    homeStore.setSearchLocation(e);
+  }, []);
 
   const CategoryIconView = ({type}: {type: string}) => {
     const category: {[key: string]: JSX.Element} = {
@@ -59,20 +58,35 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
     return category[type];
   };
 
-  const getMapCenter = useCallback((e: any) => {
-    homeStore.setSearchLocation(e);
-  }, []);
+  const MarkerView = (marker: any, index: number) => {
+    return (
+      <Marker
+        onPress={() => onPressMarker(marker)}
+        coordinate={marker.location}
+        key={String(index) + marker.id}
+        id={marker.id}>
+        <View style={styles.marker_container}>
+          <CategoryIconView type={marker.category} />
+          <CustomText style={styles.marker_text}>{marker.name}</CustomText>
+        </View>
+      </Marker>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <CustomTouchable onPress={onPressNearPlaceBtn} style={styles.near_place_btn}>
         <CustomText>주변 검색</CustomText>
       </CustomTouchable>
-      <MapView
+      <CustomTouchable activeOpacity={1} style={styles.my_location_btn_wrap} onPress={onPressMyLocation}>
+        <CustomText>내 위치</CustomText>
+      </CustomTouchable>
+      <MapViewClustering
+        ref={mapRef}
         style={styles.map_wrap}
         customMapStyle={mapStyle}
         provider={PROVIDER_GOOGLE}
-        region={{...userStore.userLocation}}
+        region={{...homeStore.mapLocation}}
         onRegionChangeComplete={getMapCenter}
         followsUserLocation={true}
         userLocationCalloutEnabled={true}
@@ -81,19 +95,10 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         clusteringEnabled={true}
         mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
         showsUserLocation={true}>
-        {markers.map((marker: any, index: number) => (
-          <Marker
-            onPress={() => onPressMarker(marker)}
-            coordinate={marker.location}
-            key={String(index) + marker.id}
-            id={marker.id}>
-            <View style={styles.marker_container}>
-              <CategoryIconView type={marker.category} />
-              <CustomText style={styles.marker_text}>{marker.name}</CustomText>
-            </View>
-          </Marker>
-        ))}
-      </MapView>
+        {markers.map((marker: any, index: number) => {
+          return MarkerView(marker, index);
+        })}
+      </MapViewClustering>
     </View>
   );
 });
