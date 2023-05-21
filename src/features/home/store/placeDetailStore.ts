@@ -2,14 +2,9 @@ import {makeAutoObservable, runInAction} from 'mobx';
 import {api} from '../../../shared/api/api';
 
 class PlaceDetailStore {
-  isDetailFocused: boolean = false;
-
   constructor() {
     makeAutoObservable(this);
   }
-  setIsDetailFocused = (state: boolean) => {
-    this.isDetailFocused = state;
-  };
 
   fetchPlaceDetail = async (place_id: string) => {
     try {
