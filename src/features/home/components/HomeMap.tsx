@@ -1,5 +1,5 @@
 import React, {useCallback, useRef} from 'react';
-import {View} from 'react-native';
+import {Platform, View, Image} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import MapViewClustering from 'react-native-map-clustering';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -13,7 +13,8 @@ import CustomTouchable from '../../../shared/components/customComponents/CustomT
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {userStore} from '../../../shared/store/userStore';
 import {placeDetailStore} from '../store/placeDetailStore';
-import {SVG_IMG} from '../../../assets/images';
+import {IMG, SVG_IMG} from '../../../assets/images';
+import {bottomSheetStore} from '../store/bottomSheetStore';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
@@ -31,7 +32,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         latitude: marker.location.latitude,
         longitude: marker.location.longitude,
       });
-      placeDetailStore.setIsDetailFocused(true);
+      bottomSheetStore.setFocusedType('detail');
     },
     [markers],
   );
@@ -76,11 +77,14 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   return (
     <View style={styles.container}>
       <CustomTouchable onPress={onPressNearPlaceBtn} style={styles.near_place_btn}>
-        <CustomText>주변 검색</CustomText>
+        <CustomText style={styles.near_place_btn_text}>이 지역 검색</CustomText>
       </CustomTouchable>
-      <CustomTouchable activeOpacity={1} style={styles.my_location_btn_wrap} onPress={onPressMyLocation}>
-        <CustomText>내 위치</CustomText>
-      </CustomTouchable>
+      {Platform.OS === 'ios' && (
+        <CustomTouchable activeOpacity={0.3} style={styles.my_location_btn_wrap} onPress={onPressMyLocation}>
+          <Image source={IMG.MY_LOCATION} style={styles.my_location_btn_img} />
+        </CustomTouchable>
+      )}
+
       <MapViewClustering
         ref={mapRef}
         style={styles.map_wrap}
@@ -92,6 +96,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         userLocationCalloutEnabled={true}
         showsCompass={false}
         showsTraffic={true}
+        clusterColor={'#ddd'}
         clusteringEnabled={true}
         mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
         showsUserLocation={true}>

@@ -8,26 +8,10 @@ export const mapStyle = [
     ],
   },
   {
-    featureType: 'administrative.country',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
     featureType: 'administrative.land_parcel',
     stylers: [
       {
         visibility: 'off',
-      },
-    ],
-  },
-  {
-    featureType: 'administrative.locality',
-    stylers: [
-      {
-        visibility: 'on',
       },
     ],
   },
@@ -40,134 +24,49 @@ export const mapStyle = [
     ],
   },
   {
-    featureType: 'administrative.province',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'administrative.province',
-    elementType: 'labels',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
     featureType: 'landscape.man_made',
     stylers: [
       {
         visibility: 'off',
-      },
-    ],
-  },
-  {
-    featureType: 'landscape.man_made',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'landscape.natural.terrain',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.business',
-    elementType: 'labels',
-    stylers: [
-      {
-        visibility: 'off',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.government',
-    elementType: 'labels',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.medical',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.park',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.place_of_worship',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.school',
-    elementType: 'labels',
-    stylers: [
-      {
-        visibility: 'on',
-      },
-    ],
-  },
-  {
-    featureType: 'poi.sports_complex',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'on',
       },
     ],
   },
   {
     featureType: 'road',
-    elementType: 'labels.text',
+    elementType: 'labels.icon',
     stylers: [
       {
-        lightness: 60,
-      },
-      {
-        visibility: 'on',
+        visibility: 'off',
       },
     ],
   },
   {
-    featureType: 'road.highway',
-    elementType: 'labels.text',
+    featureType: 'road.local',
     stylers: [
       {
-        visibility: 'on',
+        visibility: 'simplified',
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    elementType: 'labels.text.fill',
+    stylers: [
+      {
+        color: '#cdd3d9',
       },
     ],
   },
   {
     featureType: 'transit',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit.line',
     stylers: [
       {
         visibility: 'on',
@@ -176,10 +75,20 @@ export const mapStyle = [
   },
   {
     featureType: 'transit.station',
-    elementType: 'labels.text',
     stylers: [
       {
-        visibility: 'on',
+        visibility: 'simplified',
+      },
+      {
+        weight: 1,
+      },
+    ],
+  },
+  {
+    featureType: 'transit.station.rail',
+    stylers: [
+      {
+        visibility: 'off',
       },
     ],
   },

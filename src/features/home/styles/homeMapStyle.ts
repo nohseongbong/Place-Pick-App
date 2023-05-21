@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {fontWt, palette} from '../../../shared/constants/palette';
 import {fs, ht, wt} from '../../../lib/responsiveSize';
+import {getPlatformStyles} from '../../../shared/utils/getPlatformStyles';
 
 const style = () => {
   return StyleSheet.create({
@@ -15,15 +16,21 @@ const style = () => {
       height: '100%',
     },
     near_place_btn: {
-      width: wt(80),
-      height: ht(30),
+      width: wt(100),
+      height: ht(35),
       borderRadius: 50,
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
       top: ht(60),
       zIndex: 1000,
+      ...getPlatformStyles,
       backgroundColor: palette.BACKGROUND,
+    },
+    near_place_btn_text: {
+      color: palette.TEXT,
+      fontSize: fs(13),
+      fontFamily: fontWt.SemiBold,
     },
     marker_container: {
       flex: 1,
@@ -39,14 +46,20 @@ const style = () => {
     my_location_btn_wrap: {
       justifyContent: 'center',
       alignItems: 'center',
-      width: wt(40),
-      height: ht(40),
-      borderRadius: 10,
+      width: wt(35),
+      height: ht(35),
+      borderRadius: 2,
       position: 'absolute',
-      right: wt(10),
-      top: ht(55),
+      right: wt(15),
+      top: ht(58),
       zIndex: 1000,
       backgroundColor: palette.BACKGROUND,
+      ...getPlatformStyles,
+      opacity: 0.66,
+    },
+    my_location_btn_img: {
+      width: wt(19),
+      height: ht(19),
     },
   });
 };
