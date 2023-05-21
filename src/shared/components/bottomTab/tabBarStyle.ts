@@ -13,6 +13,8 @@ const style = () => {
       overflow: 'hidden',
       paddingBottom: ht(50),
       paddingTop: ht(10),
+      borderTopWidth: 1,
+      borderColor: palette.BORDER,
     },
     icon: {
       flex: 1,

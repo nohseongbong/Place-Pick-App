@@ -66,7 +66,7 @@ const TabBar = observer(({state, descriptors, navigation}: BottomTabBarProps) =>
             ) : (
               <SVG_IMG.COLLECTION_OFF width={20} height={20} />
             )}
-            <CustomText style={[styles.icon_text, !isFocused && {color: '#CDD3D9'}]}>{String(label)}</CustomText>
+            <CustomText style={[styles.icon_text, !isFocused && {color: palette.BORDER}]}>{String(label)}</CustomText>
           </CustomTouchable>
         );
       })}
