@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Button, PanResponder, LayoutChangeEvent, View, ViewProps} from 'react-native';
 import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
@@ -7,11 +6,10 @@ import {observer} from 'mobx-react-lite';
 
 import style from '../styles/homeBottomSheetStyle';
 import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
-import CustomText from '../../../shared/components/customComponents/CustomText';
-import {SCREEN_NAME} from '../../../shared/constants/navigation';
-import {showPlacePickToast} from '../../../lib/toast/showToast';
 import PlaceDetail from './bottomSheetContents/PlaceDetail';
-import {placeDetailStore} from '../store/placeDetailStore';
+import CreateCourse from './bottomSheetContents/CreateCourse';
+import {bottomSheetStore} from '../store/bottomSheetStore';
+import {View} from 'react-native';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -30,10 +28,10 @@ const HomeBottomSheet = observer(() => {
   }, []);
 
   useEffect(() => {
-    if (placeDetailStore.isDetailFocused) {
+    if (bottomSheetStore.focusedType === 'detail') {
       bottomSheetRef.current?.snapToIndex(1);
     }
-  }, [placeDetailStore.isDetailFocused]);
+  }, [bottomSheetStore.focusedType]);
 
   useFocusEffect(
     useCallback(() => {
@@ -46,12 +44,15 @@ const HomeBottomSheet = observer(() => {
       ref={bottomSheetRef}
       index={0}
       snapPoints={snapPoints}
-      enableHandlePanningGesture={!placeDetailStore.isDetailFocused}
-      enableOverDrag={!placeDetailStore.isDetailFocused}
-      enableContentPanningGesture={!placeDetailStore.isDetailFocused}
+      enableHandlePanningGesture={bottomSheetStore.focusedType !== 'detail'}
+      enableOverDrag={bottomSheetStore.focusedType !== 'detail'}
+      enableContentPanningGesture={bottomSheetStore.focusedType !== 'detail'}
       onChange={handleSheetChanges}>
       <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>{placeDetailStore.isDetailFocused && <PlaceDetail />}</ScrollView>
+        <ScrollView style={{flex: 1}}>
+          {bottomSheetStore.focusedType === 'detail' && <PlaceDetail />}
+          {bottomSheetStore.focusedType === 'create' && <CreateCourse />}
+        </ScrollView>
       </BottomSheetScrollView>
     </BottomSheet>
   );
