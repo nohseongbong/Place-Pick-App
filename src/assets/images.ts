@@ -1,5 +1,5 @@
 export const IMG = {
-  // FOOD_CATEGORY: require('../assets/images/icon/folk-knife.png'),
+  MY_LOCATION: require('../assets/images/icon/my_location.png'),
 };
 
 import LOGO from '../assets/images/svg/logo.svg';
@@ -17,6 +17,15 @@ import COURSE_1 from '../assets/images/svg/course_1.svg';
 import COURSE_2 from '../assets/images/svg/course_2.svg';
 import COURSE_3 from '../assets/images/svg/course_3.svg';
 import COURSE_4 from '../assets/images/svg/course_4.svg';
+import MORE from '../assets/images/svg/more.svg';
+import PEOPLE from '../assets/images/svg/people.svg';
+import PICK_PLACE_DEFAULT from '../assets/images/svg/pick_place_default.svg';
+import PLACE_ICON from '../assets/images/svg/place_icon.svg';
+import PLUS_ADD from '../assets/images/svg/plus_add.svg';
+import SEARCH_REMOVE from '../assets/images/svg/search_remove.svg';
+import SEARCH from '../assets/images/svg/search.svg';
+import STAR from '../assets/images/svg/star.svg';
+import CLOSE from '../assets/images/svg/close.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -34,4 +43,13 @@ export const SVG_IMG = {
   COURSE_2,
   COURSE_3,
   COURSE_4,
+  MORE,
+  PEOPLE,
+  PICK_PLACE_DEFAULT,
+  PLACE_ICON,
+  PLUS_ADD,
+  SEARCH_REMOVE,
+  SEARCH,
+  STAR,
+  CLOSE,
 };
