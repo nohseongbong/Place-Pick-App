@@ -1,7 +1,10 @@
 export enum palette {
-  PRIMARY = 'red',
+  PRIMARY = '#FF78EF',
   BACKGROUND = '#fff',
+  INNER_BACKGOUND = '#F7F8F9',
   TEXT = '#343a40',
+  SUB_TEXT = '#868E96',
+  BORDER = '#CDD3D9',
 }
 
 export enum fontWt {
