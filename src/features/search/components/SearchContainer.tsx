@@ -1,4 +1,3 @@
-import React, {useCallback} from 'react';
 import {observer} from 'mobx-react-lite';
 
 import CustomText from '../../../shared/components/customComponents/CustomText';
