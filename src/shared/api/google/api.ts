@@ -1,15 +1,8 @@
-import {axiosInstance, axiosInstanceGoogleApi} from '../../api';
-import {GooglePlaceDetailReq, GooglePlaceListReq, GooglePlaceSearchReq, LoginReq} from '../types/api/requestType';
-import {
-  GooglePlaceDetailRes,
-  GooglePlaceListRes,
-  GooglePlaceSearchRes,
-  LoginRes,
-  ResType,
-} from '../types/api/responseType';
+import {axiosInstanceGoogleApi} from '..';
+import {GooglePlaceDetailReq, GooglePlaceListReq, GooglePlaceSearchReq} from './types/requestType';
+import {GooglePlaceDetailRes, GooglePlaceListRes, GooglePlaceSearchRes} from './types/responseType';
 
 export class Api {
-  login = ({accessToken}: LoginReq): Promise<ResType<LoginRes>> => axiosInstance.post('/login', {accessToken});
   getGooglePlaceList = ({location, category}: GooglePlaceListReq): Promise<GooglePlaceListRes> =>
     axiosInstanceGoogleApi.get('/place/nearbysearch/json', {
       params: {

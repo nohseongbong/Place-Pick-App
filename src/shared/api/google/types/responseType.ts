@@ -1,5 +1,3 @@
-import {User} from '../user/userType';
-
 export interface ResType<T> {
   status: number;
   data: T | undefined;
@@ -9,9 +7,6 @@ export interface ResType<T> {
   };
 }
 
-export interface LoginRes {
-  data: User;
-}
 export interface GooglePlaceListRes {
   data: any;
 }

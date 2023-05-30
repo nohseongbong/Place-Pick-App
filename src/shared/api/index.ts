@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
   },
 );
 
-axiosInstance.interceptors.response.use(
+axiosInstanceGoogleApi.interceptors.response.use(
   async response => {
     return response;
   },

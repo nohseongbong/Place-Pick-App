@@ -1,6 +1,3 @@
-export interface LoginReq {
-  accessToken: string | null;
-}
 export interface GooglePlaceListReq {
   location: {
     latitude: number;
