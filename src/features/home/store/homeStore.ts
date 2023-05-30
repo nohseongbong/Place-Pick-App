@@ -3,8 +3,16 @@ import {api} from '../../../shared/api/google/api';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
 import {MarKerType} from '../../../shared/types/place/markerType';
+import {GooglePlaceType} from '../../../shared/constants/googlePlaceType';
 
-const rank = ['park', 'bar', 'restaurant', 'store', 'cafe', 'point_of_interest'];
+const rank = [
+  GooglePlaceType.PARK,
+  GooglePlaceType.BAR,
+  GooglePlaceType.RESTAURANT,
+  GooglePlaceType.STORE,
+  GooglePlaceType.CAFE,
+  GooglePlaceType.POINT_OF_INTEREST,
+];
 
 class HomeStore {
   mapLocation: RegionType = initLocation;
@@ -51,7 +59,6 @@ class HomeStore {
     if (!data) {
       return [];
     }
-    const filteredList = data.filter((place: any) => rank.includes(this._categoryType(place.types)));
     const mappedList = data.map((place: any) => ({
       location: {
         latitude: place.geometry.location.lat,
@@ -70,7 +77,7 @@ class HomeStore {
         return type;
       }
     }
-    return 'point_of_interest';
+    return GooglePlaceType.POINT_OF_INTEREST;
   }
 }
 
