@@ -5,11 +5,10 @@ import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 
 import style from '../styles/homeBottomSheetStyle';
-import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
 import PlaceDetail from './bottomSheetContents/PlaceDetail';
 import CreateCourse from './bottomSheetContents/CreateCourse';
 import {bottomSheetStore} from '../store/bottomSheetStore';
-import {View} from 'react-native';
+import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();

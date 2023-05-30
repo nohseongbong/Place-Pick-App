@@ -5,16 +5,16 @@ import MapViewClustering from 'react-native-map-clustering';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {observer} from 'mobx-react-lite';
 import style from '../styles/homeMapStyle';
-import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import {mapStyle} from '../constants/mapStyle';
 import {homeStore} from '../store/homeStore';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
-import {MarKerType} from '../../../shared/types/place/markerType';
 import {userStore} from '../../../shared/store/userStore';
 import {placeDetailStore} from '../store/placeDetailStore';
 import {IMG, SVG_IMG} from '../../../assets/images';
 import {bottomSheetStore} from '../store/bottomSheetStore';
+import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
+import {MarKerType} from '../../../shared/types/place/markerType';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();

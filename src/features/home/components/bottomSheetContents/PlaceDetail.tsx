@@ -5,6 +5,7 @@ import style from '../../styles/placeDetailStyle';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
 import {observer} from 'mobx-react-lite';
+import {placeDetailStore} from '../../store/placeDetailStore';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {SVG_IMG} from '../../../../assets/images';
 import {palette} from '../../../../shared/constants/palette';

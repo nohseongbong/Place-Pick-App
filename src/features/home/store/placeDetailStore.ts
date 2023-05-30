@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {api} from '../../../shared/api/api';
+import {api} from '../../../shared/api/google/api';
 
 class PlaceDetailStore {
   constructor() {

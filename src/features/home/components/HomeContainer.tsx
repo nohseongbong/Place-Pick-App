@@ -6,8 +6,8 @@ import style from '../styles/homeContainerStyle';
 import HomeMap from './HomeMap';
 import HomeBottomSheet from './HomeBottomSheet';
 import {observer} from 'mobx-react-lite';
-import {MarKerType} from '../../../shared/types/place/markerType';
 import {homeStore} from '../store/homeStore';
+import {MarKerType} from '../../../shared/types/place/markerType';
 
 const HomeContainer = observer(() => {
   const styles = style();

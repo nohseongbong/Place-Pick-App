@@ -1,13 +1,13 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../shared/types/navigation/pramsType';
 import {SCREEN_NAME, STACK_NAME} from '../shared/constants/navigation';
 import {palette} from '../shared/constants/palette';
 import SplashScreen from '../screens/SplashScreen';
 import MainNavigator from './MainNavigator';
 import AuthNavigator from './AuthNavigator';
 import CustomSafeAreaView from '../shared/components/customComponents/CustomSafeAreaView';
+import {RootStackParamList} from '../shared/types/navigation/paramsType';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {

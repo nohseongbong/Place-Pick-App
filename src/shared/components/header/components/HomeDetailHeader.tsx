@@ -1,7 +1,7 @@
 import React from 'react';
 import {Platform, StatusBar, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../types/navigation/pramsType';
+import {RootStackParamList} from '../../../types/navigation/paramsType';
 import CustomTouchable from '../../customComponents/CustomTouchable';
 import CustomText from '../../customComponents/CustomText';
 const HomeDetailHeader = () => {

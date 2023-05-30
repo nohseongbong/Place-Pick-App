@@ -1,8 +1,8 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {MarKerType} from '../../../shared/types/place/markerType';
-import {api} from '../../../shared/api/api';
+import {api} from '../../../shared/api/google/api';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
+import {MarKerType} from '../../../shared/types/place/markerType';
 
 const rank = ['park', 'bar', 'restaurant', 'store', 'cafe', 'point_of_interest'];
 

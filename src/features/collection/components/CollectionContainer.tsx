@@ -2,9 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../shared/types/navigation/pramsType';
-import {SCREEN_NAME} from '../../../shared/constants/navigation';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
+import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 
 const CollectionContainer = () => {
   const navigation: NavigationProp<RootStackParamList> = useNavigation();

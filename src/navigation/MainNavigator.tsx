@@ -1,8 +1,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../shared/types/navigation/pramsType';
 import {SCREEN_NAME, STACK_NAME} from '../shared/constants/navigation';
 import TabNavigator from './TabNavigator';
 import SearchScreen from '../screens/SearchScreen';
+import {RootStackParamList} from '../shared/types/navigation/paramsType';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
