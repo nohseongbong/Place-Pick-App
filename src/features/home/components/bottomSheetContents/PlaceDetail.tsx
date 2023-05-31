@@ -22,7 +22,9 @@ const PlaceDetail = observer(() => {
       <View style={styles.place_info_container}>
         <SVG_IMG.CATEGORY_RESTAURANT width={36} height={36} />
         <View style={styles.place_info_wrap}>
-          <CustomText style={styles.place_info_name_text}>땀땀</CustomText>
+          <CustomText numberOfLines={3} style={styles.place_info_name_text}>
+            땀땀
+          </CustomText>
           <CustomText style={styles.place_info_address_text}>강남구 역상동 · 베트남음식</CustomText>
           <View style={styles.place_info_rating_wrap}>
             <SVG_IMG.STAR width={16} height={16} />
