@@ -6,9 +6,20 @@ import CustomText from '../../../../shared/components/customComponents/CustomTex
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
 import {SVG_IMG} from '../../../../assets/images';
 import style from '../../styles/createCourseStyle';
+import {courseStore} from '../../store/courseStore';
 
 const CreateCourse = observer(() => {
   const styles = style();
+
+  const AddCourseView = () => {
+    return (
+      <CustomTouchable style={styles.select_place_wrap}>
+        <SVG_IMG.PICK_PLACE_DEFAULT width={22} height={22} />
+        <CustomText style={styles.select_place_text}>다음 장소를 선택해주세요.</CustomText>
+      </CustomTouchable>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.title_wrap}>
@@ -18,7 +29,9 @@ const CreateCourse = observer(() => {
       <View style={styles.place_pick_wrap}>
         <View style={styles.place_pick_title}>
           <SVG_IMG.PICK_PLACE_DEFAULT width={22} height={22} />
-          <CustomText style={styles.place_pick_title_text}>첫 번째 장소를 선택해주세요.</CustomText>
+          <CustomText style={styles.place_pick_title_text}>
+            {!courseStore.courseList.length ? '첫 번째' : '다음'} 장소를 선택해주세요.
+          </CustomText>
         </View>
         <CustomTouchable style={styles.place_pick_search_wrap}>
           <SVG_IMG.SEARCH width={16} height={16} />
@@ -26,12 +39,10 @@ const CreateCourse = observer(() => {
         </CustomTouchable>
       </View>
 
-      <CustomTouchable style={styles.select_place_wrap}>
-        <SVG_IMG.PICK_PLACE_DEFAULT width={22} height={22} />
-        <CustomText style={styles.select_place_text}>다음 장소를 선택해주세요.</CustomText>
-      </CustomTouchable>
-
-      <CustomTouchable style={styles.add_place_wrap}>
+      {Array.from({length: courseStore.courseNumber}, (_, index) => (
+        <AddCourseView key={index} />
+      ))}
+      <CustomTouchable onPress={courseStore.addCourseNumber} style={styles.add_place_wrap}>
         <SVG_IMG.PLUS_ADD width={10} height={10} />
         <CustomText style={styles.add_place_text}>장소 추가하기</CustomText>
       </CustomTouchable>
