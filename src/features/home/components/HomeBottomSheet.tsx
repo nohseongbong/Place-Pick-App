@@ -10,7 +10,7 @@ import CreateCourse from './bottomSheetContents/CreateCourse';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import PlaceSearch from './bottomSheetContents/PlaceSearch';
-import {FocusedType} from '../constants/BottomSheetFocusedType';
+import {FocusedType} from '../constants/bottomSheetFocusedType';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -20,13 +20,6 @@ const HomeBottomSheet = observer(() => {
 
   // variables
   const snapPoints = useMemo(() => ['5%', '30%', '95%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    if (index === 2) {
-      // navigation.navigate(SCREEN_NAME.SEARCH);
-    }
-  }, []);
 
   useEffect(() => {
     if (bottomSheetStore.focusedType === FocusedType.DETAIL) {
@@ -47,8 +40,7 @@ const HomeBottomSheet = observer(() => {
       snapPoints={snapPoints}
       enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
       enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-      enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-      onChange={handleSheetChanges}>
+      enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
       <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
           {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}

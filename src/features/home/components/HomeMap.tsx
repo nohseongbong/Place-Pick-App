@@ -15,7 +15,7 @@ import {IMG, SVG_IMG} from '../../../assets/images';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import {MarKerType} from '../../../shared/types/place/markerType';
-import {FocusedType} from '../constants/BottomSheetFocusedType';
+import {FocusedType} from '../constants/bottomSheetFocusedType';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
