@@ -9,12 +9,13 @@ import {placeDetailStore} from '../../store/placeDetailStore';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {SVG_IMG} from '../../../../assets/images';
 import {palette} from '../../../../shared/constants/palette';
+import {FocusedType} from '../../constants/BottomSheetFocusedType';
 
 const PlaceDetail = observer(() => {
   const styles = style();
 
   const onPressHidePlaceDetail = () => {
-    bottomSheetStore.setFocusedType('create');
+    bottomSheetStore.setFocusedType(FocusedType.CREATE);
   };
 
   return (

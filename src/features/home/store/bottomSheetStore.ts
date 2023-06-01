@@ -1,9 +1,8 @@
 import {makeAutoObservable} from 'mobx';
-
-type FocusedType = 'detail' | 'create';
+import {FocusedType} from '../constants/BottomSheetFocusedType';
 
 class BottomSheetStore {
-  focusedType: FocusedType = 'detail';
+  focusedType: FocusedType = FocusedType.DETAIL;
 
   constructor() {
     makeAutoObservable(this);

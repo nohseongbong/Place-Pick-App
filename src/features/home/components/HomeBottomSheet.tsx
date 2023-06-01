@@ -9,6 +9,8 @@ import PlaceDetail from './bottomSheetContents/PlaceDetail';
 import CreateCourse from './bottomSheetContents/CreateCourse';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
+import PlaceSearch from './bottomSheetContents/PlaceSearch';
+import {FocusedType} from '../constants/BottomSheetFocusedType';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -27,7 +29,7 @@ const HomeBottomSheet = observer(() => {
   }, []);
 
   useEffect(() => {
-    if (bottomSheetStore.focusedType === 'detail') {
+    if (bottomSheetStore.focusedType === FocusedType.DETAIL) {
       bottomSheetRef.current?.snapToIndex(1);
     }
   }, [bottomSheetStore.focusedType]);
@@ -43,14 +45,15 @@ const HomeBottomSheet = observer(() => {
       ref={bottomSheetRef}
       index={0}
       snapPoints={snapPoints}
-      enableHandlePanningGesture={bottomSheetStore.focusedType !== 'detail'}
-      enableOverDrag={bottomSheetStore.focusedType !== 'detail'}
-      enableContentPanningGesture={bottomSheetStore.focusedType !== 'detail'}
+      enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+      enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+      enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
       onChange={handleSheetChanges}>
       <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          {bottomSheetStore.focusedType === 'detail' && <PlaceDetail />}
-          {bottomSheetStore.focusedType === 'create' && <CreateCourse />}
+          {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
+          {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
+          {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
         </ScrollView>
       </BottomSheetScrollView>
     </BottomSheet>

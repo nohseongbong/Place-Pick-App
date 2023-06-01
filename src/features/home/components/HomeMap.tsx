@@ -15,6 +15,7 @@ import {IMG, SVG_IMG} from '../../../assets/images';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import {MarKerType} from '../../../shared/types/place/markerType';
+import {FocusedType} from '../constants/BottomSheetFocusedType';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
@@ -32,7 +33,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         latitude: marker.location.latitude,
         longitude: marker.location.longitude,
       });
-      bottomSheetStore.setFocusedType('detail');
+      bottomSheetStore.setFocusedType(FocusedType.DETAIL);
     },
     [markers],
   );
