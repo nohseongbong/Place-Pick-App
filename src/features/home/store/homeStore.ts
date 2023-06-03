@@ -3,15 +3,15 @@ import {api} from '../../../shared/api/google/api';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
 import {MarKerType} from '../../../shared/types/place/markerType';
-import {GooglePlaceType} from '../../../shared/constants/googlePlaceType';
+import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
 
 const rank = [
-  GooglePlaceType.PARK,
-  GooglePlaceType.BAR,
-  GooglePlaceType.RESTAURANT,
-  GooglePlaceType.STORE,
-  GooglePlaceType.CAFE,
-  GooglePlaceType.POINT_OF_INTEREST,
+  PlaceCategoryType.PARK,
+  PlaceCategoryType.BAR,
+  PlaceCategoryType.RESTAURANT,
+  PlaceCategoryType.STORE,
+  PlaceCategoryType.CAFE,
+  PlaceCategoryType.POINT_OF_INTEREST,
 ];
 
 class HomeStore {
@@ -77,7 +77,7 @@ class HomeStore {
         return type;
       }
     }
-    return GooglePlaceType.POINT_OF_INTEREST;
+    return PlaceCategoryType.POINT_OF_INTEREST;
   }
 }
 

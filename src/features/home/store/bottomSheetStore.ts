@@ -3,7 +3,6 @@ import {FocusedType} from '../constants/bottomSheetFocusedType';
 
 class BottomSheetStore {
   focusedType: FocusedType = FocusedType.SEARCH;
-
   constructor() {
     makeAutoObservable(this);
   }
