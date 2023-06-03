@@ -11,6 +11,7 @@ import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import PlaceSearch from './bottomSheetContents/PlaceSearch';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
+import {searchStore} from '../store/searchStore';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -33,6 +34,12 @@ const HomeBottomSheet = observer(() => {
     }, []),
   );
 
+  useEffect(() => {
+    if (searchStore.isFocusSearch) {
+      bottomSheetRef.current?.snapToIndex(2);
+    }
+  }, [searchStore.isFocusSearch]);
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -41,13 +48,9 @@ const HomeBottomSheet = observer(() => {
       enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
       enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
       enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
-      <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
-          {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
-          {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
-        </ScrollView>
-      </BottomSheetScrollView>
+      {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
+      {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
+      {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
     </BottomSheet>
   );
 });
