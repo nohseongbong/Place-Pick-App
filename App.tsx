@@ -7,12 +7,10 @@ import {CustomToast} from './src/lib/toast/components/CustomToast';
 const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
-        <NavigationContainer>
-          <RootNavigator />
-          <CustomToast />
-        </NavigationContainer>
-      </KeyboardAvoidingView>
+      <NavigationContainer>
+        <RootNavigator />
+        <CustomToast />
+      </NavigationContainer>
     </GestureHandlerRootView>
   );
 };
