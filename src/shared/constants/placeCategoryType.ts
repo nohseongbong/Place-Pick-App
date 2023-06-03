@@ -1,4 +1,4 @@
-export enum GooglePlaceType {
+export enum PlaceCategoryType {
   PARK = 'park',
   BAR = 'bar',
   RESTAURANT = 'restaurant',
