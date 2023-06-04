@@ -1,4 +1,4 @@
-import {Platform, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {fontWt, palette} from '../../../shared/constants/palette';
 import {fs, ht, wt} from '../../../lib/responsiveSize';
 import {getPlatformStyles} from '../../../shared/utils/getPlatformStyles';
@@ -98,6 +98,58 @@ const style = () => {
       fontFamily: fontWt.Bold,
       color: palette.TEXT,
       marginLeft: wt(8),
+    },
+    selected_wrap: {
+      width: '100%',
+      height: ht(62),
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: wt(16),
+      borderRadius: 16,
+      ...getPlatformStyles,
+      backgroundColor: palette.BACKGROUND,
+    },
+    selected_icon_wrap: {
+      width: '10%',
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    selected_icon_text: {
+      fontSize: fs(11),
+      color: palette.BACKGROUND,
+      fontFamily: fontWt.Bold,
+      position: 'absolute',
+    },
+    selected_text: {
+      fontSize: fs(16),
+      width: '76%',
+    },
+    more_wrap: {
+      width: '10%',
+      height: '70%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    connect_wrap: {
+      width: '100%',
+      height: ht(90),
+      alignItems: 'center',
+      flexDirection: 'row',
+      overflow: 'hidden',
+      paddingLeft: wt(20),
+    },
+    connect_btn_wrap: {
+      width: wt(158),
+      height: ht(40),
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: palette.BORDER,
+      borderRadius: 8,
+      marginLeft: wt(30),
     },
   });
 };
