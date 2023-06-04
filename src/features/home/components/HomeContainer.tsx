@@ -1,6 +1,5 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 
 import style from '../styles/homeContainerStyle';
 import HomeMap from './HomeMap';
