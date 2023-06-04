@@ -6,10 +6,10 @@ export interface PlaceType {
   formatted_address: string;
   rating: number;
   user_ratings_total: number;
-  // type: PlaceCategoryType;
+  url: string;
   category: PlaceCategoryType;
   location: {
-    lat: number;
-    lng: number;
+    latitude: number;
+    longitude: number;
   };
 }
