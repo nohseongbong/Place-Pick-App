@@ -12,6 +12,9 @@ import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import PlaceSearch from './bottomSheetContents/PlaceSearch';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {searchStore} from '../store/searchStore';
+import {View} from 'react-native';
+import CustomText from '../../../shared/components/customComponents/CustomText';
+import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -41,17 +44,39 @@ const HomeBottomSheet = observer(() => {
   }, [searchStore.isFocusSearch]);
 
   return (
-    <BottomSheet
-      ref={bottomSheetRef}
-      index={0}
-      snapPoints={snapPoints}
-      enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-      enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-      enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
-      {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
-      {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
-      {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
-    </BottomSheet>
+    <>
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={0}
+        snapPoints={snapPoints}
+        handleComponent={() => {
+          return (
+            <>
+              <View style={styles.handler_wrap}>
+                <View style={styles.handler} />
+              </View>
+              <CustomTouchable
+                style={{
+                  width: 100,
+                  height: 50,
+                  backgroundColor: 'red',
+                  position: 'absolute',
+                  top: -50,
+                  zIndex: 100000,
+                }}>
+                <CustomText>test</CustomText>
+              </CustomTouchable>
+            </>
+          );
+        }}
+        enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+        enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+        enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
+        {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
+        {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
+        {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
+      </BottomSheet>
+    </>
   );
 });
 
