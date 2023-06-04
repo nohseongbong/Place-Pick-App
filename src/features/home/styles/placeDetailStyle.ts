@@ -6,7 +6,6 @@ const style = () => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: wt(20),
       backgroundColor: palette.BACKGROUND,
