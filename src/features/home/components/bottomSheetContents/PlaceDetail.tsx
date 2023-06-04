@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Linking, Platform, View} from 'react-native';
 
 import style from '../../styles/placeDetailStyle';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
@@ -10,6 +10,8 @@ import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {SVG_IMG} from '../../../../assets/images';
 import {palette} from '../../../../shared/constants/palette';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
+import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
+import {courseStore} from '../../store/courseStore';
 
 const PlaceDetail = observer(() => {
   const styles = style();
@@ -18,20 +20,34 @@ const PlaceDetail = observer(() => {
     bottomSheetStore.setFocusedType(FocusedType.CREATE);
   };
 
+  const onPressAddPlace = () => {
+    courseStore.setAddCourseList(placeDetailStore.getPlaceInfo);
+    bottomSheetStore.setFocusedType(FocusedType.CREATE);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.place_info_container}>
-        <SVG_IMG.CATEGORY_RESTAURANT width={36} height={36} />
+        {placeDetailStore.category === PlaceCategoryType.BAR && <SVG_IMG.CATEGORY_BAR width={36} height={36} />}
+        {placeDetailStore.category === PlaceCategoryType.PARK && <SVG_IMG.CATEGORY_PARK width={36} height={36} />}
+        {placeDetailStore.category === PlaceCategoryType.RESTAURANT && (
+          <SVG_IMG.CATEGORY_RESTAURANT width={36} height={36} />
+        )}
+        {placeDetailStore.category === PlaceCategoryType.STORE && <SVG_IMG.CATEGORY_SHOP width={36} height={36} />}
+        {placeDetailStore.category === PlaceCategoryType.CAFE && <SVG_IMG.CATEGORY_CAFE width={36} height={36} />}
+        {placeDetailStore.category === PlaceCategoryType.POINT_OF_INTEREST && (
+          <SVG_IMG.CATEGORY_FLAG width={36} height={36} />
+        )}
         <View style={styles.place_info_wrap}>
           <CustomText numberOfLines={3} style={styles.place_info_name_text}>
-            땀땀
+            {placeDetailStore.name}
           </CustomText>
-          <CustomText style={styles.place_info_address_text}>강남구 역상동 · 베트남음식</CustomText>
+          <CustomText style={styles.place_info_address_text}>{placeDetailStore.formatted_address}</CustomText>
           <View style={styles.place_info_rating_wrap}>
             <SVG_IMG.STAR width={16} height={16} />
-            <CustomText style={styles.place_info_rating_text}>4.1</CustomText>
+            <CustomText style={styles.place_info_rating_text}>{placeDetailStore.rating}</CustomText>
             <SVG_IMG.PEOPLE width={16} height={16} />
-            <CustomText style={styles.place_info_rating_text}>1,221</CustomText>
+            <CustomText style={styles.place_info_rating_text}>{placeDetailStore.user_ratings_total}</CustomText>
           </View>
         </View>
         <CustomTouchable style={styles.close_wrap} onPress={onPressHidePlaceDetail}>
@@ -42,7 +58,7 @@ const PlaceDetail = observer(() => {
         <CustomTouchable style={styles.btn_wrap}>
           <CustomText style={styles.btn_text}>상세 정보</CustomText>
         </CustomTouchable>
-        <CustomTouchable style={[styles.btn_wrap, {backgroundColor: palette.PRIMARY}]}>
+        <CustomTouchable onPress={onPressAddPlace} style={[styles.btn_wrap, {backgroundColor: palette.PRIMARY}]}>
           <CustomText style={[styles.btn_text, {color: palette.BACKGROUND}]}>장소 선택</CustomText>
         </CustomTouchable>
       </View>
