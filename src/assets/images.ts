@@ -13,10 +13,13 @@ import CATEGORY_FLAG from '../assets/images/svg/category_flag.svg';
 import CATEGORY_SHOP from '../assets/images/svg/category_shop.svg';
 import CATEGORY_PARK from '../assets/images/svg/category_park.svg';
 import CATEGORY_RESTAURANT from '../assets/images/svg/category_restaurant.svg';
-import COURSE_1 from '../assets/images/svg/course_1.svg';
-import COURSE_2 from '../assets/images/svg/course_2.svg';
-import COURSE_3 from '../assets/images/svg/course_3.svg';
-import COURSE_4 from '../assets/images/svg/course_4.svg';
+import COURSE_BAR from '../assets/images/svg/bar.svg';
+import COURSE_CAFE from '../assets/images/svg/cafe.svg';
+import COURSE_CULTURE from '../assets/images/svg/culture.svg';
+import COURSE_PARK from '../assets/images/svg/park.svg';
+import COURSE_RESTAURANT from '../assets/images/svg/restaurant.svg';
+import COURSE_STORE from '../assets/images/svg/shop.svg';
+import COURSE_TRAIN from '../assets/images/svg/train.svg';
 import MORE from '../assets/images/svg/more.svg';
 import PEOPLE from '../assets/images/svg/people.svg';
 import PICK_PLACE_DEFAULT from '../assets/images/svg/pick_place_default.svg';
@@ -26,6 +29,8 @@ import SEARCH_REMOVE from '../assets/images/svg/search_remove.svg';
 import SEARCH from '../assets/images/svg/search.svg';
 import STAR from '../assets/images/svg/star.svg';
 import CLOSE from '../assets/images/svg/close.svg';
+import GOOGLE_MAP from '../assets/images/svg/google_maps.svg';
+import CONNECT_BORDER from '../assets/images/svg/connect_border.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -39,10 +44,13 @@ export const SVG_IMG = {
   CATEGORY_SHOP,
   CATEGORY_PARK,
   CATEGORY_RESTAURANT,
-  COURSE_1,
-  COURSE_2,
-  COURSE_3,
-  COURSE_4,
+  COURSE_BAR,
+  COURSE_CAFE,
+  COURSE_CULTURE,
+  COURSE_PARK,
+  COURSE_RESTAURANT,
+  COURSE_STORE,
+  COURSE_TRAIN,
   MORE,
   PEOPLE,
   PICK_PLACE_DEFAULT,
@@ -52,4 +60,6 @@ export const SVG_IMG = {
   SEARCH,
   STAR,
   CLOSE,
+  GOOGLE_MAP,
+  CONNECT_BORDER,
 };
