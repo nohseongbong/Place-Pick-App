@@ -3,16 +3,7 @@ import {api} from '../../../shared/api/google/api';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
 import {MarKerType} from '../../../shared/types/place/markerType';
-import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
-
-const rank = [
-  PlaceCategoryType.PARK,
-  PlaceCategoryType.BAR,
-  PlaceCategoryType.RESTAURANT,
-  PlaceCategoryType.STORE,
-  PlaceCategoryType.CAFE,
-  PlaceCategoryType.POINT_OF_INTEREST,
-];
+import {_categoryType} from '../../../shared/utils/placeCategory';
 
 class HomeStore {
   mapLocation: RegionType = initLocation;
@@ -66,19 +57,10 @@ class HomeStore {
       },
       name: place.name,
       place_id: place.place_id,
-      category: this._categoryType(place.types),
+      category: _categoryType(place.types),
     }));
     return mappedList;
   };
-
-  private _categoryType(types: any) {
-    for (let type of rank) {
-      if (types.includes(type)) {
-        return type;
-      }
-    }
-    return PlaceCategoryType.POINT_OF_INTEREST;
-  }
 }
 
 export const homeStore = new HomeStore();
