@@ -12,7 +12,8 @@ export const dummyData = function () {
       formatted_address: '경기도 용인시',
       rating: 3.5,
       user_ratings_total: 3000,
-      location: {lat: 43.0, lng: 40.0},
+      location: {latitude: 43.0, longitude: 40.0},
+      url: '',
     });
   }
   return arr;
