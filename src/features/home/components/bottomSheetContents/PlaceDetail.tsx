@@ -12,6 +12,7 @@ import {palette} from '../../../../shared/constants/palette';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
 import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
 import {courseStore} from '../../store/courseStore';
+import {showPlacePickToast} from '../../../../lib/toast/showToast';
 
 const PlaceDetail = observer(() => {
   const styles = style();
@@ -21,7 +22,9 @@ const PlaceDetail = observer(() => {
   };
 
   const onPressAddPlace = () => {
+    showPlacePickToast();
     courseStore.setAddCourseList(placeDetailStore.getPlaceInfo);
+    courseStore.removeCourseNumber();
     bottomSheetStore.setFocusedType(FocusedType.CREATE);
   };
 
@@ -35,6 +38,7 @@ const PlaceDetail = observer(() => {
         )}
         {placeDetailStore.category === PlaceCategoryType.STORE && <SVG_IMG.CATEGORY_SHOP width={36} height={36} />}
         {placeDetailStore.category === PlaceCategoryType.CAFE && <SVG_IMG.CATEGORY_CAFE width={36} height={36} />}
+        {placeDetailStore.category === PlaceCategoryType.TRAIN && <SVG_IMG.CATEGORY_TRAIN width={36} height={36} />}
         {placeDetailStore.category === PlaceCategoryType.POINT_OF_INTEREST && (
           <SVG_IMG.CATEGORY_FLAG width={36} height={36} />
         )}

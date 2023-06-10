@@ -14,6 +14,16 @@ class CourseStore {
     this.courseNumber = this.courseNumber + 1;
   };
 
+  removeCourseNumber = () => {
+    if (this.courseNumber !== 0) {
+      this.courseNumber = this.courseNumber - 1;
+    }
+  };
+
+  setRemoveCourseList = (index: number) => {
+    this.courseList = this.courseList.filter((x, idx) => idx !== index);
+  };
+
   setAddCourseList = (place: PlaceType) => {
     this.courseList.push(place);
     let arr: ConnectType[] = [];
