@@ -1,5 +1,4 @@
 import {Platform, StyleSheet} from 'react-native';
-import {palette} from '../../../shared/constants/palette';
 import {ht, wt} from '../../../lib/responsiveSize';
 
 const style = () => {
