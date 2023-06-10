@@ -1,8 +1,11 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {api} from '../../../shared/api/google/api';
+import {googleApi} from '../../../shared/api/google/api';
 import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
 import {_categoryType} from '../../../shared/utils/placeCategory';
 import {PlaceType} from '../../../shared/types/place/placeType';
+import {homeStore} from './homeStore';
+import {bottomSheetStore} from './bottomSheetStore';
+import {FocusedType} from '../constants/bottomSheetFocusedType';
 
 class PlaceDetailStore {
   place_id: string = '';
@@ -39,16 +42,20 @@ class PlaceDetailStore {
 
   fetchPlaceDetail = async (place_id: string) => {
     try {
-      const response = await api.getGooglePlaceDetail({place_id});
+      const response = await googleApi.getGooglePlaceDetail({place_id});
       if (response.status !== 200) {
         return;
       }
       const data = response.data.result;
+      const location = {latitude: data.geometry.location.lat, longitude: data.geometry.location.lng};
+      homeStore.setMapLocation(location);
+      homeStore.setSearchLocation(location);
+      bottomSheetStore.setFocusedType(FocusedType.DETAIL);
       runInAction(() => {
         Object.assign(this, {
           ...data,
           category: _categoryType(data.types),
-          location: {latitude: data.geometry.location.latitude, longitude: data.geometry.location.longitude},
+          location: location,
         });
       });
     } catch (error) {

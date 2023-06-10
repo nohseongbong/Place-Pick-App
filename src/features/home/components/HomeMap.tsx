@@ -29,11 +29,6 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const onPressMarker = useCallback(
     (marker: MarKerType) => {
       fetchPlaceDetail(marker.place_id);
-      homeStore.setMapLocation({
-        latitude: marker.location.latitude,
-        longitude: marker.location.longitude,
-      });
-      bottomSheetStore.setFocusedType(FocusedType.DETAIL);
     },
     [markers],
   );
@@ -55,6 +50,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
       park: <SVG_IMG.CATEGORY_PARK width={28} height={28} />,
       store: <SVG_IMG.CATEGORY_SHOP width={28} height={28} />,
       cafe: <SVG_IMG.CATEGORY_CAFE width={28} height={28} />,
+      transit_station: <SVG_IMG.CATEGORY_TRAIN width={28} height={28} />,
       point_of_interest: <SVG_IMG.CATEGORY_FLAG width={28} height={28} />,
     };
     return category[type];
