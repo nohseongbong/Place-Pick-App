@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
-import {ScrollView} from 'react-native-gesture-handler';
-import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
+import BottomSheet from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 
 import style from '../styles/homeBottomSheetStyle';

@@ -1,5 +1,4 @@
-import {makeAutoObservable, runInAction} from 'mobx';
-import {api} from '../../../shared/api/google/api';
+import {makeAutoObservable} from 'mobx';
 
 class CreatePlaceStore {
   constructor() {

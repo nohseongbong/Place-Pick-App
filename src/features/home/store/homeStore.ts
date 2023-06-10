@@ -1,9 +1,9 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {api} from '../../../shared/api/google/api';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {_categoryType} from '../../../shared/utils/placeCategory';
+import {googleApi} from './../../../shared/api/google/api';
 
 class HomeStore {
   mapLocation: RegionType = initLocation;
@@ -33,7 +33,7 @@ class HomeStore {
 
   getFetchNearPlaceList = async (): Promise<MarKerType[]> => {
     try {
-      const response = await api.getGooglePlaceList({location: this.searchLocation, category: this.category});
+      const response = await googleApi.getGooglePlaceList({location: this.searchLocation, category: this.category});
       const result = response.data.results;
       return this._filterList(result);
     } catch (error) {
