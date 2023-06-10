@@ -12,6 +12,7 @@ import {PlaceType} from '../../../../shared/types/place/placeType';
 import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
+import Course from './Course';
 
 const CreateCourse = observer(() => {
   const styles = style();
@@ -31,39 +32,6 @@ const CreateCourse = observer(() => {
         <SVG_IMG.PLUS_ADD width={10} height={10} />
         <CustomText style={styles.add_place_text}>장소 추가하기</CustomText>
       </CustomTouchable>
-    );
-  });
-
-  const SelectedCourseView = memo(({item, index}: {item: PlaceType; index: number}) => {
-    return (
-      <>
-        <CustomTouchable style={styles.selected_wrap}>
-          <View style={styles.selected_icon_wrap}>
-            {item?.category === PlaceCategoryType.BAR && <SVG_IMG.COURSE_BAR width={22} height={22} />}
-            {item?.category === PlaceCategoryType.PARK && <SVG_IMG.COURSE_PARK width={22} height={22} />}
-            {item?.category === PlaceCategoryType.RESTAURANT && <SVG_IMG.COURSE_RESTAURANT width={22} height={22} />}
-            {item?.category === PlaceCategoryType.STORE && <SVG_IMG.COURSE_STORE width={22} height={22} />}
-            {item?.category === PlaceCategoryType.CAFE && <SVG_IMG.COURSE_CAFE width={22} height={22} />}
-            {item?.category === PlaceCategoryType.POINT_OF_INTEREST && (
-              <SVG_IMG.COURSE_CULTURE width={22} height={22} />
-            )}
-            <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
-          </View>
-          <CustomText style={styles.selected_text}>{item.name}</CustomText>
-          <CustomTouchable style={styles.more_wrap}>
-            <SVG_IMG.MORE width={3} height={15} />
-          </CustomTouchable>
-        </CustomTouchable>
-        {courseStore.courseConectList.length !== 0 && courseStore.courseConectList[index] && (
-          <View style={styles.connect_wrap}>
-            <SVG_IMG.CONNECT_BORDER />
-            <CustomTouchable style={styles.connect_btn_wrap}>
-              <SVG_IMG.GOOGLE_MAP width={24} height={24} />
-              <CustomText>구글 맵에서 길찾기</CustomText>
-            </CustomTouchable>
-          </View>
-        )}
-      </>
     );
   });
 
@@ -95,7 +63,7 @@ const CreateCourse = observer(() => {
             <CustomText style={styles.title_text}>를 만들어주세요! 😎</CustomText>
           </View>
           {courseStore.courseList.map((item, index) => {
-            return <SelectedCourseView item={item} index={index} key={`${item.place_id}_${index}`} />;
+            return <Course item={item} index={index} key={`${item.place_id}_${index}`} />;
           })}
           <SearchPlaceBoxView />
           {Array.from({length: courseStore.courseNumber}, (_, index) => (
