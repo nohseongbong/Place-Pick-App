@@ -6,6 +6,7 @@ const rank = [
   PlaceCategoryType.RESTAURANT,
   PlaceCategoryType.STORE,
   PlaceCategoryType.CAFE,
+  PlaceCategoryType.TRAIN,
   PlaceCategoryType.POINT_OF_INTEREST,
 ];
 
