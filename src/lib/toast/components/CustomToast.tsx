@@ -11,6 +11,11 @@ const toastConfig = {
       <CustomText style={styles.text}>{text1}</CustomText>
     </View>
   ),
+  placeRemove: ({text1, props}: any) => (
+    <View style={[styles.container, styles.remove_toast]}>
+      <CustomText style={styles.text}>{text1}</CustomText>
+    </View>
+  ),
 };
 
 export const CustomToast = () => {
