@@ -23,10 +23,10 @@ export class Api {
     axiosInstanceGoogleApi.get('/place/textsearch/json', {
       params: {
         query: query,
-        fields: 'name,formatted_address,rating,user_ratings_total,place_id,url,website',
         type: type,
+        radius: 10000,
       },
     });
 }
 
-export const api = new Api();
+export const googleApi = new Api();
