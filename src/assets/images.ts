@@ -13,6 +13,7 @@ import CATEGORY_FLAG from '../assets/images/svg/category_flag.svg';
 import CATEGORY_SHOP from '../assets/images/svg/category_shop.svg';
 import CATEGORY_PARK from '../assets/images/svg/category_park.svg';
 import CATEGORY_RESTAURANT from '../assets/images/svg/category_restaurant.svg';
+import CATEGORY_TRAIN from '../assets/images/svg/category_train.svg';
 import COURSE_BAR from '../assets/images/svg/bar.svg';
 import COURSE_CAFE from '../assets/images/svg/cafe.svg';
 import COURSE_CULTURE from '../assets/images/svg/culture.svg';
@@ -31,6 +32,8 @@ import STAR from '../assets/images/svg/star.svg';
 import CLOSE from '../assets/images/svg/close.svg';
 import GOOGLE_MAP from '../assets/images/svg/google_maps.svg';
 import CONNECT_BORDER from '../assets/images/svg/connect_border.svg';
+import WRITE from '../assets/images/svg/write.svg';
+import TRASH from '../assets/images/svg/trash.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -43,6 +46,7 @@ export const SVG_IMG = {
   CATEGORY_FLAG,
   CATEGORY_SHOP,
   CATEGORY_PARK,
+  CATEGORY_TRAIN,
   CATEGORY_RESTAURANT,
   COURSE_BAR,
   COURSE_CAFE,
@@ -62,4 +66,6 @@ export const SVG_IMG = {
   CLOSE,
   GOOGLE_MAP,
   CONNECT_BORDER,
+  WRITE,
+  TRASH,
 };
