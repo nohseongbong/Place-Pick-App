@@ -6,7 +6,7 @@ export interface PlaceType {
   formatted_address: string;
   rating: number;
   user_ratings_total: number;
-  url: string;
+  url?: string;
   category: PlaceCategoryType;
   location: {
     latitude: number;
