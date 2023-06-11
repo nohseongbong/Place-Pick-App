@@ -25,7 +25,8 @@ class CourseStore {
   };
 
   setAddCourseList = (place: PlaceType) => {
-    this.courseList.push(place);
+    // this.courseList.push(place);
+    this.courseList = [...this.courseList, place];
     let arr: ConnectType[] = [];
     if (this.courseList.length > 1) {
       this.courseList.map((item, index) => {
