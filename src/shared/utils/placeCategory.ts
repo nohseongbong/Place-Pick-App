@@ -1,6 +1,6 @@
 import {PlaceCategoryType} from '../constants/placeCategoryType';
 
-const rank = [
+export const rank = [
   PlaceCategoryType.PARK,
   PlaceCategoryType.BAR,
   PlaceCategoryType.RESTAURANT,
