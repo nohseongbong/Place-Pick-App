@@ -21,11 +21,14 @@ const HomeContainer = observer(() => {
 
   const onPressNearPlaceBtn = async () => {
     const markers = await homeStore.getFetchNearPlaceList();
+
     setMarkers(markers);
   };
 
   useEffect(() => {
-    onPressNearPlaceBtn();
+    if (placeDetailStore.place_id) {
+      onPressNearPlaceBtn();
+    }
   }, [placeDetailStore.place_id]);
 
   return (

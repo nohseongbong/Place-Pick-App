@@ -1,5 +1,6 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Platform, View, Image} from 'react-native';
+import {toJS} from 'mobx';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import MapViewClustering from 'react-native-map-clustering';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -16,11 +17,16 @@ import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
+import {courseStore} from '../store/courseStore';
+import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
+import {PlaceType} from '../../../shared/types/place/placeType';
+import {palette} from '../../../shared/constants/palette';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
   const mapRef = useRef<MapView>(null);
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
+  const [selectMarkers, setSelectMarkers] = useState<PlaceType[] | []>([]);
 
   const fetchPlaceDetail = async (place_id: string) => {
     await placeDetailStore.fetchPlaceDetail(place_id);
@@ -57,19 +63,58 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   };
 
   const MarkerView = (marker: any, index: number) => {
+    if (courseStore.courseList.find(item => item.place_id === marker.place_id)) {
+      return null;
+    }
     return (
       <Marker
         onPress={() => onPressMarker(marker)}
         coordinate={marker.location}
-        key={String(index) + marker.id}
-        id={marker.id}>
+        key={String(index) + marker.place_id}
+        id={marker.place_id}>
         <View style={styles.marker_container}>
           <CategoryIconView type={marker.category} />
-          <CustomText style={styles.marker_text}>{marker.name}</CustomText>
+          <CustomText numberOfLines={3} style={styles.marker_text}>
+            {marker.name}
+          </CustomText>
         </View>
       </Marker>
     );
   };
+
+  const SelectMarkerView = (marker: any, index: number) => {
+    return (
+      <Marker
+        style={{zIndex: 10000}}
+        onPress={() => onPressMarker(marker)}
+        coordinate={marker.location}
+        key={String(index) + marker.place_id}
+        id={marker.place_id}>
+        <View style={styles.marker_container}>
+          <View style={styles.selected_icon_wrap}>
+            {marker?.category === PlaceCategoryType.BAR && <SVG_IMG.COURSE_BAR width={28} height={28} />}
+            {marker?.category === PlaceCategoryType.PARK && <SVG_IMG.COURSE_PARK width={28} height={28} />}
+            {marker?.category === PlaceCategoryType.RESTAURANT && <SVG_IMG.COURSE_RESTAURANT width={28} height={28} />}
+            {marker?.category === PlaceCategoryType.STORE && <SVG_IMG.COURSE_STORE width={28} height={28} />}
+            {marker?.category === PlaceCategoryType.CAFE && <SVG_IMG.COURSE_CAFE width={28} height={28} />}
+            {marker?.category === PlaceCategoryType.TRAIN && <SVG_IMG.COURSE_TRAIN width={28} height={28} />}
+            {marker?.category === PlaceCategoryType.POINT_OF_INTEREST && (
+              <SVG_IMG.COURSE_CULTURE width={28} height={28} />
+            )}
+            <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
+          </View>
+          <CustomText numberOfLines={3} style={styles.marker_text}>
+            {marker.name}
+          </CustomText>
+        </View>
+      </Marker>
+    );
+  };
+
+  useEffect(() => {
+    // setSelectMarkers([...courseStore.courseList]);
+    setSelectMarkers(toJS(courseStore.courseList));
+  }, [courseStore.courseList]);
 
   return (
     <View style={styles.container}>
@@ -97,6 +142,10 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         clusteringEnabled={true}
         mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
         showsUserLocation={true}>
+        {selectMarkers.map((marker: any, index) => {
+          return SelectMarkerView(marker, index);
+        })}
+
         {markers.map((marker: any, index: number) => {
           return MarkerView(marker, index);
         })}
