@@ -100,6 +100,7 @@ const PlaceSearch = observer(() => {
             style={styles.search_input}
             keyboardType="web-search"
             placeholder="검색"
+            onSubmitEditing={searchStore.fetchGoogleSearchPlace}
             value={searchStore.searchText}
             onChangeText={searchStore.setSearchText}
           />
