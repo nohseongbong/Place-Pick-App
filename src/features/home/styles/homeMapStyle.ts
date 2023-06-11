@@ -42,6 +42,8 @@ const style = () => {
       fontSize: fs(11),
       fontFamily: fontWt.Bold,
       marginTop: ht(3),
+      width: wt(70),
+      textAlign: 'center',
     },
     my_location_btn_wrap: {
       justifyContent: 'center',
@@ -60,6 +62,16 @@ const style = () => {
     my_location_btn_img: {
       width: wt(19),
       height: ht(19),
+    },
+    selected_icon_wrap: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    selected_icon_text: {
+      fontSize: fs(11),
+      color: palette.BACKGROUND,
+      fontFamily: fontWt.Bold,
+      position: 'absolute',
     },
   });
 };
