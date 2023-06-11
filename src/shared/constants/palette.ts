@@ -4,7 +4,7 @@ export enum palette {
   INNER_BACKGOUND = '#F7F8F9',
   TEXT = '#343a40',
   SUB_TEXT = '#868E96',
-  PRIMARY_BLACK = '212429',
+  PRIMARY_BLACK = '#212429',
   BORDER = '#CDD3D9',
 }
 
