@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
@@ -12,12 +12,12 @@ import PlaceSearch from './bottomSheetContents/PlaceSearch';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {searchStore} from '../store/searchStore';
 import {View} from 'react-native';
-import CustomText from '../../../shared/components/customComponents/CustomText';
-import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
+import CategoryBar from './bottomSheetContents/CategoryBar';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
+  const [scrollIndex, setScrollIndex] = useState<number>(0);
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -42,29 +42,25 @@ const HomeBottomSheet = observer(() => {
     }
   }, [searchStore.isFocusSearch]);
 
+  // callbacks
+  const handleSheetChanges = useCallback((index: number) => {
+    setScrollIndex(index);
+  }, []);
+
   return (
     <>
       <BottomSheet
         ref={bottomSheetRef}
         index={0}
         snapPoints={snapPoints}
+        onChange={handleSheetChanges}
         handleComponent={() => {
           return (
             <>
               <View style={styles.handler_wrap}>
                 <View style={styles.handler} />
               </View>
-              <CustomTouchable
-                style={{
-                  width: 100,
-                  height: 50,
-                  backgroundColor: 'red',
-                  position: 'absolute',
-                  top: -50,
-                  zIndex: 100000,
-                }}>
-                <CustomText>test</CustomText>
-              </CustomTouchable>
+              {scrollIndex !== 2 && <CategoryBar />}
             </>
           );
         }}
