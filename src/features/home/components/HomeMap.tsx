@@ -112,7 +112,6 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   };
 
   useEffect(() => {
-    // setSelectMarkers([...courseStore.courseList]);
     setSelectMarkers(toJS(courseStore.courseList));
   }, [courseStore.courseList]);
 
