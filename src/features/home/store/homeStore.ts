@@ -31,6 +31,10 @@ class HomeStore {
     };
   };
 
+  setCategory = (category: string) => {
+    this.category = category;
+  };
+
   getFetchNearPlaceList = async (): Promise<MarKerType[]> => {
     try {
       const response = await googleApi.getGooglePlaceList({location: this.searchLocation, category: this.category});
