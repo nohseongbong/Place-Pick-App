@@ -6,6 +6,13 @@ export enum palette {
   SUB_TEXT = '#868E96',
   PRIMARY_BLACK = '#212429',
   BORDER = '#CDD3D9',
+  RESTAURANT = '#FFAAA5',
+  POINT_OF_INTEREST = '#A5B9FF',
+  CAFE = '#FFD0A5',
+  PARK = '#81DE84',
+  STORE = '#FFA5F4',
+  BAR = '#C1A5FF',
+  TRAIN = '#5898FF',
 }
 
 export enum fontWt {
