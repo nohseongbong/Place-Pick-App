@@ -121,6 +121,16 @@ const style = () => {
       color: palette.SUB_TEXT,
       fontSize: fs(12),
     },
+    not_search_wrap: {
+      flex: 1,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    not_search_text: {
+      color: palette.SUB_TEXT,
+      fontSize: fs(17),
+    },
   });
 };
 

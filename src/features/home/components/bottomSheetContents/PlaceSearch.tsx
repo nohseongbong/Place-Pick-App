@@ -14,6 +14,7 @@ import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
 import {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {placeDetailStore} from '../../store/placeDetailStore';
+import {isBlank} from '../../../../lib/lodash';
 
 const PlaceSearch = observer(() => {
   const styles = style();
@@ -118,11 +119,19 @@ const PlaceSearch = observer(() => {
           return <TabComponent key={`${item}_${index}`} item={item} />;
         })}
       </View>
-      <BottomSheetScrollView contentContainerStyle={styles.list_wrap}>
-        {searchStore.searchList.map(item => {
-          return <SearchListItem place={item} key={item.place_id} />;
-        })}
-      </BottomSheetScrollView>
+      {isBlank(searchStore.searchText) ? (
+        <View style={styles.not_search_wrap}>
+          <SVG_IMG.PLACE_ICON width={26} height={32} />
+          <CustomText style={[styles.not_search_text, {marginTop: 10}]}>가고싶은 곳을</CustomText>
+          <CustomText style={styles.not_search_text}>자유롭게 검색해보세요!</CustomText>
+        </View>
+      ) : (
+        <BottomSheetScrollView contentContainerStyle={styles.list_wrap}>
+          {searchStore.searchList.map(item => {
+            return <SearchListItem place={item} key={item.place_id} />;
+          })}
+        </BottomSheetScrollView>
+      )}
     </View>
   );
 });
