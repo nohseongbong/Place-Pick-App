@@ -28,6 +28,10 @@ const PlaceDetail = observer(() => {
     bottomSheetStore.setFocusedType(FocusedType.CREATE);
   };
 
+  const onPressPlaceDetail = () => {
+    Linking.openURL(placeDetailStore.url);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.place_info_container}>
@@ -59,7 +63,7 @@ const PlaceDetail = observer(() => {
         </CustomTouchable>
       </View>
       <View style={styles.btns_wrap}>
-        <CustomTouchable style={styles.btn_wrap}>
+        <CustomTouchable onPress={onPressPlaceDetail} style={styles.btn_wrap}>
           <CustomText style={styles.btn_text}>상세 정보</CustomText>
         </CustomTouchable>
         <CustomTouchable onPress={onPressAddPlace} style={[styles.btn_wrap, {backgroundColor: palette.PRIMARY}]}>
