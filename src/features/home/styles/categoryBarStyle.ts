@@ -6,8 +6,9 @@ import {getPlatformStyles} from '../../../shared/utils/getPlatformStyles';
 const style = () => {
   return StyleSheet.create({
     scroll: {
+      flexGrow: 1,
       position: 'absolute',
-      top: ht(-50),
+      bottom: ht(60),
       zIndex: 100000,
     },
     container: {
@@ -24,6 +25,8 @@ const style = () => {
       backgroundColor: palette.BACKGROUND,
       borderRadius: 30,
       marginRight: wt(8),
+      flexDirection: 'row',
+      gap: wt(5),
       ...getPlatformStyles,
     },
     item_text: {
