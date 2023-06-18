@@ -34,6 +34,20 @@ import GOOGLE_MAP from '../assets/images/svg/google_maps.svg';
 import CONNECT_BORDER from '../assets/images/svg/connect_border.svg';
 import WRITE from '../assets/images/svg/write.svg';
 import TRASH from '../assets/images/svg/trash.svg';
+import TRAIN from '../assets/images/svg/category_bar_train.svg';
+import SHOP from '../assets/images/svg/category_bar_shop.svg';
+import CAFE from '../assets/images/svg/category_bar_cafe.svg';
+import BAR from '../assets/images/svg/category_bar_bar.svg';
+import FLAG from '../assets/images/svg/category_bar_flag.svg';
+import RESTAURANT from '../assets/images/svg/category_bar_restaurant.svg';
+import PARK from '../assets/images/svg/category_bar_park.svg';
+import SHOP_ACTIVE from '../assets/images/svg/category_bar_shop_active.svg';
+import CAFE_ACTIVE from '../assets/images/svg/category_bar_cafe_active.svg';
+import BAR_ACTIVE from '../assets/images/svg/category_bar_bar_active.svg';
+import FLAG_ACTIVE from '../assets/images/svg/category_bar_flag_active.svg';
+import RESTAURANT_ACTIVE from '../assets/images/svg/category_bar_restaurant_active.svg';
+import PARK_ACTIVE from '../assets/images/svg/category_bar_park_active.svg';
+import KAKAO_MAP from '../assets/images/svg/kakao_map_logo.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -68,4 +82,18 @@ export const SVG_IMG = {
   CONNECT_BORDER,
   WRITE,
   TRASH,
+  TRAIN,
+  BAR,
+  CAFE,
+  SHOP,
+  FLAG,
+  RESTAURANT,
+  PARK,
+  BAR_ACTIVE,
+  CAFE_ACTIVE,
+  SHOP_ACTIVE,
+  FLAG_ACTIVE,
+  RESTAURANT_ACTIVE,
+  PARK_ACTIVE,
+  KAKAO_MAP,
 };
