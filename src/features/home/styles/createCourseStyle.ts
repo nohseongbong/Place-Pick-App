@@ -11,6 +11,7 @@ const style = () => {
       alignItems: 'center',
       paddingHorizontal: wt(20),
       paddingVertical: ht(20),
+      paddingBottom: ht(200),
     },
     title_wrap: {
       flexDirection: 'row',

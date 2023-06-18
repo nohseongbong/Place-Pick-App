@@ -55,8 +55,8 @@ const CreateCourse = observer(() => {
   });
 
   return (
-    <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
-      <ScrollView style={{flex: 1}}>
+    <BottomSheetScrollView contentContainerStyle={{flexGrow: 1}}>
+      <ScrollView style={{flexGrow: 1}}>
         <View style={styles.container}>
           <View style={styles.title_wrap}>
             <CustomText style={[styles.title_text, styles.title_strong_text]}>나만의 코스</CustomText>
