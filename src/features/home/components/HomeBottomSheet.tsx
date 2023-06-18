@@ -13,6 +13,7 @@ import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {searchStore} from '../store/searchStore';
 import {View} from 'react-native';
 import CategoryBar from './bottomSheetContents/CategoryBar';
+import CustomText from '../../../shared/components/customComponents/CustomText';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -24,11 +25,10 @@ const HomeBottomSheet = observer(() => {
   // variables
   const snapPoints = useMemo(() => ['5%', '30%', '95%'], []);
 
-  useEffect(() => {
-    if (bottomSheetStore.focusedType === FocusedType.DETAIL) {
-      bottomSheetRef.current?.snapToIndex(1);
-    }
-  }, [bottomSheetStore.focusedType]);
+  // callbacks
+  const handleSheetChanges = useCallback((index: number) => {
+    bottomSheetStore.setBottomSheetIndex(index);
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -37,41 +37,42 @@ const HomeBottomSheet = observer(() => {
   );
 
   useEffect(() => {
+    if (bottomSheetStore.focusedType === FocusedType.DETAIL) {
+      bottomSheetRef.current?.snapToIndex(1);
+    }
+  }, [bottomSheetStore.focusedType]);
+
+  useEffect(() => {
     if (searchStore.isFocusSearch) {
       bottomSheetRef.current?.snapToIndex(2);
     }
   }, [searchStore.isFocusSearch]);
 
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    setScrollIndex(index);
-  }, []);
-
+  useEffect(() => {
+    console.log(bottomSheetStore.bottomSheetIndex);
+  }, [bottomSheetStore.bottomSheetIndex]);
   return (
-    <>
-      <BottomSheet
-        ref={bottomSheetRef}
-        index={0}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}
-        handleComponent={() => {
-          return (
-            <>
-              <View style={styles.handler_wrap}>
-                <View style={styles.handler} />
-              </View>
-              {scrollIndex !== 2 && <CategoryBar />}
-            </>
-          );
-        }}
-        enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-        enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-        enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
-        {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
-        {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
-        {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
-      </BottomSheet>
-    </>
+    <BottomSheet
+      ref={bottomSheetRef}
+      index={0}
+      snapPoints={snapPoints}
+      onChange={handleSheetChanges}
+      handleComponent={() => {
+        return (
+          <>
+            <View style={styles.handler_wrap}>
+              <View style={styles.handler} />
+            </View>
+          </>
+        );
+      }}
+      enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+      enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+      enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
+      {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
+      {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
+      {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
+    </BottomSheet>
   );
 });
 
