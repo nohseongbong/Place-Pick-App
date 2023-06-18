@@ -35,11 +35,13 @@ const HomeContainer = observer(() => {
     <View style={styles.container}>
       <HomeMap onPressNearPlaceBtn={onPressNearPlaceBtn} markers={markers} />
       <HomeBottomSheet />
-      {courseStore.courseList.length > 1 && bottomSheetStore.focusedType === FocusedType.CREATE && (
-        <CustomTouchable style={styles.complete_course_wrap}>
-          <CustomText style={styles.complete_course_text}>코스 완성하기</CustomText>
-        </CustomTouchable>
-      )}
+      {courseStore.courseList.length > 1 &&
+        bottomSheetStore.focusedType === FocusedType.CREATE &&
+        bottomSheetStore.bottomSheetIndex !== 0 && (
+          <CustomTouchable style={styles.complete_course_wrap}>
+            <CustomText style={styles.complete_course_text}>코스 완성하기</CustomText>
+          </CustomTouchable>
+        )}
     </View>
   );
 });
