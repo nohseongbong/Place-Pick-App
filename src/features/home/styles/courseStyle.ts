@@ -59,6 +59,11 @@ const style = () => {
       borderRadius: 8,
       marginLeft: wt(30),
     },
+    connect_btn_text: {
+      fontSize: fs(13),
+      color: palette.TEXT,
+      marginLeft: wt(5),
+    },
     more_content_wrap: {
       width: '102%',
       height: ht(62),
