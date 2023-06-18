@@ -16,11 +16,10 @@ import {IMG, SVG_IMG} from '../../../assets/images';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import {MarKerType} from '../../../shared/types/place/markerType';
-import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {courseStore} from '../store/courseStore';
 import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
 import {PlaceType} from '../../../shared/types/place/placeType';
-import {palette} from '../../../shared/constants/palette';
+import CategoryBar from './bottomSheetContents/CategoryBar';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
@@ -149,6 +148,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
           return MarkerView(marker, index);
         })}
       </MapViewClustering>
+      {bottomSheetStore.bottomSheetIndex !== 2 && <CategoryBar />}
     </View>
   );
 });
