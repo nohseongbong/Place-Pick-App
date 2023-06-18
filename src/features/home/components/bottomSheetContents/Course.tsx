@@ -1,5 +1,5 @@
 import {memo, useState} from 'react';
-import {View} from 'react-native';
+import {Linking, Platform, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
@@ -23,6 +23,29 @@ const Course = observer(({item, index}: {item: PlaceType; index: number}) => {
   const onPressRemoveCourse = () => {
     showPlaceRemoveToast();
     courseStore.setRemoveCourseList(index);
+  };
+
+  const onPressLoadMap = async () => {
+    const start = item;
+    const end = courseStore.courseList[index + 1];
+    console.log(start);
+    console.log(end);
+    await Linking.openURL(
+      `kakaomap://route?sp=${start.location.latitude},${start.location.longitude}&ep=${end.location.latitude},${end.location.longitude}&by=FOOT`,
+    )
+      .then(res => {
+        console.log(res, '  : res ');
+      })
+      .catch(err => {
+        if (Platform.OS === 'android') {
+          Linking.openURL('https://play.google.com/store/apps/details?id=net.daum.android.map&hl=ko-KR');
+        } else {
+          Linking.openURL(
+            'https://apps.apple.com/kr/app/%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A7%B5-%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD-no-1-%EC%A7%80%EB%8F%84%EC%95%B1/id304608425',
+          );
+        }
+        console.log(err, '  : err ');
+      });
   };
 
   return (
@@ -63,9 +86,9 @@ const Course = observer(({item, index}: {item: PlaceType; index: number}) => {
       {courseStore.courseConectList.length !== 0 && courseStore.courseConectList[index] && (
         <View style={styles.connect_wrap}>
           <SVG_IMG.CONNECT_BORDER />
-          <CustomTouchable style={styles.connect_btn_wrap}>
-            <SVG_IMG.GOOGLE_MAP width={24} height={24} />
-            <CustomText>구글 맵에서 길찾기</CustomText>
+          <CustomTouchable onPress={onPressLoadMap} style={styles.connect_btn_wrap}>
+            <SVG_IMG.KAKAO_MAP width={24} height={24} />
+            <CustomText style={styles.connect_btn_text}>카카오 맵에서 길찾기</CustomText>
           </CustomTouchable>
         </View>
       )}
