@@ -12,8 +12,6 @@ import PlaceSearch from './bottomSheetContents/PlaceSearch';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {searchStore} from '../store/searchStore';
 import {View} from 'react-native';
-import CategoryBar from './bottomSheetContents/CategoryBar';
-import CustomText from '../../../shared/components/customComponents/CustomText';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
@@ -23,7 +21,7 @@ const HomeBottomSheet = observer(() => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['5%', '30%', '95%'], []);
+  const snapPoints = useMemo(() => ['5%', '30%', '100%'], []);
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
@@ -49,7 +47,7 @@ const HomeBottomSheet = observer(() => {
   }, [searchStore.isFocusSearch]);
 
   useEffect(() => {
-    console.log(bottomSheetStore.bottomSheetIndex);
+    // console.log(bottomSheetStore.bottomSheetIndex);
   }, [bottomSheetStore.bottomSheetIndex]);
   return (
     <BottomSheet
