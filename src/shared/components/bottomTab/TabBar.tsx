@@ -9,7 +9,6 @@ import {SVG_IMG} from '../../../assets/images';
 import CustomText from '../customComponents/CustomText';
 
 const TabBar = observer(({state, descriptors, navigation}: BottomTabBarProps) => {
-  const colors = palette;
   const styles = style();
 
   return (
