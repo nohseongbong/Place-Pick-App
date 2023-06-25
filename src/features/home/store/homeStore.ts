@@ -1,3 +1,4 @@
+import {PlaceCategoryType} from './../../../shared/constants/placeCategoryType';
 import {makeAutoObservable, runInAction} from 'mobx';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
@@ -7,17 +8,21 @@ import {googleApi} from './../../../shared/api/google/api';
 
 class HomeStore {
   mapLocation: RegionType = initLocation;
+  isNearPlace: boolean = true;
+  category: string = PlaceCategoryType.RESTAURANT;
 
   searchLocation = {
     latitude: 37.4979052,
     longitude: 127.0275777,
   };
 
-  category: string = 'restaurant';
-
   constructor() {
     makeAutoObservable(this);
   }
+
+  setIsNearPlace = (state: boolean) => {
+    this.isNearPlace = state;
+  };
 
   setMapLocation = ({latitude, longitude}: {latitude: number; longitude: number}) => {
     this.mapLocation.latitude = latitude;

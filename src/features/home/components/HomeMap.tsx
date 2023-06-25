@@ -13,13 +13,10 @@ import CustomTouchable from '../../../shared/components/customComponents/CustomT
 import {userStore} from '../../../shared/store/userStore';
 import {placeDetailStore} from '../store/placeDetailStore';
 import {IMG, SVG_IMG} from '../../../assets/images';
-import {bottomSheetStore} from '../store/bottomSheetStore';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {courseStore} from '../store/courseStore';
-import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
 import {PlaceType} from '../../../shared/types/place/placeType';
-import CategoryBar from './bottomSheetContents/CategoryBar';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
@@ -43,8 +40,13 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
       mapRef.current.animateToRegion({...userStore.userLocation}, 500);
     }
   };
+  const onPressNearPlace = () => {
+    homeStore.setIsNearPlace(false);
+    onPressNearPlaceBtn();
+  };
 
   const getMapCenter = useCallback((e: any) => {
+    homeStore.setIsNearPlace(true);
     homeStore.setSearchLocation(e);
   }, []);
 
@@ -81,6 +83,19 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
     );
   };
 
+  const SelectCategoryIconView = ({type}: {type: string}) => {
+    const category: {[key: string]: JSX.Element} = {
+      restaurant: <SVG_IMG.COURSE_RESTAURANT width={28} height={28} />,
+      bar: <SVG_IMG.COURSE_BAR width={28} height={28} />,
+      park: <SVG_IMG.COURSE_PARK width={28} height={28} />,
+      store: <SVG_IMG.COURSE_STORE width={28} height={28} />,
+      cafe: <SVG_IMG.COURSE_CAFE width={28} height={28} />,
+      transit_station: <SVG_IMG.COURSE_TRAIN width={28} height={28} />,
+      point_of_interest: <SVG_IMG.COURSE_CULTURE width={28} height={28} />,
+    };
+    return category[type];
+  };
+
   const SelectMarkerView = (marker: any, index: number) => {
     return (
       <Marker
@@ -91,15 +106,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         id={marker.place_id}>
         <View style={styles.marker_container}>
           <View style={styles.selected_icon_wrap}>
-            {marker?.category === PlaceCategoryType.BAR && <SVG_IMG.COURSE_BAR width={28} height={28} />}
-            {marker?.category === PlaceCategoryType.PARK && <SVG_IMG.COURSE_PARK width={28} height={28} />}
-            {marker?.category === PlaceCategoryType.RESTAURANT && <SVG_IMG.COURSE_RESTAURANT width={28} height={28} />}
-            {marker?.category === PlaceCategoryType.STORE && <SVG_IMG.COURSE_STORE width={28} height={28} />}
-            {marker?.category === PlaceCategoryType.CAFE && <SVG_IMG.COURSE_CAFE width={28} height={28} />}
-            {marker?.category === PlaceCategoryType.TRAIN && <SVG_IMG.COURSE_TRAIN width={28} height={28} />}
-            {marker?.category === PlaceCategoryType.POINT_OF_INTEREST && (
-              <SVG_IMG.COURSE_CULTURE width={28} height={28} />
-            )}
+            <SelectCategoryIconView type={marker.category} />
             <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
           </View>
           <CustomText numberOfLines={3} style={styles.marker_text}>
@@ -116,9 +123,11 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
 
   return (
     <View style={styles.container}>
-      <CustomTouchable onPress={onPressNearPlaceBtn} style={styles.near_place_btn}>
-        <CustomText style={styles.near_place_btn_text}>이 지역 검색</CustomText>
-      </CustomTouchable>
+      {homeStore.isNearPlace && (
+        <CustomTouchable onPress={onPressNearPlace} style={styles.near_place_btn}>
+          <CustomText style={styles.near_place_btn_text}>이 지역 검색</CustomText>
+        </CustomTouchable>
+      )}
       {Platform.OS === 'ios' && (
         <CustomTouchable activeOpacity={0.3} style={styles.my_location_btn_wrap} onPress={onPressMyLocation}>
           <Image source={IMG.MY_LOCATION} style={styles.my_location_btn_img} />
@@ -138,7 +147,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         showsTraffic={true}
         clusterColor={'#ddd'}
         clusteringEnabled={true}
-        mapPadding={{top: 50, right: 0, bottom: 50, left: 0}}
+        mapPadding={{bottom: 100, top: 0, right: 0, left: 0}}
         showsUserLocation={true}>
         {selectMarkers.map((marker: any, index) => {
           return SelectMarkerView(marker, index);
@@ -148,7 +157,6 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
           return MarkerView(marker, index);
         })}
       </MapViewClustering>
-      {bottomSheetStore.bottomSheetIndex !== 2 && <CategoryBar />}
     </View>
   );
 });
