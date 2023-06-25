@@ -1,38 +1,47 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {fontWt, palette} from '../../../shared/constants/palette';
 import {fs, ht, wt} from '../../../lib/responsiveSize';
 import {getPlatformStyles} from '../../../shared/utils/getPlatformStyles';
 
 const style = () => {
   return StyleSheet.create({
-    scroll: {
-      flexGrow: 1,
-      position: 'absolute',
-      bottom: ht(60),
-      zIndex: 100000,
-    },
     container: {
       width: '100%',
       height: ht(50),
-      paddingHorizontal: wt(10),
+      backgroundColor: palette.BACKGROUND,
+      ...(Platform.OS === 'ios'
+        ? {
+            shadowColor: '#000000',
+            shadowOpacity: 1,
+            shadowRadius: 3,
+            shadowOffset: {
+              height: 0,
+              width: 0,
+            },
+          }
+        : {
+            elevation: 5,
+          }),
+    },
+    content_container: {
+      flex: 1,
       flexDirection: 'row',
+      paddingHorizontal: wt(20),
+      gap: wt(30),
     },
     category_item: {
-      paddingHorizontal: wt(15),
-      height: ht(35),
+      height: '100%',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: palette.BACKGROUND,
-      borderRadius: 30,
-      marginRight: wt(8),
       flexDirection: 'row',
-      gap: wt(5),
-      ...getPlatformStyles,
+      borderBottomWidth: 2.5,
+      borderColor: palette.BACKGROUND,
     },
     item_text: {
-      fontSize: fs(15),
-      fontFamily: fontWt.Medium,
-      color: palette.TEXT,
+      fontSize: fs(14),
+      color: palette.SUB_TEXT,
+      marginLeft: wt(5),
     },
   });
 };

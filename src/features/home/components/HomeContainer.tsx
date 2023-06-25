@@ -13,16 +13,24 @@ import CustomText from '../../../shared/components/customComponents/CustomText';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {placeDetailStore} from '../store/placeDetailStore';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {MainStackParamList} from '../../../shared/types/navigation/paramsType';
+import {SCREEN_NAME} from '../../../shared/constants/navigation';
+import CategoryBar from './bottomSheetContents/CategoryBar';
 
 const HomeContainer = observer(() => {
   const styles = style();
-
+  const navigation: NavigationProp<MainStackParamList> = useNavigation();
   const [markers, setMarkers] = useState<MarKerType[] | []>([]);
 
   const onPressNearPlaceBtn = async () => {
     const markers = await homeStore.getFetchNearPlaceList();
 
     setMarkers(markers);
+  };
+
+  const onPressCreateCourse = () => {
+    navigation.navigate(SCREEN_NAME.COURSEDETAIL);
   };
 
   useEffect(() => {
@@ -33,12 +41,13 @@ const HomeContainer = observer(() => {
 
   return (
     <View style={styles.container}>
+      <CategoryBar />
       <HomeMap onPressNearPlaceBtn={onPressNearPlaceBtn} markers={markers} />
       <HomeBottomSheet />
       {courseStore.courseList.length > 1 &&
         bottomSheetStore.focusedType === FocusedType.CREATE &&
         bottomSheetStore.bottomSheetIndex !== 0 && (
-          <CustomTouchable style={styles.complete_course_wrap}>
+          <CustomTouchable onPress={onPressCreateCourse} style={styles.complete_course_wrap}>
             <CustomText style={styles.complete_course_text}>코스 완성하기</CustomText>
           </CustomTouchable>
         )}

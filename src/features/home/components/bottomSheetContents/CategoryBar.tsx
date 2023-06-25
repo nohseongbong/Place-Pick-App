@@ -4,7 +4,7 @@ import {observer} from 'mobx-react-lite';
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
 import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
-import {palette} from '../../../../shared/constants/palette';
+import {fontWt, palette} from '../../../../shared/constants/palette';
 import style from '../../styles/categoryBarStyle';
 import {categoryList} from '../../constants/category';
 import {homeStore} from '../../store/homeStore';
@@ -70,14 +70,15 @@ const CategoryBar = observer(() => {
 
     const onPressCategory = () => {
       homeStore.setCategory(item);
+      homeStore.setIsNearPlace(true);
     };
     return (
       <CustomTouchable
         onPress={onPressCategory}
-        style={[styles.category_item, homeStore.category === item && {backgroundColor: color}]}>
-        {homeStore.category === item ? <CategoryIconView type={name} /> : <AtiveCategoryIconView type={name} />}
+        style={[styles.category_item, homeStore.category === item && {borderColor: color}]}>
+        {homeStore.category === item ? <AtiveCategoryIconView type={name} /> : <CategoryIconView type={name} />}
 
-        <CustomText style={[styles.item_text, homeStore.category === item && {color: palette.BACKGROUND}]}>
+        <CustomText style={[styles.item_text, homeStore.category === item && {color: color, fontFamily: fontWt.Bold}]}>
           {name}
         </CustomText>
       </CustomTouchable>
@@ -85,13 +86,15 @@ const CategoryBar = observer(() => {
   });
 
   return (
-    <ScrollView style={styles.scroll} horizontal showsHorizontalScrollIndicator={false}>
-      <View style={styles.container}>
-        {categoryList.map((item, index) => {
-          return <CategoryItemView key={`${index}_${item}`} item={item} />;
-        })}
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.content_container}>
+          {categoryList.map((item, index) => {
+            return <CategoryItemView key={`${index}_${item}`} item={item} />;
+          })}
+        </View>
+      </ScrollView>
+    </View>
   );
 });
 export default CategoryBar;
