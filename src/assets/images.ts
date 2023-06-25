@@ -48,6 +48,7 @@ import FLAG_ACTIVE from '../assets/images/svg/category_bar_flag_active.svg';
 import RESTAURANT_ACTIVE from '../assets/images/svg/category_bar_restaurant_active.svg';
 import PARK_ACTIVE from '../assets/images/svg/category_bar_park_active.svg';
 import KAKAO_MAP from '../assets/images/svg/kakao_map_logo.svg';
+import BACK_ICON from '../assets/images/svg/back_icon.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -96,4 +97,5 @@ export const SVG_IMG = {
   RESTAURANT_ACTIVE,
   PARK_ACTIVE,
   KAKAO_MAP,
+  BACK_ICON,
 };
