@@ -12,7 +12,7 @@ import {PlaceType} from '../../../../shared/types/place/placeType';
 import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
-import Course from './Course';
+import Course from '../../../../shared/components/course/components/Course';
 
 const CreateCourse = observer(() => {
   const styles = style();
@@ -63,7 +63,7 @@ const CreateCourse = observer(() => {
             <CustomText style={styles.title_text}>를 만들어주세요! 😎</CustomText>
           </View>
           {courseStore.courseList.map((item, index) => {
-            return <Course item={item} index={index} key={`${item.place_id}_${index}`} />;
+            return <Course isMoreState={true} item={item} index={index} key={`${item.place_id}_${index}`} />;
           })}
           <SearchPlaceBoxView />
           {Array.from({length: courseStore.courseNumber}, (_, index) => (
