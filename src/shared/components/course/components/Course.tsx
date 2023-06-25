@@ -2,17 +2,23 @@ import {memo, useState} from 'react';
 import {Linking, Platform, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
-import style from '../../styles/courseStyle';
-import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
+import CustomTouchable from '../../customComponents/CustomTouchable';
+import style from '../styles/courseStyle';
+import {PlaceCategoryType} from '../../../constants/placeCategoryType';
 import {SVG_IMG} from '../../../../assets/images';
-import CustomText from '../../../../shared/components/customComponents/CustomText';
-import {courseStore} from '../../store/courseStore';
-import {PlaceType} from '../../../../shared/types/place/placeType';
-import {palette} from '../../../../shared/constants/palette';
+import CustomText from '../../customComponents/CustomText';
+import {courseStore} from '../../../../features/home/store/courseStore';
+import {PlaceType} from '../../../types/place/placeType';
+import {palette} from '../../../constants/palette';
 import {showPlaceRemoveToast} from '../../../../lib/toast/showToast';
 
-const Course = observer(({item, index}: {item: PlaceType; index: number}) => {
+interface Props {
+  item: PlaceType;
+  index: number;
+  isMoreState: boolean;
+}
+
+const Course = observer(({item, index, isMoreState}: Props) => {
   const styles = style();
   const [isMore, setIsMore] = useState<boolean>(false);
 
@@ -65,9 +71,13 @@ const Course = observer(({item, index}: {item: PlaceType; index: number}) => {
             <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
           </View>
           <CustomText style={styles.selected_text}>{item.name}</CustomText>
-          <CustomTouchable onPress={toggleIsMore} style={styles.more_wrap}>
-            <SVG_IMG.MORE width={3} height={15} />
-          </CustomTouchable>
+          {isMoreState ? (
+            <CustomTouchable onPress={toggleIsMore} style={styles.more_wrap}>
+              <SVG_IMG.MORE width={3} height={15} />
+            </CustomTouchable>
+          ) : (
+            <View />
+          )}
         </View>
         {isMore && (
           <View style={styles.more_content_wrap}>

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {fontWt, palette} from '../../../shared/constants/palette';
-import {fs, ht, wt} from '../../../lib/responsiveSize';
-import {getPlatformStyles} from '../../../shared/utils/getPlatformStyles';
+import {fontWt, palette} from '../../../constants/palette';
+import {fs, ht, wt} from '../../../../lib/responsiveSize';
+import {getPlatformStyles} from '../../../utils/getPlatformStyles';
 
 const style = () => {
   return StyleSheet.create({
