@@ -13,23 +13,22 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
   return (
     <>
-      {/* <CustomSafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={palette.BACKGROUND} /> */}
-      <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
-      <RootStack.Navigator
-        screenOptions={{
-          headerShown: false,
-          fullScreenGestureEnabled: true,
-          navigationBarColor: palette.BACKGROUND,
-        }}
-        initialRouteName={SCREEN_NAME.SPLASH}>
-        <RootStack.Screen name={SCREEN_NAME.SPLASH} component={SplashScreen} />
-        <RootStack.Screen name={STACK_NAME.MAIN} component={MainNavigator} />
-        <RootStack.Group screenOptions={{animation: 'slide_from_bottom'}}>
-          <RootStack.Screen name={STACK_NAME.AUTH} component={AuthNavigator} />
-        </RootStack.Group>
-      </RootStack.Navigator>
-      {/* </CustomSafeAreaView> */}
+      <CustomSafeAreaView style={{flex: 1}}>
+        <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+            fullScreenGestureEnabled: true,
+            navigationBarColor: palette.BACKGROUND,
+          }}
+          initialRouteName={SCREEN_NAME.SPLASH}>
+          <RootStack.Screen name={SCREEN_NAME.SPLASH} component={SplashScreen} />
+          <RootStack.Screen name={STACK_NAME.MAIN} component={MainNavigator} />
+          <RootStack.Group screenOptions={{animation: 'slide_from_bottom'}}>
+            <RootStack.Screen name={STACK_NAME.AUTH} component={AuthNavigator} />
+          </RootStack.Group>
+        </RootStack.Navigator>
+      </CustomSafeAreaView>
     </>
   );
 };
