@@ -6,7 +6,6 @@ const style = () => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
     },
     test_PR_btn: {
@@ -17,7 +16,7 @@ const style = () => {
       alignItems: 'center',
     },
     complete_course_wrap: {
-      paddingHorizontal: wt(15),
+      paddingHorizontal: wt(23),
       paddingVertical: ht(12),
       alignItems: 'center',
       backgroundColor: palette.PRIMARY,
@@ -29,7 +28,7 @@ const style = () => {
     complete_course_text: {
       color: palette.BACKGROUND,
       fontSize: fs(14),
-      fontFamily: fontWt.Bold,
+      fontFamily: fontWt.Medium,
     },
   });
 };
