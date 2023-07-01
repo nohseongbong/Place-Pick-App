@@ -8,6 +8,8 @@ import {bottomSheetStore} from './bottomSheetStore';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
 
 class PlaceDetailStore {
+  isSearchPlaceDetail: boolean = false;
+
   place_id: string = '';
   name: string = '';
   formatted_address: string = '';
@@ -26,6 +28,10 @@ class PlaceDetailStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  setIsSearchPlaceDetail = (state: boolean) => {
+    this.isSearchPlaceDetail = state;
+  };
 
   get getPlaceInfo(): PlaceType {
     return {
