@@ -3,6 +3,7 @@ export const IMG = {
 };
 
 import LOGO from '../assets/images/svg/logo.svg';
+import SPLASH_LOGO from '../assets/images/svg/splash_logo.svg';
 import HOME_ON from '../assets/images/svg/tab_home_on.svg';
 import HOME_OFF from '../assets/images/svg/tab_home_off.svg';
 import COLLECTION_ON from '../assets/images/svg/tab_collection_on.svg';
@@ -52,6 +53,7 @@ import BACK_ICON from '../assets/images/svg/back_icon.svg';
 
 export const SVG_IMG = {
   LOGO,
+  SPLASH_LOGO,
   HOME_ON,
   COLLECTION_ON,
   HOME_OFF,
