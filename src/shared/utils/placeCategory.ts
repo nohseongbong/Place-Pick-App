@@ -4,8 +4,8 @@ export const rank = [
   PlaceCategoryType.PARK,
   PlaceCategoryType.BAR,
   PlaceCategoryType.RESTAURANT,
-  PlaceCategoryType.STORE,
   PlaceCategoryType.CAFE,
+  PlaceCategoryType.STORE,
   PlaceCategoryType.TRAIN,
   PlaceCategoryType.POINT_OF_INTEREST,
 ];
