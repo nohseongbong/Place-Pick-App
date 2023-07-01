@@ -5,7 +5,13 @@ import {getPlatformStyles} from '../../../shared/utils/getPlatformStyles';
 
 const style = () => {
   return StyleSheet.create({
+    scroll: {
+      backgroundColor: palette.BACKGROUND,
+      flexGrow: 1,
+    },
     container: {
+      flex: 1,
+      width: '100%',
       backgroundColor: palette.BACKGROUND,
       paddingHorizontal: wt(20),
       paddingBottom: ht(70),
