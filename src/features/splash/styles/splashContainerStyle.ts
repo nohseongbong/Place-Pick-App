@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {palette} from '../../../shared/constants/palette';
+import {fontWt, palette} from '../../../shared/constants/palette';
+import {fs, ht} from '../../../lib/responsiveSize';
 
 const style = () => {
   return StyleSheet.create({
@@ -10,7 +11,11 @@ const style = () => {
       backgroundColor: palette.BACKGROUND,
     },
     text: {
-      color: palette.PRIMARY,
+      position: 'absolute',
+      color: palette.SUB_TEXT,
+      bottom: ht(30),
+      fontSize: fs(13),
+      fontFamily: fontWt.Medium,
     },
   });
 };

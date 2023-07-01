@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SCREEN_NAME, STACK_NAME} from '../shared/constants/navigation';
 import {palette} from '../shared/constants/palette';
@@ -20,6 +20,7 @@ const RootNavigator = () => {
             headerShown: false,
             fullScreenGestureEnabled: true,
             navigationBarColor: palette.BACKGROUND,
+            animation: Platform.OS === 'android' ? 'default' : 'fade',
           }}
           initialRouteName={SCREEN_NAME.SPLASH}>
           <RootStack.Screen name={SCREEN_NAME.SPLASH} component={SplashScreen} />
