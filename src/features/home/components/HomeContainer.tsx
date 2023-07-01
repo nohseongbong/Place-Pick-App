@@ -34,9 +34,10 @@ const HomeContainer = observer(() => {
   };
 
   useEffect(() => {
-    if (placeDetailStore.place_id) {
+    if (placeDetailStore.place_id && placeDetailStore.isSearchPlaceDetail) {
       onPressNearPlaceBtn();
     }
+    placeDetailStore.setIsSearchPlaceDetail(false);
   }, [placeDetailStore.place_id]);
 
   return (
