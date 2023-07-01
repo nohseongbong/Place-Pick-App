@@ -15,6 +15,7 @@ import {FocusedType} from '../../constants/bottomSheetFocusedType';
 import {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {placeDetailStore} from '../../store/placeDetailStore';
 import {isBlank} from '../../../../lib/lodash';
+import {homeStore} from '../../store/homeStore';
 
 const PlaceSearch = observer(() => {
   const styles = style();
@@ -38,7 +39,9 @@ const PlaceSearch = observer(() => {
 
   const SearchListItem = memo(({place}: {place: PlaceType}) => {
     const onPressPlace = () => {
+      placeDetailStore.setIsSearchPlaceDetail(true);
       placeDetailStore.fetchPlaceDetail(place.place_id);
+      homeStore.setCategory(place.category);
     };
 
     const CategoryIconView = () => {
