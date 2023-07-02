@@ -12,7 +12,7 @@ const style = () => {
       backgroundColor: palette.PRIMARY,
       borderRadius: 35,
       position: 'absolute',
-      bottom: ht(15),
+      bottom: ht(55),
       zIndex: 100,
       left: '5%',
     },

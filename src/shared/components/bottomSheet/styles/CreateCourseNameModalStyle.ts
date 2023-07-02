@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {fs, ht, wt} from '../../../../lib/responsiveSize';
 import {fontWt, palette} from '../../../constants/palette';
 
@@ -12,6 +12,9 @@ const style = () => {
       paddingHorizontal: wt(20),
       justifyContent: 'space-around',
       paddingBottom: ht(30),
+    },
+    wrap_padding: {
+      paddingBottom: Platform.OS === 'android' ? ht(70) : ht(85),
     },
     title_text: {
       fontSize: fs(20),
