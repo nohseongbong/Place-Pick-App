@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Keyboard, KeyboardAvoidingView} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
@@ -8,12 +8,25 @@ import Complete from '../shared/components/complete/Complete';
 import BackPressHeader from '../shared/components/header/components/BackPressHeader';
 import BottomSheetBackGround from '../shared/components/background/BottomSheetBackGround';
 import CreateCourseNameModal from '../shared/components/bottomSheet/CreateCourseNameModal';
+import CompletionCourseModal from '../shared/components/custom-modal/CompletionCourseModal';
 
 const CourseDetailScreen = observer(() => {
+  const [isModal, setIsModal] = useState<boolean>(false);
+
+  const toggleModal = () => {
+    setIsModal(!isModal);
+  };
+
   const onPressBackGround = () => {
     Keyboard.dismiss();
     courseDetailStore.setIsCourseNameModal(false);
   };
+
+  useEffect(() => {
+    return () => {
+      courseDetailStore.resetCourseDetail();
+    };
+  }, []);
 
   return (
     <>
@@ -26,8 +39,10 @@ const CourseDetailScreen = observer(() => {
           setIsState={courseDetailStore.setIsCourseNameModal}
           value={courseDetailStore.courseName}
           setValue={courseDetailStore.setCourseName}
+          complete={toggleModal}
         />
       </KeyboardAvoidingView>
+      <CompletionCourseModal isVisible={isModal} onClose={toggleModal} />
     </>
   );
 });
