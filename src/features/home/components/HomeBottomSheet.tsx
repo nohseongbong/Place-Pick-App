@@ -37,6 +37,11 @@ const HomeBottomSheet = observer(() => {
   useEffect(() => {
     if (bottomSheetStore.focusedType === FocusedType.DETAIL) {
       bottomSheetRef.current?.snapToIndex(1);
+      return;
+    }
+    if (bottomSheetStore.focusedType === FocusedType.SEARCH) {
+      bottomSheetRef.current?.snapToIndex(2);
+      return;
     }
   }, [bottomSheetStore.focusedType]);
 
