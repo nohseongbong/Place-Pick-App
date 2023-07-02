@@ -14,7 +14,7 @@ const style = () => {
       width: '100%',
       backgroundColor: palette.BACKGROUND,
       paddingHorizontal: wt(20),
-      paddingBottom: ht(70),
+      paddingBottom: ht(150),
     },
     title_text: {
       fontSize: fs(24),
