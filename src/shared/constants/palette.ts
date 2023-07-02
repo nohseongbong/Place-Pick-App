@@ -13,6 +13,7 @@ export enum palette {
   STORE = '#FFA5F4',
   BAR = '#C1A5FF',
   TRAIN = '#5898FF',
+  PRIMARY_TEXT = '#fff',
 }
 
 export enum fontWt {
