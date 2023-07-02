@@ -14,6 +14,11 @@ class CourseDetailStore {
   setCourseName = (name: string) => {
     this.courseName = name;
   };
+
+  resetCourseDetail = () => {
+    this.isCourseNameModal = false;
+    this.courseName = '';
+  };
 }
 
 export const courseDetailStore = new CourseDetailStore();
