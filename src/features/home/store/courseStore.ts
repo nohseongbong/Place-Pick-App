@@ -3,6 +3,8 @@ import {PlaceType} from '../../../shared/types/place/placeType';
 import {ConnectType} from '../types/ConnectType';
 
 class CourseStore {
+  isSelectedCourse: boolean = false;
+  selectedCourse: number = 0;
   courseNumber: number = 1;
   courseList: PlaceType[] = [];
   courseConectList: ConnectType[] = [];
@@ -10,6 +12,15 @@ class CourseStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  setSelectedCourse = (index: number) => {
+    this.selectedCourse = index;
+  };
+
+  setIsSelectedCourse = (state: boolean) => {
+    this.isSelectedCourse = state;
+  };
+
   addCourseNumber = () => {
     this.courseNumber = this.courseNumber + 1;
   };
@@ -25,10 +36,29 @@ class CourseStore {
   };
 
   setAddCourseList = (place: PlaceType) => {
-    // this.courseList.push(place);
     this.courseList = [...this.courseList, place];
-    let arr: ConnectType[] = [];
+    this.setConnectList();
+  };
+
+  setEditCourseList = (place: PlaceType) => {
+    this.courseList = this.courseList.map((item, index) => {
+      if (this.selectedCourse === index) {
+        return place;
+      } else {
+        return item;
+      }
+    });
+    this.setConnectList();
+  };
+
+  resetSelectedCourse = () => {
+    this.isSelectedCourse = false;
+    this.selectedCourse = 0;
+  };
+
+  private setConnectList = () => {
     if (this.courseList.length > 1) {
+      let arr: ConnectType[] = [];
       this.courseList.map((item, index) => {
         if (this.courseList.length - 1 !== index) {
           const start = item;

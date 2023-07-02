@@ -11,6 +11,8 @@ import {courseStore} from '../../../../features/home/store/courseStore';
 import {PlaceType} from '../../../types/place/placeType';
 import {palette} from '../../../constants/palette';
 import {showPlaceRemoveToast} from '../../../../lib/toast/showToast';
+import {bottomSheetStore} from '../../../../features/home/store/bottomSheetStore';
+import {FocusedType} from '../../../../features/home/constants/bottomSheetFocusedType';
 
 interface Props {
   item: PlaceType;
@@ -30,12 +32,15 @@ const Course = observer(({item, index, isMoreState}: Props) => {
     showPlaceRemoveToast();
     courseStore.setRemoveCourseList(index);
   };
+  const onPressEditCourse = () => {
+    courseStore.setIsSelectedCourse(true);
+    courseStore.setSelectedCourse(index);
+    bottomSheetStore.setFocusedType(FocusedType.SEARCH);
+  };
 
   const onPressLoadMap = async () => {
     const start = item;
     const end = courseStore.courseList[index + 1];
-    console.log(start);
-    console.log(end);
     await Linking.openURL(
       `kakaomap://route?sp=${start.location.latitude},${start.location.longitude}&ep=${end.location.latitude},${end.location.longitude}&by=FOOT`,
     )
@@ -85,7 +90,7 @@ const Course = observer(({item, index, isMoreState}: Props) => {
               <SVG_IMG.TRASH width={16} height={16} />
               <CustomText style={[styles.more_content_btn_text, {color: palette.PRIMARY}]}>삭제하기</CustomText>
             </CustomTouchable>
-            <CustomTouchable style={styles.more_content_btn}>
+            <CustomTouchable onPress={onPressEditCourse} style={styles.more_content_btn}>
               <SVG_IMG.WRITE width={16} height={16} />
               <CustomText style={styles.more_content_btn_text}>수정하기</CustomText>
             </CustomTouchable>

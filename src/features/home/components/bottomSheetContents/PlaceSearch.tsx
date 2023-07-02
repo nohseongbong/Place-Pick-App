@@ -1,4 +1,4 @@
-import React, {memo, useRef} from 'react';
+import React, {memo, useEffect, useRef} from 'react';
 import {TextInput, View} from 'react-native';
 
 import CustomText from '../../../../shared/components/customComponents/CustomText';
@@ -16,6 +16,7 @@ import {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {placeDetailStore} from '../../store/placeDetailStore';
 import {isBlank} from '../../../../lib/lodash';
 import {homeStore} from '../../store/homeStore';
+import {courseStore} from '../../store/courseStore';
 
 const PlaceSearch = observer(() => {
   const styles = style();
@@ -35,13 +36,22 @@ const PlaceSearch = observer(() => {
   const onPressCancleSearch = () => {
     searchStore.resetSearch();
     bottomSheetStore.setFocusedType(FocusedType.CREATE);
+    if (courseStore.isSelectedCourse) {
+      courseStore.resetSelectedCourse();
+    }
   };
 
   const SearchListItem = memo(({place}: {place: PlaceType}) => {
     const onPressPlace = () => {
-      placeDetailStore.setIsSearchPlaceDetail(true);
-      placeDetailStore.fetchPlaceDetail(place.place_id);
-      homeStore.setCategory(place.category);
+      if (courseStore.isSelectedCourse) {
+        courseStore.setEditCourseList(place);
+        courseStore.setIsSelectedCourse(false);
+        bottomSheetStore.setFocusedType(FocusedType.CREATE);
+      } else {
+        placeDetailStore.setIsSearchPlaceDetail(true);
+        placeDetailStore.fetchPlaceDetail(place.place_id);
+        homeStore.setCategory(place.category);
+      }
     };
 
     const CategoryIconView = () => {
@@ -90,6 +100,13 @@ const PlaceSearch = observer(() => {
     );
   });
 
+  useEffect(() => {
+    return () => {
+      searchStore.resetSearch();
+      courseStore.resetSelectedCourse();
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.search_bar_wrap}>
@@ -116,12 +133,14 @@ const PlaceSearch = observer(() => {
           <CustomText style={styles.close_text}>취소</CustomText>
         </CustomTouchable>
       </View>
+      {searchStore.searchList.length !== 0 && (
+        <View style={styles.tab_wrap}>
+          {tabList.map((item, index) => {
+            return <TabComponent key={`${item}_${index}`} item={item} />;
+          })}
+        </View>
+      )}
 
-      <View style={styles.tab_wrap}>
-        {tabList.map((item, index) => {
-          return <TabComponent key={`${item}_${index}`} item={item} />;
-        })}
-      </View>
       {isBlank(searchStore.searchText) ? (
         <View style={styles.not_search_wrap}>
           <SVG_IMG.PLACE_ICON width={26} height={32} />
