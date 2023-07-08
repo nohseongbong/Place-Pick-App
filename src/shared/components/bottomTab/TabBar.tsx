@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {observer} from 'mobx-react-lite';
 import {palette} from '../../constants/palette';

@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Platform, View, Image} from 'react-native';
 import {toJS} from 'mobx';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 import MapViewClustering from 'react-native-map-clustering';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {observer} from 'mobx-react-lite';
@@ -13,7 +12,6 @@ import CustomTouchable from '../../../shared/components/customComponents/CustomT
 import {userStore} from '../../../shared/store/userStore';
 import {placeDetailStore} from '../store/placeDetailStore';
 import {IMG, SVG_IMG} from '../../../assets/images';
-import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {courseStore} from '../store/courseStore';
 import {PlaceType} from '../../../shared/types/place/placeType';
@@ -21,7 +19,6 @@ import {PlaceType} from '../../../shared/types/place/placeType';
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
   const mapRef = useRef<MapView>(null);
-  const navigation: NavigationProp<RootStackParamList> = useNavigation();
   const [selectMarkers, setSelectMarkers] = useState<PlaceType[] | []>([]);
 
   const fetchPlaceDetail = async (place_id: string) => {

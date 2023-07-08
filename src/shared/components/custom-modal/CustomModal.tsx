@@ -1,4 +1,4 @@
-import Modal, {ModalProps} from 'react-native-modal';
+import Modal from 'react-native-modal';
 
 const CustomModal = (props: any) => {
   return (

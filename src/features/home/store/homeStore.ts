@@ -1,5 +1,5 @@
 import {PlaceCategoryType} from './../../../shared/constants/placeCategoryType';
-import {makeAutoObservable, runInAction} from 'mobx';
+import {makeAutoObservable} from 'mobx';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
 import {MarKerType} from '../../../shared/types/place/markerType';
