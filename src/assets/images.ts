@@ -50,6 +50,12 @@ import RESTAURANT_ACTIVE from '../assets/images/svg/category_bar_restaurant_acti
 import PARK_ACTIVE from '../assets/images/svg/category_bar_park_active.svg';
 import KAKAO_MAP from '../assets/images/svg/kakao_map_logo.svg';
 import BACK_ICON from '../assets/images/svg/back_icon.svg';
+import CHECK_OFF from '../assets/images/svg/check_off.svg';
+import CHECK_ON from '../assets/images/svg/check_on.svg';
+import PENCIL from '../assets/images/svg/pencil.svg';
+import EDIT from '../assets/images/svg/edit.svg';
+import TRASH_GRAY from '../assets/images/svg/trash_gray.svg';
+import TRASH_WHITE from '../assets/images/svg/trash_white.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -100,4 +106,10 @@ export const SVG_IMG = {
   PARK_ACTIVE,
   KAKAO_MAP,
   BACK_ICON,
+  CHECK_OFF,
+  CHECK_ON,
+  PENCIL,
+  EDIT,
+  TRASH_GRAY,
+  TRASH_WHITE,
 };
