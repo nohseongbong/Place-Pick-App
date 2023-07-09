@@ -14,6 +14,8 @@ export enum palette {
   BAR = '#C1A5FF',
   TRAIN = '#5898FF',
   PRIMARY_TEXT = '#fff',
+  SUB_BORDER = '#e9ecef',
+  DISABLED = '#ffeefd',
 }
 
 export enum fontWt {
