@@ -1,5 +1,4 @@
 import {PlaceCategoryType} from '../constants/placeCategoryType';
-import {random} from 'lodash';
 import {PlaceType} from '../types/place/placeType';
 
 export const dummyData = function () {

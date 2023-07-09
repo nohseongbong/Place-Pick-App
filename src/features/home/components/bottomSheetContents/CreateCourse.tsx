@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {BottomSheetScrollView} from '@gorhom/bottom-sheet';
@@ -8,8 +8,6 @@ import CustomTouchable from '../../../../shared/components/customComponents/Cust
 import {SVG_IMG} from '../../../../assets/images';
 import style from '../../styles/createCourseStyle';
 import {courseStore} from '../../store/courseStore';
-import {PlaceType} from '../../../../shared/types/place/placeType';
-import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
 import Course from '../../../../shared/components/course/components/Course';

@@ -24,6 +24,7 @@ const HomeContainer = observer(() => {
   const [markers, setMarkers] = useState<MarKerType[] | []>([]);
 
   const onPressNearPlaceBtn = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const markers = await homeStore.getFetchNearPlaceList();
 
     setMarkers(markers);
@@ -36,7 +37,16 @@ const HomeContainer = observer(() => {
   useEffect(() => {
     if (placeDetailStore.place_id && placeDetailStore.isSearchPlaceDetail) {
       onPressNearPlaceBtn();
+      // const obj: MarKerType = {
+      //   place_id: placeDetailStore.place_id,
+      //   name: placeDetailStore.name,
+      //   category: placeDetailStore.category,
+      //   location: placeDetailStore.location,
+      // };
+      // setMarkers(toJS([obj]));
+      // console.log(placeDetailStore, ': 데이터');
     }
+
     placeDetailStore.setIsSearchPlaceDetail(false);
   }, [placeDetailStore.place_id]);
 
