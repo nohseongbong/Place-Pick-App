@@ -1,5 +1,5 @@
 import React from 'react';
-import {Linking, Platform, View} from 'react-native';
+import {Linking, View} from 'react-native';
 
 import style from '../../styles/placeDetailStyle';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
@@ -10,10 +10,9 @@ import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {SVG_IMG} from '../../../../assets/images';
 import {palette} from '../../../../shared/constants/palette';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
-import {PlaceCategoryType} from '../../../../shared/constants/placeCategoryType';
 import {courseStore} from '../../store/courseStore';
 import {showPlacePickToast} from '../../../../lib/toast/showToast';
-import {homeStore} from '../../store/homeStore';
+import {CategoryIconView} from '../../../../shared/components/category-icon/CategoryIcon';
 
 const PlaceDetail = observer(() => {
   const styles = style();
@@ -33,31 +32,10 @@ const PlaceDetail = observer(() => {
     Linking.openURL(placeDetailStore.url);
   };
 
-  const renderCategoryIcon = () => {
-    switch (placeDetailStore.category) {
-      case PlaceCategoryType.BAR:
-        return <SVG_IMG.CATEGORY_BAR width={36} height={36} />;
-      case PlaceCategoryType.PARK:
-        return <SVG_IMG.CATEGORY_PARK width={36} height={36} />;
-      case PlaceCategoryType.RESTAURANT:
-        return <SVG_IMG.CATEGORY_RESTAURANT width={36} height={36} />;
-      case PlaceCategoryType.STORE:
-        return <SVG_IMG.CATEGORY_SHOP width={36} height={36} />;
-      case PlaceCategoryType.CAFE:
-        return <SVG_IMG.CATEGORY_CAFE width={36} height={36} />;
-      case PlaceCategoryType.TRAIN:
-        return <SVG_IMG.CATEGORY_TRAIN width={36} height={36} />;
-      case PlaceCategoryType.POINT_OF_INTEREST:
-        return <SVG_IMG.CATEGORY_FLAG width={36} height={36} />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.place_info_container}>
-        {renderCategoryIcon()}
+        <CategoryIconView type={placeDetailStore.category} width={36} />
         <View style={styles.place_info_wrap}>
           <CustomText numberOfLines={3} style={styles.place_info_name_text}>
             {placeDetailStore.name}

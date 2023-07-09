@@ -11,10 +11,11 @@ import {homeStore} from '../store/homeStore';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 import {userStore} from '../../../shared/store/userStore';
 import {placeDetailStore} from '../store/placeDetailStore';
-import {IMG, SVG_IMG} from '../../../assets/images';
+import {IMG} from '../../../assets/images';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {courseStore} from '../store/courseStore';
 import {PlaceType} from '../../../shared/types/place/placeType';
+import {CategoryIconView, CourseCategoryIconView} from '../../../shared/components/category-icon/CategoryIcon';
 
 const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   const styles = style();
@@ -47,19 +48,6 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
     homeStore.setSearchLocation(e);
   }, []);
 
-  const CategoryIconView = ({type}: {type: string}) => {
-    const category: {[key: string]: JSX.Element} = {
-      restaurant: <SVG_IMG.CATEGORY_RESTAURANT width={28} height={28} />,
-      bar: <SVG_IMG.CATEGORY_BAR width={28} height={28} />,
-      park: <SVG_IMG.CATEGORY_PARK width={28} height={28} />,
-      store: <SVG_IMG.CATEGORY_SHOP width={28} height={28} />,
-      cafe: <SVG_IMG.CATEGORY_CAFE width={28} height={28} />,
-      transit_station: <SVG_IMG.CATEGORY_TRAIN width={28} height={28} />,
-      point_of_interest: <SVG_IMG.CATEGORY_FLAG width={28} height={28} />,
-    };
-    return category[type];
-  };
-
   const MarkerView = (marker: any, index: number) => {
     if (courseStore.courseList.find(item => item.place_id === marker.place_id)) {
       return null;
@@ -71,26 +59,13 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         key={String(index) + marker.place_id}
         id={marker.place_id}>
         <View style={styles.marker_container}>
-          <CategoryIconView type={marker.category} />
+          <CategoryIconView type={marker.category} width={28} />
           <CustomText numberOfLines={3} style={styles.marker_text}>
             {marker.name}
           </CustomText>
         </View>
       </Marker>
     );
-  };
-
-  const SelectCategoryIconView = ({type}: {type: string}) => {
-    const category: {[key: string]: JSX.Element} = {
-      restaurant: <SVG_IMG.COURSE_RESTAURANT width={28} height={28} />,
-      bar: <SVG_IMG.COURSE_BAR width={28} height={28} />,
-      park: <SVG_IMG.COURSE_PARK width={28} height={28} />,
-      store: <SVG_IMG.COURSE_STORE width={28} height={28} />,
-      cafe: <SVG_IMG.COURSE_CAFE width={28} height={28} />,
-      transit_station: <SVG_IMG.COURSE_TRAIN width={28} height={28} />,
-      point_of_interest: <SVG_IMG.COURSE_CULTURE width={28} height={28} />,
-    };
-    return category[type];
   };
 
   const SelectMarkerView = (marker: any, index: number) => {
@@ -103,7 +78,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
         id={marker.place_id}>
         <View style={styles.marker_container}>
           <View style={styles.selected_icon_wrap}>
-            <SelectCategoryIconView type={marker.category} />
+            <CourseCategoryIconView type={marker.category} width={28} />
             <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
           </View>
           <CustomText numberOfLines={3} style={styles.marker_text}>

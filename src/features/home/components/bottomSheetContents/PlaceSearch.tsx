@@ -17,6 +17,7 @@ import {placeDetailStore} from '../../store/placeDetailStore';
 import {isBlank} from '../../../../lib/lodash';
 import {homeStore} from '../../store/homeStore';
 import {courseStore} from '../../store/courseStore';
+import {CategoryIconView} from '../../../../shared/components/category-icon/CategoryIcon';
 
 const PlaceSearch = observer(() => {
   const styles = style();
@@ -54,28 +55,15 @@ const PlaceSearch = observer(() => {
       }
     };
 
-    const CategoryIconView = () => {
-      const category: {[key: string]: JSX.Element} = {
-        restaurant: <SVG_IMG.CATEGORY_RESTAURANT width={36} height={36} />,
-        bar: <SVG_IMG.CATEGORY_BAR width={36} height={36} />,
-        park: <SVG_IMG.CATEGORY_PARK width={36} height={36} />,
-        store: <SVG_IMG.CATEGORY_SHOP width={36} height={36} />,
-        cafe: <SVG_IMG.CATEGORY_CAFE width={36} height={36} />,
-        transit_station: <SVG_IMG.CATEGORY_TRAIN width={36} height={36} />,
-        point_of_interest: <SVG_IMG.CATEGORY_FLAG width={36} height={36} />,
-      };
-      return category[place.category];
-    };
     return (
       <CustomTouchable onPress={onPressPlace} style={styles.item}>
         <View style={styles.item_img_wrap}>
-          <CategoryIconView />
+          <CategoryIconView type={place.category} width={36} />
         </View>
         <View style={styles.item_info_wrap}>
           <CustomText style={styles.item_name}>{place.name}</CustomText>
           <View style={styles.item_adress}>
             <CustomText style={styles.item_text}>{place.formatted_address}</CustomText>
-            {/* <CustomText style={styles.item_text}>카페,디저트</CustomText> */}
           </View>
           <View style={styles.item_rating}>
             <SVG_IMG.STAR width={10} height={10} />

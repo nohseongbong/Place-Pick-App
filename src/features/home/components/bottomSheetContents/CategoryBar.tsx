@@ -8,7 +8,7 @@ import {fontWt, palette} from '../../../../shared/constants/palette';
 import style from '../../styles/categoryBarStyle';
 import {categoryList} from '../../constants/category';
 import {homeStore} from '../../store/homeStore';
-import {SVG_IMG} from '../../../../assets/images';
+import {AtiveCategoryBarIconView, CategoryBarIconView} from '../../../../shared/components/category-icon/CategoryIcon';
 
 const CategoryBar = observer(() => {
   const styles = style();
@@ -45,28 +45,6 @@ const CategoryBar = observer(() => {
       default:
         break;
     }
-    const CategoryIconView = ({type}: {type: string}) => {
-      const category: {[key: string]: JSX.Element} = {
-        음식점: <SVG_IMG.RESTAURANT width={20} height={20} />,
-        바: <SVG_IMG.BAR width={20} height={20} />,
-        공원: <SVG_IMG.PARK width={20} height={20} />,
-        쇼핑: <SVG_IMG.SHOP width={20} height={20} />,
-        카페: <SVG_IMG.CAFE width={20} height={20} />,
-        문화: <SVG_IMG.FLAG width={20} height={20} />,
-      };
-      return category[type];
-    };
-    const AtiveCategoryIconView = ({type}: {type: string}) => {
-      const category: {[key: string]: JSX.Element} = {
-        음식점: <SVG_IMG.RESTAURANT_ACTIVE width={20} height={20} />,
-        바: <SVG_IMG.BAR_ACTIVE width={20} height={20} />,
-        공원: <SVG_IMG.PARK_ACTIVE width={20} height={20} />,
-        쇼핑: <SVG_IMG.SHOP_ACTIVE width={20} height={20} />,
-        카페: <SVG_IMG.CAFE_ACTIVE width={20} height={20} />,
-        문화: <SVG_IMG.FLAG_ACTIVE width={20} height={20} />,
-      };
-      return category[type];
-    };
 
     const onPressCategory = () => {
       homeStore.setCategory(item);
@@ -76,7 +54,11 @@ const CategoryBar = observer(() => {
       <CustomTouchable
         onPress={onPressCategory}
         style={[styles.category_item, homeStore.category === item && {borderColor: color}]}>
-        {homeStore.category === item ? <AtiveCategoryIconView type={name} /> : <CategoryIconView type={name} />}
+        {homeStore.category === item ? (
+          <AtiveCategoryBarIconView type={name} width={20} />
+        ) : (
+          <CategoryBarIconView type={name} width={20} />
+        )}
 
         <CustomText style={[styles.item_text, homeStore.category === item && {color: color, fontFamily: fontWt.Bold}]}>
           {name}
