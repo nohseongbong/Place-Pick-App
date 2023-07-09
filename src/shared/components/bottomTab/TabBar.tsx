@@ -7,11 +7,15 @@ import style from './tabBarStyle';
 import CustomTouchable from '../customComponents/CustomTouchable';
 import {SVG_IMG} from '../../../assets/images';
 import CustomText from '../customComponents/CustomText';
+import {collectionStore} from '../../../features/collection/store/collectionStore';
+import DeleteBar from '../../../features/collection/components/collectionList/DeleteBar';
 
 const TabBar = observer(({state, descriptors, navigation}: BottomTabBarProps) => {
   const styles = style();
 
-  return (
+  return collectionStore.isEdit ? (
+    <DeleteBar />
+  ) : (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
