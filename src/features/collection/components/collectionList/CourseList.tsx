@@ -68,7 +68,7 @@ const CourseList = () => {
       data={data}
       contentContainerStyle={styles.container}
       keyExtractor={(item, index) => `${item.place_id}_${index}`}
-      renderItem={item => <PlaceListItem model={item.item} />}
+      renderItem={item => <PlaceListItem model={item.item} index={item.index} />}
     />
   );
 };

@@ -31,6 +31,11 @@ const style = () => {
       fontSize: fs(13),
       color: palette.TEXT,
     },
+    check_wrap: {
+      position: 'absolute',
+      right: wt(12),
+      top: ht(12),
+    },
   });
 };
 

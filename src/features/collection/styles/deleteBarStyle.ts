@@ -10,11 +10,18 @@ const style = () => {
       alignItems: 'center',
       justifyContent: 'center',
       gap: ht(8),
+      backgroundColor: palette.DISABLED,
     },
     text: {
       fontSize: fs(13),
       color: palette.BORDER,
       fontFamily: fontWt.SemiBold,
+    },
+    active_wrap: {
+      backgroundColor: palette.PRIMARY,
+    },
+    active_text: {
+      color: palette.PRIMARY_TEXT,
     },
   });
 };

@@ -16,9 +16,11 @@ const CourseListHeader = observer(() => {
   return (
     <View style={styles.container}>
       <CustomText style={styles.title_text}>내가 만든 코스 4</CustomText>
-      <CustomTouchable onPress={onPressEdit} style={styles.edit_wrap}>
-        <CustomText style={styles.edit_text}>편집</CustomText>
-      </CustomTouchable>
+      {!collectionStore.isEdit && (
+        <CustomTouchable onPress={onPressEdit} style={styles.edit_wrap}>
+          <CustomText style={styles.edit_text}>편집</CustomText>
+        </CustomTouchable>
+      )}
     </View>
   );
 });
