@@ -7,10 +7,12 @@ const style = () => {
     scroll: {
       backgroundColor: palette.BACKGROUND,
       flexGrow: 1,
+      height: '100%',
     },
     container: {
       flex: 1,
       width: '100%',
+      height: '100%',
       backgroundColor: palette.BACKGROUND,
       paddingHorizontal: wt(20),
       paddingBottom: ht(150),

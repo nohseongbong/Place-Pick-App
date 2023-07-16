@@ -5,7 +5,7 @@ import {ht, wt} from '../../responsiveSize';
 const style = () => {
   return StyleSheet.create({
     container: {
-      paddingHorizontal: wt(15),
+      paddingHorizontal: wt(20),
       paddingVertical: ht(15),
       justifyContent: 'center',
       alignItems: 'center',

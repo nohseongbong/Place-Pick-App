@@ -36,6 +36,10 @@ const style = () => {
       right: wt(12),
       top: ht(12),
     },
+    check_border: {
+      borderColor: palette.PRIMARY,
+      borderWidth: 1.5,
+    },
   });
 };
 
