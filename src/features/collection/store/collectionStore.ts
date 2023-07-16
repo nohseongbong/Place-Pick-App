@@ -1,7 +1,9 @@
 import {makeAutoObservable} from 'mobx';
+import {showCourseRemoveToast} from '../../../lib/toast/showToast';
 
 class CollectionStore {
   isEdit: boolean = false;
+  isDeleteModal: boolean = false;
   selectedList: any[] = [];
 
   constructor() {
@@ -10,14 +12,27 @@ class CollectionStore {
 
   setIsEdit = (state: boolean) => {
     this.isEdit = state;
+    if (!state) {
+      this.reset();
+    }
+  };
+  setIsDeleteModal = (state: boolean) => {
+    this.isDeleteModal = state;
   };
 
   addSelectCourse = (course: any) => {
     this.selectedList.push(course);
   };
 
-  removeSelectCourse = (index: number) => {
-    this.selectedList.splice(index);
+  deleteSelectCourse = (id: number) => {
+    this.selectedList = this.selectedList.filter(x => {
+      return x.id !== id;
+    });
+  };
+
+  deleteCollectionCourse = () => {
+    showCourseRemoveToast();
+    this.isDeleteModal = false;
   };
 
   get getIsSelected(): boolean {
@@ -26,6 +41,8 @@ class CollectionStore {
 
   reset = () => {
     this.isEdit = false;
+    this.isDeleteModal = false;
+    this.selectedList = [];
   };
 }
 
