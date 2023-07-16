@@ -6,6 +6,7 @@ export enum SCREEN_NAME {
   SEARCH = 'SearchScreen',
   COURSEDETAIL = 'CourseDetailScreen',
   COLLECTIONCOURSEDETAIL = 'CollectionCourseDetailScreen',
+  ONBOARDING = 'OnBoardingScreen',
 }
 
 export enum STACK_NAME {

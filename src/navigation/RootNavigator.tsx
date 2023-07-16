@@ -8,6 +8,7 @@ import MainNavigator from './MainNavigator';
 import AuthNavigator from './AuthNavigator';
 import CustomSafeAreaView from '../shared/components/customComponents/CustomSafeAreaView';
 import {RootStackParamList} from '../shared/types/navigation/paramsType';
+import OnBoardingScreen from '../screens/OnBoardingScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
@@ -24,6 +25,7 @@ const RootNavigator = () => {
           }}
           initialRouteName={SCREEN_NAME.SPLASH}>
           <RootStack.Screen name={SCREEN_NAME.SPLASH} component={SplashScreen} />
+          <RootStack.Screen name={SCREEN_NAME.ONBOARDING} component={OnBoardingScreen} />
           <RootStack.Screen name={STACK_NAME.MAIN} component={MainNavigator} />
           <RootStack.Group screenOptions={{animation: 'slide_from_bottom'}}>
             <RootStack.Screen name={STACK_NAME.AUTH} component={AuthNavigator} />
