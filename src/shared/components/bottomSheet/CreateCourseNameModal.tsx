@@ -64,8 +64,11 @@ const CreateCourseNameModal = observer(({isState, setIsState, value, setValue, c
         <CustomText style={styles.title_text}>코스 이름을 지어주세요</CustomText>
         <CustomTextInput keyboardType="web-search" value={value} onChangeText={setValue} style={styles.input} />
 
-        <CustomTouchable onPress={onPressComplete} style={styles.btn_wrap}>
-          <CustomText style={styles.btn_text}>완료</CustomText>
+        <CustomTouchable
+          disabled={value === ''}
+          onPress={onPressComplete}
+          style={[styles.btn_wrap, value === '' && styles.disabled_btn]}>
+          <CustomText style={[styles.btn_text, value === '' && styles.disabled_text]}>완료</CustomText>
         </CustomTouchable>
       </View>
     </BottomSheet>

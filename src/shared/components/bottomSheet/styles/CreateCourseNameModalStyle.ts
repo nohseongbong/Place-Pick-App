@@ -46,6 +46,12 @@ const style = () => {
       fontSize: fs(14),
       fontFamily: fontWt.Bold,
     },
+    disabled_btn: {
+      backgroundColor: palette.INNER_BACKGOUND,
+    },
+    disabled_text: {
+      color: palette.BORDER,
+    },
   });
 };
 
