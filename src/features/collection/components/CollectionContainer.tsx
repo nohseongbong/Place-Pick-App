@@ -3,15 +3,20 @@ import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {useFocusEffect} from '@react-navigation/native';
 
-import Header from './collectionList/Header';
+import Header from './collection-list/Header';
 import style from '../styles/collectionContainerStyle';
-import CourseList from './collectionList/CourseList';
-import CourseListHeader from './collectionList/CourseListHeader';
+import CourseList from './collection-list/CourseList';
+import CourseListHeader from './collection-list/CourseListHeader';
 import {collectionStore} from '../store/collectionStore';
-import EditHeader from './collectionList/EditHeader';
+import EditHeader from './collection-list/EditHeader';
+import DeleteModal from '../../../shared/components/custom-modal/DeleteModal';
 
 const CollectionContainer = observer(() => {
   const styles = style();
+
+  const onPressModalClose = () => {
+    collectionStore.setIsDeleteModal(false);
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -26,6 +31,11 @@ const CollectionContainer = observer(() => {
       {collectionStore.isEdit ? <EditHeader /> : <Header />}
       <CourseListHeader />
       <CourseList />
+      <DeleteModal
+        isVisible={collectionStore.isDeleteModal}
+        onClose={onPressModalClose}
+        onPress={collectionStore.deleteCollectionCourse}
+      />
     </View>
   );
 });
