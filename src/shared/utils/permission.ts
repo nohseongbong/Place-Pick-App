@@ -1,5 +1,5 @@
 import {Platform} from 'react-native';
-import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {requestMultiple, PERMISSIONS} from 'react-native-permissions';
 
 export const requestLocationPermission = async (): Promise<boolean> => {
   try {
@@ -19,7 +19,6 @@ export const requestLocationPermission = async (): Promise<boolean> => {
         return true;
       default:
         return false;
-        break;
     }
   } catch (error) {
     console.error(error);

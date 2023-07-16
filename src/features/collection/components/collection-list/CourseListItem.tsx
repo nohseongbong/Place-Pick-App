@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite';
 
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
-import style from '../../styles/courseListItem';
+import style from '../../styles/courseListItemStyle';
 import {CategoryIconView} from '../../../../shared/components/category-icon/CategoryIcon';
 import {SVG_IMG} from '../../../../assets/images';
 import {wt} from '../../../../lib/responsiveSize';

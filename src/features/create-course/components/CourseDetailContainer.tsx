@@ -1,9 +1,8 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
+
 import CustomText from '../../../shared/components/customComponents/CustomText';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import style from '../styles/courseDetailContainerStyle';
 import CourseMapView from '../../../shared/components/course/components/CourseMapView';
 import {courseStore} from '../../home/store/courseStore';
@@ -11,7 +10,6 @@ import Course from '../../../shared/components/course/components/Course';
 
 const CourseDetailContainer = observer(() => {
   const styles = style();
-  const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
   return (
     <ScrollView style={styles.scroll}>
@@ -22,10 +20,6 @@ const CourseDetailContainer = observer(() => {
           <View style={styles.course_info}>
             <CustomText style={styles.course_title_text}>전체 거리</CustomText>
             <CustomText style={styles.course_text}>5km</CustomText>
-          </View>
-          <View style={styles.course_info}>
-            <CustomText style={styles.course_title_text}>총 시간</CustomText>
-            <CustomText style={styles.course_text}>30분</CustomText>
           </View>
           <View style={styles.course_info}>
             <CustomText style={styles.course_title_text}>방문할 장소</CustomText>
