@@ -1,5 +1,9 @@
 export const IMG = {
   MY_LOCATION: require('../assets/images/icon/my_location.png'),
+  ON_BOARDING_IMG_1: require('../assets/images/img/on_boarding_imgae1.png'),
+  ON_BOARDING_IMG_2: require('../assets/images/img/on_boarding_imgae2.png'),
+  ON_BOARDING_IMG_3: require('../assets/images/img/on_boarding_imgae3.png'),
+  ON_BOARDING_IMG_4: require('../assets/images/img/on_boarding_imgae4.png'),
 };
 
 import LOGO from '../assets/images/svg/logo.svg';
