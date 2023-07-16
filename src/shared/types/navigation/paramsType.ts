@@ -17,4 +17,5 @@ export type TabStackParamList = {
 export type MainStackParamList = {
   [STACK_NAME.TAB]: undefined;
   [SCREEN_NAME.COURSEDETAIL]: undefined;
+  [SCREEN_NAME.COLLECTIONCOURSEDETAIL]: undefined;
 };

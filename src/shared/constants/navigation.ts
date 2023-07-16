@@ -5,6 +5,7 @@ export enum SCREEN_NAME {
   COLLECTION = 'CollectionScreen',
   SEARCH = 'SearchScreen',
   COURSEDETAIL = 'CourseDetailScreen',
+  COLLECTIONCOURSEDETAIL = 'CollectionCourseDetailScreen',
 }
 
 export enum STACK_NAME {
