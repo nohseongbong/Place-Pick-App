@@ -8,13 +8,15 @@ import CustomTouchable from '../customComponents/CustomTouchable';
 import {SVG_IMG} from '../../../assets/images';
 import CustomText from '../customComponents/CustomText';
 import {collectionStore} from '../../../features/collection/store/collectionStore';
-import DeleteBar from '../../../features/collection/components/collectionList/DeleteBar';
+import DeleteBar from '../../../features/collection/components/collection-list/DeleteBar';
 
 const TabBar = observer(({state, descriptors, navigation}: BottomTabBarProps) => {
   const styles = style();
 
   return collectionStore.isEdit ? (
-    <DeleteBar />
+    <View style={{alignItems: 'center', position: 'absolute', bottom: 20, width: '100%'}}>
+      <DeleteBar />
+    </View>
   ) : (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
