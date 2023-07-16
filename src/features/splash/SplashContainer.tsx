@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
 import {View} from 'react-native';
-import {STACK_NAME} from '../../shared/constants/navigation';
+import {SCREEN_NAME, STACK_NAME} from '../../shared/constants/navigation';
 import CustomText from '../../shared/components/customComponents/CustomText';
 import style from './styles/splashContainerStyle';
 import {requestLocationPermission} from '../../shared/utils/permission';
@@ -20,7 +20,8 @@ const SplashContainer = () => {
       getGeoLocation();
     }
     setTimeout(() => {
-      navigation.reset({routes: [{name: STACK_NAME.MAIN}]});
+      navigation.reset({routes: [{name: SCREEN_NAME.ONBOARDING}]});
+      // navigation.reset({routes: [{name: STACK_NAME.MAIN}]});
     }, 2000);
   };
   useFocusEffect(
