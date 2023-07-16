@@ -1,5 +1,6 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {View} from 'react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
@@ -9,10 +10,11 @@ import {CategoryIconView} from '../../../../shared/components/category-icon/Cate
 import {SVG_IMG} from '../../../../assets/images';
 import {wt} from '../../../../lib/responsiveSize';
 import {collectionStore} from '../../store/collectionStore';
+import {MainStackParamList} from '../../../../shared/types/navigation/paramsType';
+import {SCREEN_NAME} from '../../../../shared/constants/navigation';
 
 interface Props {
   model: any;
-  index: number;
 }
 const styles = style();
 
@@ -25,23 +27,35 @@ const Place = memo(({item}: any) => {
   );
 });
 
-const CourseListItem = observer(({model, index}: Props) => {
+const CourseListItem = observer(({model}: Props) => {
+  const navigation: NavigationProp<MainStackParamList> = useNavigation();
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const onPressCourse = () => {
+    // 편집 상태
     if (collectionStore.isEdit) {
       if (isChecked) {
-        collectionStore.removeSelectCourse(index);
+        collectionStore.deleteSelectCourse(model.id);
       } else {
         collectionStore.addSelectCourse(model);
       }
 
       setIsChecked(!isChecked);
     } else {
+      // 편집 상태가 아닐 때
+      navigation.navigate(SCREEN_NAME.COLLECTIONCOURSEDETAIL);
     }
   };
 
+  useEffect(() => {
+    if (!collectionStore.isEdit) {
+      setIsChecked(false);
+    }
+  }, [collectionStore.isEdit]);
+
   return (
-    <CustomTouchable onPress={onPressCourse} style={styles.container}>
+    <CustomTouchable
+      onPress={onPressCourse}
+      style={[styles.container, collectionStore.isEdit && isChecked && styles.check_border]}>
       {collectionStore.isEdit && (
         <View style={styles.check_wrap}>
           {isChecked ? (

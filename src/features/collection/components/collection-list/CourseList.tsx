@@ -63,12 +63,13 @@ const CourseList = () => {
     },
   ];
   const styles = style();
+
   return (
     <CustomFlatList
       data={data}
       contentContainerStyle={styles.container}
       keyExtractor={(item, index) => `${item.place_id}_${index}`}
-      renderItem={item => <PlaceListItem model={item.item} index={item.index} />}
+      renderItem={item => <PlaceListItem model={item.item} />}
     />
   );
 };
