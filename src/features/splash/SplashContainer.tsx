@@ -1,17 +1,15 @@
 import React from 'react';
 import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
 import {View} from 'react-native';
-import {SCREEN_NAME, STACK_NAME} from '../../shared/constants/navigation';
+import {SCREEN_NAME} from '../../shared/constants/navigation';
 import CustomText from '../../shared/components/customComponents/CustomText';
 import style from './styles/splashContainerStyle';
 import {requestLocationPermission} from '../../shared/utils/permission';
 import {getGeoLocation} from '../../shared/utils/getGeoLocation';
-import {userStore} from '../../shared/store/userStore';
 import {RootStackParamList} from '../../shared/types/navigation/paramsType';
 import {SVG_IMG} from '../../assets/images';
 
 const SplashContainer = () => {
-  const store = userStore;
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
   const styles = style();
 
