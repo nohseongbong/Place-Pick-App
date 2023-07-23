@@ -1,6 +1,9 @@
 import {makeAutoObservable} from 'mobx';
 import {PlaceType} from '../../../shared/types/place/placeType';
 import {ConnectType} from '../types/ConnectType';
+import {bottomSheetStore} from './bottomSheetStore';
+import {FocusedType} from '../constants/bottomSheetFocusedType';
+import {showPlacePickToast} from '../../../lib/toast/showToast';
 
 class CourseStore {
   isSelectedCourse: boolean = false;
@@ -36,8 +39,14 @@ class CourseStore {
   };
 
   setAddCourseList = (place: PlaceType) => {
+    if (this.courseList.find(item => item.place_id === place.place_id)) {
+      return;
+    }
     this.courseList = [...this.courseList, place];
     this.setConnectList();
+    this.removeCourseNumber();
+    bottomSheetStore.setFocusedType(FocusedType.CREATE);
+    showPlacePickToast();
   };
 
   setEditCourseList = (place: PlaceType) => {

@@ -4,6 +4,7 @@ import {toJS} from 'mobx';
 import MapViewClustering from 'react-native-map-clustering';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {observer} from 'mobx-react-lite';
+
 import style from '../styles/homeMapStyle';
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import {mapStyle} from '../constants/mapStyle';
@@ -17,10 +18,11 @@ import {courseStore} from '../store/courseStore';
 import {PlaceType} from '../../../shared/types/place/placeType';
 import {CategoryIconView, CourseCategoryIconView} from '../../../shared/components/category-icon/CategoryIcon';
 
-const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
+const HomeMap = observer(() => {
   const styles = style();
   const mapRef = useRef<MapView>(null);
   const [selectMarkers, setSelectMarkers] = useState<PlaceType[] | []>([]);
+  const [markers, setMarkers] = useState<MarKerType[] | []>([]);
 
   const fetchPlaceDetail = async (place_id: string) => {
     await placeDetailStore.fetchPlaceDetail(place_id);
@@ -32,6 +34,12 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
     },
     [markers],
   );
+
+  const onPressNearPlaceBtn = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    const markers = await homeStore.getFetchNearPlaceList();
+    setMarkers(markers);
+  };
 
   const onPressMyLocation = () => {
     if (mapRef.current) {
@@ -48,7 +56,7 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
     homeStore.setSearchLocation(e);
   }, []);
 
-  const MarkerView = (marker: any, index: number) => {
+  const MarkerView = (marker: MarKerType, index: number) => {
     if (courseStore.courseList.find(item => item.place_id === marker.place_id)) {
       return null;
     }
@@ -92,6 +100,21 @@ const HomeMap = observer(({onPressNearPlaceBtn, markers}: any) => {
   useEffect(() => {
     setSelectMarkers(toJS(courseStore.courseList));
   }, [courseStore.courseList]);
+
+  useEffect(() => {
+    const fetchDetail = async () => {
+      const obj = await placeDetailStore.fetchPlaceDetail(placeDetailStore.place_id);
+      if (obj && !markers.find(item => item.place_id === obj.place_id)) {
+        const arr = [...markers, obj];
+        setMarkers(arr);
+      }
+    };
+    if (placeDetailStore.place_id && placeDetailStore.isSearchPlaceDetail) {
+      fetchDetail();
+    }
+
+    placeDetailStore.setIsSearchPlaceDetail(false);
+  }, [placeDetailStore.place_id]);
 
   return (
     <View style={styles.container}>
