@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import Swiper from 'react-native-swiper';
 import {Image, View} from 'react-native';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
+import {GOOGLE_LOGIN_AOS_CLIENT_ID, GOOGLE_LOGIN_IOS_CLIENT_ID} from '@env';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import style from '../styles/onboardingContainerStyle';
@@ -9,9 +12,23 @@ import {SVG_IMG} from '../../../assets/images';
 import {wt} from '../../../lib/responsiveSize';
 import {palette} from '../../../shared/constants/palette';
 import OnboardingButtons from './OnboardingButtons';
+import LoginBottomSheet from './LoginBottomeSheet';
 
 const OnboardingContainer = () => {
   const styles = style();
+
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const onPressStart = () => {
+    bottomSheetRef.current?.present();
+  };
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      iosClientId: GOOGLE_LOGIN_IOS_CLIENT_ID,
+      webClientId: GOOGLE_LOGIN_AOS_CLIENT_ID,
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -37,7 +54,8 @@ const OnboardingContainer = () => {
           );
         })}
       </Swiper>
-      <OnboardingButtons />
+      <OnboardingButtons onPress={onPressStart} />
+      <LoginBottomSheet sheetRef={bottomSheetRef} />
     </View>
   );
 };

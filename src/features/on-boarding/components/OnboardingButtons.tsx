@@ -8,7 +8,11 @@ import style from '../styles/onboardingButtonsStyle';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 import {STACK_NAME} from '../../../shared/constants/navigation';
 
-const OnboardingButtons = () => {
+interface Props {
+  onPress: () => void;
+}
+
+const OnboardingButtons = ({onPress}: Props) => {
   const styles = style();
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
   const onPressGuestMode = () => {
@@ -20,7 +24,7 @@ const OnboardingButtons = () => {
       <CustomText onPress={onPressGuestMode} style={[styles.text]}>
         서비스 둘러보기
       </CustomText>
-      <CustomTouchable style={[styles.button_wrap, styles.button_start_wrap]}>
+      <CustomTouchable onPress={onPress} style={[styles.button_wrap, styles.button_start_wrap]}>
         <CustomText style={[styles.text, styles.start_text]}>시작하기</CustomText>
       </CustomTouchable>
     </View>
