@@ -6,6 +6,7 @@ import {PlaceType} from '../../../shared/types/place/placeType';
 import {homeStore} from './homeStore';
 import {bottomSheetStore} from './bottomSheetStore';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
+import {MarKerType} from '../../../shared/types/place/markerType';
 
 class PlaceDetailStore {
   isSearchPlaceDetail: boolean = false;
@@ -46,7 +47,7 @@ class PlaceDetailStore {
     };
   }
 
-  fetchPlaceDetail = async (place_id: string) => {
+  fetchPlaceDetail = async (place_id: string): Promise<MarKerType | undefined> => {
     try {
       const response = await googleApi.getGooglePlaceDetail({place_id});
       if (response.status !== 200) {
@@ -57,17 +58,34 @@ class PlaceDetailStore {
       homeStore.setMapLocation(location);
       homeStore.setSearchLocation(location);
       bottomSheetStore.setFocusedType(FocusedType.DETAIL);
+      const place = {
+        ...data,
+        category: _categoryType(data.types),
+        location: location,
+      };
       runInAction(() => {
-        Object.assign(this, {
-          ...data,
-          category: _categoryType(data.types),
-          location: location,
-        });
+        Object.assign(this, place);
       });
+      return place;
     } catch (error) {
       console.log(error);
-      return [];
+      return undefined;
     }
+  };
+
+  reset = () => {
+    this.place_id = '';
+    this.name = '';
+    this.formatted_address = '';
+    this.rating = 0;
+    this.user_ratings_total = 0;
+    this.url = '';
+    this.formatted_address = '';
+    this.category = PlaceCategoryType.BAR;
+    this.location = {
+      latitude: 0,
+      longitude: 0,
+    };
   };
 }
 
