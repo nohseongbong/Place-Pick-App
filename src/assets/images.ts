@@ -60,6 +60,8 @@ import PENCIL from '../assets/images/svg/pencil.svg';
 import EDIT from '../assets/images/svg/edit.svg';
 import TRASH_GRAY from '../assets/images/svg/trash_gray.svg';
 import TRASH_WHITE from '../assets/images/svg/trash_white.svg';
+import GOOGLE_ICON from '../assets/images/svg/google_icon.svg';
+import APPLE_ICON from '../assets/images/svg/apple_icon.svg';
 
 export const SVG_IMG = {
   LOGO,
@@ -116,4 +118,6 @@ export const SVG_IMG = {
   EDIT,
   TRASH_GRAY,
   TRASH_WHITE,
+  GOOGLE_ICON,
+  APPLE_ICON,
 };
