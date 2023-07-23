@@ -1,17 +1,16 @@
 import React from 'react';
 import {Linking, View} from 'react-native';
+import {observer} from 'mobx-react-lite';
 
 import style from '../../styles/placeDetailStyle';
 import CustomText from '../../../../shared/components/customComponents/CustomText';
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
-import {observer} from 'mobx-react-lite';
 import {placeDetailStore} from '../../store/placeDetailStore';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {SVG_IMG} from '../../../../assets/images';
 import {palette} from '../../../../shared/constants/palette';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
 import {courseStore} from '../../store/courseStore';
-import {showPlacePickToast} from '../../../../lib/toast/showToast';
 import {CategoryIconView} from '../../../../shared/components/category-icon/CategoryIcon';
 
 const PlaceDetail = observer(() => {
@@ -19,13 +18,11 @@ const PlaceDetail = observer(() => {
 
   const onPressHidePlaceDetail = () => {
     bottomSheetStore.setFocusedType(FocusedType.CREATE);
+    placeDetailStore.reset();
   };
 
   const onPressAddPlace = () => {
-    showPlacePickToast();
     courseStore.setAddCourseList(placeDetailStore.getPlaceInfo);
-    courseStore.removeCourseNumber();
-    bottomSheetStore.setFocusedType(FocusedType.CREATE);
   };
 
   const onPressPlaceDetail = () => {

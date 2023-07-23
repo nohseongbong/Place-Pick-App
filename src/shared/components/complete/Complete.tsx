@@ -1,8 +1,9 @@
 import React from 'react';
 import CustomText from '../../../shared/components/customComponents/CustomText';
+import {observer} from 'mobx-react-lite';
+
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 import style from './styles/completeStyle';
-import {observer} from 'mobx-react-lite';
 import {courseDetailStore} from '../../../features/create-course/store/CourseDetailStore';
 
 const Complete = observer(() => {

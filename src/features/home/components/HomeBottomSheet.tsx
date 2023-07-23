@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {NavigationProp, useFocusEffect, useNavigation} from '@react-navigation/native';
+import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 
@@ -7,7 +7,6 @@ import style from '../styles/homeBottomSheetStyle';
 import PlaceDetail from './bottomSheetContents/PlaceDetail';
 import CreateCourse from './bottomSheetContents/CreateCourse';
 import {bottomSheetStore} from '../store/bottomSheetStore';
-import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 import PlaceSearch from './bottomSheetContents/PlaceSearch';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
 import {searchStore} from '../store/searchStore';
@@ -15,8 +14,6 @@ import {View} from 'react-native';
 
 const HomeBottomSheet = observer(() => {
   const styles = style();
-  const navigation: NavigationProp<RootStackParamList> = useNavigation();
-  const [scrollIndex, setScrollIndex] = useState<number>(0);
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 

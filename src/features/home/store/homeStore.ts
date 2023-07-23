@@ -1,10 +1,11 @@
-import {PlaceCategoryType} from './../../../shared/constants/placeCategoryType';
 import {makeAutoObservable} from 'mobx';
+
+import {PlaceCategoryType} from './../../../shared/constants/placeCategoryType';
 import {RegionType} from '../types/RegionType';
 import {initLocation} from '../constants/initLocation';
-import {MarKerType} from '../../../shared/types/place/markerType';
 import {_categoryType} from '../../../shared/utils/placeCategory';
 import {googleApi} from './../../../shared/api/google/api';
+import {MarKerType} from '../../../shared/types/place/markerType';
 
 class HomeStore {
   mapLocation: RegionType = initLocation;

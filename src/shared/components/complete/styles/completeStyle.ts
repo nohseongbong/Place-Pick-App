@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {fs, ht, wt} from '../../../../lib/responsiveSize';
+import {fs, ht} from '../../../../lib/responsiveSize';
 import {fontWt, palette} from '../../../constants/palette';
 
 const style = () => {
@@ -13,7 +13,7 @@ const style = () => {
       borderRadius: 35,
       position: 'absolute',
       bottom: ht(55),
-      zIndex: 100,
+      zIndex: 1,
       left: '5%',
     },
     complete_course_text: {

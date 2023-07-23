@@ -1,18 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 
 import style from '../styles/homeContainerStyle';
 import HomeMap from './HomeMap';
 import HomeBottomSheet from './HomeBottomSheet';
 import {observer} from 'mobx-react-lite';
-import {homeStore} from '../store/homeStore';
-import {MarKerType} from '../../../shared/types/place/markerType';
 import {courseStore} from '../store/courseStore';
 import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
-import {placeDetailStore} from '../store/placeDetailStore';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {MainStackParamList} from '../../../shared/types/navigation/paramsType';
 import {SCREEN_NAME} from '../../../shared/constants/navigation';
@@ -21,39 +18,15 @@ import CategoryBar from './bottomSheetContents/CategoryBar';
 const HomeContainer = observer(() => {
   const styles = style();
   const navigation: NavigationProp<MainStackParamList> = useNavigation();
-  const [markers, setMarkers] = useState<MarKerType[] | []>([]);
-
-  const onPressNearPlaceBtn = async () => {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const markers = await homeStore.getFetchNearPlaceList();
-
-    setMarkers(markers);
-  };
 
   const onPressCreateCourse = () => {
     navigation.navigate(SCREEN_NAME.COURSEDETAIL);
   };
 
-  useEffect(() => {
-    if (placeDetailStore.place_id && placeDetailStore.isSearchPlaceDetail) {
-      onPressNearPlaceBtn();
-      // const obj: MarKerType = {
-      //   place_id: placeDetailStore.place_id,
-      //   name: placeDetailStore.name,
-      //   category: placeDetailStore.category,
-      //   location: placeDetailStore.location,
-      // };
-      // setMarkers(toJS([obj]));
-      // console.log(placeDetailStore, ': 데이터');
-    }
-
-    placeDetailStore.setIsSearchPlaceDetail(false);
-  }, [placeDetailStore.place_id]);
-
   return (
     <View style={styles.container}>
       <CategoryBar />
-      <HomeMap onPressNearPlaceBtn={onPressNearPlaceBtn} markers={markers} />
+      <HomeMap />
       <HomeBottomSheet />
       {courseStore.courseList.length > 1 &&
         bottomSheetStore.focusedType === FocusedType.CREATE &&
