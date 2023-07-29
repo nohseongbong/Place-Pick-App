@@ -1,5 +1,6 @@
 import React from 'react';
 import {Platform, StatusBar} from 'react-native';
+
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SCREEN_NAME, STACK_NAME} from '../shared/constants/navigation';
 import {palette} from '../shared/constants/palette';
