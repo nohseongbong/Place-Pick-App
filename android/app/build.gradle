@@ -122,6 +122,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+         release {
+            storeFile file("../placepick.keystore")
+            storePassword project.env.get("RELEASE_STORE_PASSWORD")
+            keyAlias "placepick"
+            keyPassword project.env.get("RELEASE_KEY_PASSWORD")
+        }
     }
     buildTypes {
         debug {
