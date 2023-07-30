@@ -19,4 +19,7 @@ export type MainStackParamList = {
   [STACK_NAME.TAB]: undefined;
   [SCREEN_NAME.COURSEDETAIL]: undefined;
   [SCREEN_NAME.COLLECTIONCOURSEDETAIL]: undefined;
+  [SCREEN_NAME.MYSETTING]: undefined;
+  [SCREEN_NAME.MANAGEMENT]: undefined;
+  [SCREEN_NAME.TERMS]: {type: string};
 };

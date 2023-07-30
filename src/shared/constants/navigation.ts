@@ -7,6 +7,9 @@ export enum SCREEN_NAME {
   COURSEDETAIL = 'CourseDetailScreen',
   COLLECTIONCOURSEDETAIL = 'CollectionCourseDetailScreen',
   ONBOARDING = 'OnBoardingScreen',
+  MYSETTING = 'MySettingScreen',
+  MANAGEMENT = 'ManagementScreen',
+  TERMS = 'TermsScreen',
 }
 
 export enum STACK_NAME {
