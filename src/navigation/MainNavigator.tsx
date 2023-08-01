@@ -1,4 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import {SCREEN_NAME, STACK_NAME} from '../shared/constants/navigation';
 import TabNavigator from './TabNavigator';
 import {MainStackParamList} from '../shared/types/navigation/paramsType';
