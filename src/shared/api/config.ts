@@ -1,7 +1,6 @@
-import {TEST_URL_API} from '@env';
-
+import {PLACE_PICK_API_URL} from '@env';
 class Config {
-  apiBaseUrl: string = TEST_URL_API ?? 'http://localhost:3000';
+  apiBaseUrl: string = PLACE_PICK_API_URL ?? 'http://localhost:3000';
   googlePlaceApiUrl: string = 'https://maps.googleapis.com/maps/api';
 }
 
