@@ -13,13 +13,13 @@ import DeleteModal from '../../../shared/components/custom-modal/DeleteModal';
 
 const CollectionContainer = observer(() => {
   const styles = style();
-
   const onPressModalClose = () => {
     collectionStore.setIsDeleteModal(false);
   };
 
   useFocusEffect(
     useCallback(() => {
+      collectionStore.fetchCourseList();
       return () => {
         collectionStore.reset();
       };

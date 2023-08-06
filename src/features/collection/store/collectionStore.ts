@@ -1,10 +1,13 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import {showCourseRemoveToast} from '../../../lib/toast/showToast';
+import {courseApi} from '../../../shared/api/course/api';
+import {CourseResType} from '../../../shared/api/course/types/responseType';
 
 class CollectionStore {
   isEdit: boolean = false;
   isDeleteModal: boolean = false;
-  selectedList: any[] = [];
+  courseList: CourseResType[] = [];
+  selectedList: CourseResType[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -24,15 +27,27 @@ class CollectionStore {
     this.selectedList.push(course);
   };
 
-  deleteSelectCourse = (id: number) => {
+  deleteSelectCourse = (courseId: number) => {
     this.selectedList = this.selectedList.filter(x => {
-      return x.id !== id;
+      return x.courseId !== courseId;
     });
   };
 
   deleteCollectionCourse = () => {
     showCourseRemoveToast();
     this.isDeleteModal = false;
+  };
+
+  fetchCourseList = async () => {
+    try {
+      const {data} = await courseApi.getCourseList();
+      console.log(data, ':CourseList data');
+      runInAction(() => {
+        this.courseList = data.sort((a, b) => a.courseOrder - b.courseOrder);
+      });
+    } catch (error) {
+      console.log(error, ':CourseList error');
+    }
   };
 
   get getIsSelected(): boolean {

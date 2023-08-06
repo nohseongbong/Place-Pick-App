@@ -61,7 +61,15 @@ const CreateCourse = observer(() => {
             <CustomText style={styles.title_text}>를 만들어주세요! 😎</CustomText>
           </View>
           {courseStore.courseList.map((item, index) => {
-            return <Course isMoreState={true} item={item} index={index} key={`${item.place_id}_${index}`} />;
+            return (
+              <Course
+                isMoreState={true}
+                item={item}
+                index={index}
+                key={`${item.place_id}_${index}`}
+                courseConectList={courseStore.courseConectList}
+              />
+            );
           })}
           <SearchPlaceBoxView />
           {Array.from({length: courseStore.courseNumber}, (_, index) => (

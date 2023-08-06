@@ -12,16 +12,25 @@ import {wt} from '../../../../lib/responsiveSize';
 import {collectionStore} from '../../store/collectionStore';
 import {MainStackParamList} from '../../../../shared/types/navigation/paramsType';
 import {SCREEN_NAME} from '../../../../shared/constants/navigation';
+import {CourseResType} from '../../../../shared/api/course/types/responseType';
 
 interface Props {
-  model: any;
+  model: CourseResType;
 }
+
+interface PlaceProps {
+  item: {
+    name: string;
+    locationCategory: string;
+  };
+}
+
 const styles = style();
 
-const Place = memo(({item}: any) => {
+const Place = memo(({item}: PlaceProps) => {
   return (
     <View style={styles.place_list_wrap}>
-      <CategoryIconView type={item.category} width={16} />
+      <CategoryIconView type={item.locationCategory} width={16} />
       <CustomText style={styles.place_item_text}>{item.name}</CustomText>
     </View>
   );
@@ -34,7 +43,7 @@ const CourseListItem = observer(({model}: Props) => {
     // 편집 상태
     if (collectionStore.isEdit) {
       if (isChecked) {
-        collectionStore.deleteSelectCourse(model.id);
+        collectionStore.deleteSelectCourse(model.courseId);
       } else {
         collectionStore.addSelectCourse(model);
       }
@@ -42,7 +51,7 @@ const CourseListItem = observer(({model}: Props) => {
       setIsChecked(!isChecked);
     } else {
       // 편집 상태가 아닐 때
-      navigation.navigate(SCREEN_NAME.COLLECTIONCOURSEDETAIL);
+      navigation.navigate(SCREEN_NAME.COLLECTIONCOURSEDETAIL, {courseId: model.courseId});
     }
   };
 
@@ -68,8 +77,8 @@ const CourseListItem = observer(({model}: Props) => {
 
       <CustomText style={styles.course_title_text}>{model.name}</CustomText>
       <View style={styles.place_list_wrap}>
-        {model.place_list.map((item: any, idx: number) => (
-          <Place key={`${item.place_id}_${idx}`} item={item} />
+        {model.locationList.map((item: any, idx: number) => (
+          <Place key={`${item.name}_${idx}`} item={item} />
         ))}
       </View>
       <View />

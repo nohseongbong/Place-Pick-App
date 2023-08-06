@@ -23,13 +23,21 @@ const CourseDetailContainer = observer(() => {
           </View>
           <View style={styles.course_info}>
             <CustomText style={styles.course_title_text}>방문할 장소</CustomText>
-            <CustomText style={styles.course_text}>4곳</CustomText>
+            <CustomText style={styles.course_text}>{courseStore.courseList.length}곳</CustomText>
           </View>
         </View>
         <CustomText style={styles.course_list_title_text}>방문할 장소</CustomText>
         <View style={styles.course_list_wrap}>
           {courseStore.courseList.map((item, index) => {
-            return <Course isMoreState={false} item={item} index={index} key={`${item.place_id}_${index}`} />;
+            return (
+              <Course
+                isMoreState={false}
+                item={item}
+                index={index}
+                key={`${item.place_id}_${index}`}
+                courseConectList={courseStore.courseConectList}
+              />
+            );
           })}
         </View>
       </View>

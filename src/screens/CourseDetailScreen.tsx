@@ -13,8 +13,16 @@ import CompletionCourseModal from '../shared/components/custom-modal/CompletionC
 const CourseDetailScreen = observer(() => {
   const [isModal, setIsModal] = useState<boolean>(false);
 
-  const toggleModal = () => {
-    setIsModal(!isModal);
+  const complete = () => {
+    courseDetailStore.fetchCreateCourse(successModal);
+  };
+
+  const successModal = () => {
+    setIsModal(true);
+  };
+
+  const onCloseModal = () => {
+    setIsModal(false);
   };
 
   const onPressBackGround = () => {
@@ -39,10 +47,10 @@ const CourseDetailScreen = observer(() => {
           setIsState={courseDetailStore.setIsCourseNameModal}
           value={courseDetailStore.courseName}
           setValue={courseDetailStore.setCourseName}
-          complete={toggleModal}
+          complete={complete}
         />
       </KeyboardAvoidingView>
-      <CompletionCourseModal isVisible={isModal} onClose={toggleModal} />
+      <CompletionCourseModal isVisible={isModal} onClose={onCloseModal} />
     </>
   );
 });

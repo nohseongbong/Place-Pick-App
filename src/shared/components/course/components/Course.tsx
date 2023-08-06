@@ -8,19 +8,21 @@ import {PlaceCategoryType} from '../../../constants/placeCategoryType';
 import {SVG_IMG} from '../../../../assets/images';
 import CustomText from '../../customComponents/CustomText';
 import {courseStore} from '../../../../features/home/store/courseStore';
-import {PlaceType} from '../../../types/place/placeType';
+import {CourseType} from '../../../types/place/placeType';
 import {palette} from '../../../constants/palette';
 import {showPlaceRemoveToast} from '../../../../lib/toast/showToast';
 import {bottomSheetStore} from '../../../../features/home/store/bottomSheetStore';
 import {FocusedType} from '../../../../features/home/constants/bottomSheetFocusedType';
+import {ConnectType} from '../../../../features/home/types/ConnectType';
 
 interface Props {
-  item: PlaceType;
+  item: CourseType;
   index: number;
   isMoreState: boolean;
+  courseConectList: ConnectType[];
 }
 
-const Course = observer(({item, index, isMoreState}: Props) => {
+const Course = observer(({item, index, isMoreState, courseConectList}: Props) => {
   const styles = style();
   const [isMore, setIsMore] = useState<boolean>(false);
 
@@ -98,7 +100,7 @@ const Course = observer(({item, index, isMoreState}: Props) => {
         )}
       </CustomTouchable>
 
-      {courseStore.courseConectList.length !== 0 && courseStore.courseConectList[index] && (
+      {courseConectList.length !== 0 && courseConectList[index] && (
         <View style={styles.connect_wrap}>
           <SVG_IMG.CONNECT_BORDER />
           <CustomTouchable onPress={onPressLoadMap} style={styles.connect_btn_wrap}>
