@@ -6,7 +6,17 @@ export interface PlaceType {
   formatted_address: string;
   rating: number;
   user_ratings_total: number;
-  url?: string;
+  url: string;
+  category: PlaceCategoryType;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export interface CourseType {
+  place_id: string;
+  name: string;
   category: PlaceCategoryType;
   location: {
     latitude: number;
