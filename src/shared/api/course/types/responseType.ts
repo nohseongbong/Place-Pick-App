@@ -13,7 +13,7 @@ export type CourseResType = {
   courseOrder: number;
   locationList: {
     name: string;
-    locationCategory: string;
+    locationCategory: PlaceCategoryType;
   }[];
   createdAt: Date;
 };
@@ -35,4 +35,3 @@ export interface CourseDetailRes {
   xlocation: number;
   ylocation: number;
 }
-export type CreateCourseRes = any;

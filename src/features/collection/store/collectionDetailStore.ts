@@ -24,7 +24,7 @@ class CollectionDetailStore {
   fetchGetCourseDetail = async (courseId: number) => {
     try {
       console.log(courseId, ':courseId');
-      const {data} = await courseApi.getCourseDetail({courseId});
+      const data = await courseApi.getCourseDetail({courseId});
       console.log(data, ': data CourseDetail');
       runInAction(() => {
         this.courseName = data.name;

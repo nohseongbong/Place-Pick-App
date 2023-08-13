@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {courseApi} from '../../../shared/api/course/api';
 import {courseStore} from '../../home/store/courseStore';
+import {formatCategory} from '../../../shared/utils/formatCategory';
 
 class CourseDetailStore {
   isCourseNameModal: boolean = false;
@@ -19,7 +20,7 @@ class CourseDetailStore {
 
   fetchCreateCourse = async (successFnc: () => void) => {
     try {
-      const {data} = await courseApi.createCourse({
+      await courseApi.createCourse({
         name: this.courseName,
         courseLocationRequestsList: courseStore.courseList.map((item, index) => {
           const {longitude, latitude} = item.location;
@@ -27,13 +28,12 @@ class CourseDetailStore {
             longitude,
             latitude,
             placeId: item.place_id,
-            category: item.category,
+            category: formatCategory({req: item.category}),
             placeName: item.name,
             locationOrder: index + 1,
           };
         }),
       });
-      console.log(data, ':fetchCreateCourse  data');
       successFnc();
     } catch (error) {
       console.log(error, ':fetchCreateCourse  error');

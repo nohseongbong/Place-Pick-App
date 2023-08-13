@@ -40,7 +40,7 @@ class CollectionStore {
 
   fetchCourseList = async () => {
     try {
-      const {data} = await courseApi.getCourseList();
+      const data = await courseApi.getCourseList();
       console.log(data, ':CourseList data');
       runInAction(() => {
         this.courseList = data.sort((a, b) => a.courseOrder - b.courseOrder);
