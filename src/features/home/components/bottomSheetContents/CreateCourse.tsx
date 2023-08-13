@@ -11,9 +11,20 @@ import {courseStore} from '../../store/courseStore';
 import {bottomSheetStore} from '../../store/bottomSheetStore';
 import {FocusedType} from '../../constants/bottomSheetFocusedType';
 import Course from '../../../../shared/components/course/components/Course';
+import {showPlaceRemoveToast} from '../../../../lib/toast/showToast';
 
 const CreateCourse = observer(() => {
   const styles = style();
+
+  const onPressRemoveCourse = (index: number) => {
+    showPlaceRemoveToast();
+    courseStore.setRemoveCourseList(index);
+  };
+  const onPressEditCourse = (index: number) => {
+    courseStore.setIsSelectedCourse(true);
+    courseStore.setSelectedCourse(index);
+    bottomSheetStore.setFocusedType(FocusedType.SEARCH);
+  };
 
   const AddCourseView = () => {
     return (
@@ -68,6 +79,8 @@ const CreateCourse = observer(() => {
                 index={index}
                 key={`${item.place_id}_${index}`}
                 courseConectList={courseStore.courseConectList}
+                onPressRemoveCourse={onPressRemoveCourse}
+                onPressEditCourse={onPressEditCourse}
               />
             );
           })}
