@@ -23,15 +23,18 @@ interface PlaceProps {
     name: string;
     locationCategory: string;
   };
+  index: number;
+  last: number;
 }
 
 const styles = style();
 
-const Place = memo(({item}: PlaceProps) => {
+const Place = memo(({item, index, last}: PlaceProps) => {
   return (
     <View style={styles.place_list_wrap}>
       <CategoryIconView type={item.locationCategory} width={16} />
       <CustomText style={styles.place_item_text}>{item.name}</CustomText>
+      {index !== last && <CustomText style={styles.place_item_text}>-</CustomText>}
     </View>
   );
 });
@@ -78,7 +81,7 @@ const CourseListItem = observer(({model}: Props) => {
       <CustomText style={styles.course_title_text}>{model.name}</CustomText>
       <View style={styles.place_list_wrap}>
         {model.locationList.map((item: any, idx: number) => (
-          <Place key={`${item.name}_${idx}`} item={item} />
+          <Place key={`${item.name}_${idx}`} item={item} index={idx} last={model.locationList.length - 1} />
         ))}
       </View>
       <View />
