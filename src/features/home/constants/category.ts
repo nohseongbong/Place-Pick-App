@@ -1,7 +1,7 @@
 import {PlaceCategoryType} from '../../../shared/constants/placeCategoryType';
 
 export const categoryList = [
-  PlaceCategoryType.RESTAURANT,
+  PlaceCategoryType.FOOD,
   PlaceCategoryType.CAFE,
   PlaceCategoryType.BAR,
   PlaceCategoryType.STORE,

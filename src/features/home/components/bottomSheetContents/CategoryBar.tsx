@@ -17,7 +17,7 @@ const CategoryBar = observer(() => {
     let name = '';
     let color = '';
     switch (item) {
-      case PlaceCategoryType.RESTAURANT:
+      case PlaceCategoryType.FOOD:
         name = '음식점';
         color = palette.RESTAURANT;
         break;

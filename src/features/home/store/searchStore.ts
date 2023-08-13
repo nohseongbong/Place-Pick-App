@@ -84,7 +84,7 @@ class SearchStore {
         case searchTabType.POINT_OF_INTEREST:
           return x.category === PlaceCategoryType.POINT_OF_INTEREST;
         case searchTabType.RESTAURANT:
-          return x.category === PlaceCategoryType.RESTAURANT;
+          return x.category === PlaceCategoryType.FOOD;
         default:
           return true;
       }

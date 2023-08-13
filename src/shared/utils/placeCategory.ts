@@ -3,7 +3,7 @@ import {PlaceCategoryType} from '../constants/placeCategoryType';
 export const rank = [
   PlaceCategoryType.PARK,
   PlaceCategoryType.BAR,
-  PlaceCategoryType.RESTAURANT,
+  PlaceCategoryType.FOOD,
   PlaceCategoryType.CAFE,
   PlaceCategoryType.STORE,
   PlaceCategoryType.TRAIN,

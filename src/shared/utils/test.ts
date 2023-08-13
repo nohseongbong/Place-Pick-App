@@ -7,7 +7,7 @@ export const dummyData = function () {
     arr.push({
       place_id: String(index),
       name: '땀땀',
-      category: PlaceCategoryType.RESTAURANT,
+      category: PlaceCategoryType.FOOD,
       formatted_address: '경기도 용인시',
       rating: 3.5,
       user_ratings_total: 3000,

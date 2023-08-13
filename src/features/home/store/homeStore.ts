@@ -10,7 +10,7 @@ import {MarKerType} from '../../../shared/types/place/markerType';
 class HomeStore {
   mapLocation: RegionType = initLocation;
   isNearPlace: boolean = true;
-  category: string = PlaceCategoryType.RESTAURANT;
+  category: string = PlaceCategoryType.FOOD;
 
   searchLocation = {
     latitude: 37.4979052,
