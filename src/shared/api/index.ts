@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {config as basedConfig} from './config';
-import {GOOGLE_PLACE_API_KEY} from '@env';
+import {GOOGLE_PLACE_API_KEY, TEST_ACCESS_TOKEN} from '@env';
 
 export const axiosInstance = axios.create({
-  baseURL: `${basedConfig.apiBaseUrl}/api/v1/`,
+  baseURL: `${basedConfig.apiBaseUrl}`,
   withCredentials: true,
 });
 export const axiosInstanceGoogleApi = axios.create({
@@ -18,7 +18,7 @@ export const axiosInstanceGoogleApi = axios.create({
 axiosInstance.interceptors.request.use(
   async config => {
     config.headers = config.headers ?? {};
-    config.headers.Authorization = `Bearer ${'accessToken'}`;
+    config.headers.Authorization = `Bearer ${TEST_ACCESS_TOKEN}`;
     return config;
   },
   error => {

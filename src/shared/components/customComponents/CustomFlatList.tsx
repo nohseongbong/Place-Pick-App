@@ -3,7 +3,7 @@ import {FlatListProps, FlatList} from 'react-native';
 const CustomFlatList = ({style, ...props}: FlatListProps<any>) => {
   return (
     <FlatList
-      style={[{width: '100%'}, style]}
+      style={[{flex: 1}, style]}
       windowSize={5}
       nestedScrollEnabled={true}
       showsVerticalScrollIndicator={false}

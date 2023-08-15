@@ -5,4 +5,4 @@ export class Api {
   login = (): Promise<ResType<LoginRes>> => axiosInstance.post('/login');
 }
 
-export const api = new Api();
+export const authApi = new Api();

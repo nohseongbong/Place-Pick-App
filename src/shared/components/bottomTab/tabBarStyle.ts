@@ -7,12 +7,10 @@ const style = () => {
   return StyleSheet.create({
     container: {
       flexDirection: 'row',
-      height: ht(100),
+      height: ht(50),
       alignItems: 'center',
       backgroundColor: colors.BACKGROUND,
       overflow: 'hidden',
-      paddingBottom: ht(50),
-      paddingTop: ht(10),
       borderTopWidth: 1,
       borderColor: palette.BORDER,
     },
@@ -30,7 +28,7 @@ const style = () => {
       fontWeight: '600',
       fontSize: fs(12),
       color: '#000',
-      marginTop: ht(10),
+      marginTop: ht(5),
     },
   });
 };

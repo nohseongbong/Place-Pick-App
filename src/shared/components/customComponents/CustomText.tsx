@@ -10,7 +10,7 @@ const CustomText = ({children, style, ...props}: TextProps) => {
   });
 
   return (
-    <Text style={[styles.text, style]} {...props}>
+    <Text style={[styles.text, style]} ellipsizeMode="tail" numberOfLines={1} {...props}>
       {children}
     </Text>
   );

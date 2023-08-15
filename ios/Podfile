@@ -29,6 +29,9 @@ target 'PlacePick' do
   # 구글 맵
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
 
 
   # 권한 요청

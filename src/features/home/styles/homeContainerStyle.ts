@@ -1,12 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {palette} from '../../../shared/constants/palette';
-import {ht, wt} from '../../../lib/responsiveSize';
+import {fontWt, palette} from '../../../shared/constants/palette';
+import {fs, ht, wt} from '../../../lib/responsiveSize';
 
 const style = () => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
     },
     test_PR_btn: {
@@ -15,6 +14,21 @@ const style = () => {
       backgroundColor: palette.PRIMARY,
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    complete_course_wrap: {
+      paddingHorizontal: wt(23),
+      paddingVertical: ht(12),
+      alignItems: 'center',
+      backgroundColor: palette.PRIMARY,
+      borderRadius: 35,
+      position: 'absolute',
+      bottom: ht(15),
+      zIndex: 100,
+    },
+    complete_course_text: {
+      color: palette.BACKGROUND,
+      fontSize: fs(14),
+      fontFamily: fontWt.Medium,
     },
   });
 };

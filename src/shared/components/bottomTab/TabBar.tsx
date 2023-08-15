@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {observer} from 'mobx-react-lite';
 import {palette} from '../../constants/palette';
@@ -7,12 +7,17 @@ import style from './tabBarStyle';
 import CustomTouchable from '../customComponents/CustomTouchable';
 import {SVG_IMG} from '../../../assets/images';
 import CustomText from '../customComponents/CustomText';
+import {collectionStore} from '../../../features/collection/store/collectionStore';
+import DeleteBar from '../../../features/collection/components/collection-list/DeleteBar';
 
 const TabBar = observer(({state, descriptors, navigation}: BottomTabBarProps) => {
-  const colors = palette;
   const styles = style();
 
-  return (
+  return collectionStore.isEdit ? (
+    <View style={{alignItems: 'center', position: 'absolute', bottom: 20, width: '100%'}}>
+      <DeleteBar />
+    </View>
+  ) : (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];

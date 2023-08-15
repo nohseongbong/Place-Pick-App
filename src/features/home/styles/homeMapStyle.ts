@@ -22,7 +22,7 @@ const style = () => {
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      top: ht(60),
+      top: ht(12),
       zIndex: 1000,
       ...getPlatformStyles,
       backgroundColor: palette.BACKGROUND,
@@ -42,6 +42,8 @@ const style = () => {
       fontSize: fs(11),
       fontFamily: fontWt.Bold,
       marginTop: ht(3),
+      width: wt(70),
+      textAlign: 'center',
     },
     my_location_btn_wrap: {
       justifyContent: 'center',
@@ -51,7 +53,7 @@ const style = () => {
       borderRadius: 2,
       position: 'absolute',
       right: wt(15),
-      top: ht(58),
+      top: ht(12),
       zIndex: 1000,
       backgroundColor: palette.BACKGROUND,
       ...getPlatformStyles,
@@ -60,6 +62,16 @@ const style = () => {
     my_location_btn_img: {
       width: wt(19),
       height: ht(19),
+    },
+    selected_icon_wrap: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    selected_icon_text: {
+      fontSize: fs(11),
+      color: palette.BACKGROUND,
+      fontFamily: fontWt.Bold,
+      position: 'absolute',
     },
   });
 };

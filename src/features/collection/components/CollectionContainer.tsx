@@ -1,25 +1,43 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View} from 'react-native';
-import CustomText from '../../../shared/components/customComponents/CustomText';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import CustomTouchable from '../../../shared/components/customComponents/CustomTouchable';
-import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
+import {observer} from 'mobx-react-lite';
+import {useFocusEffect} from '@react-navigation/native';
 
-const CollectionContainer = () => {
-  const navigation: NavigationProp<RootStackParamList> = useNavigation();
+import Header from './collection-list/Header';
+import style from '../styles/collectionContainerStyle';
+import CourseList from './collection-list/CourseList';
+import CourseListHeader from './collection-list/CourseListHeader';
+import {collectionStore} from '../store/collectionStore';
+import EditHeader from './collection-list/EditHeader';
+import DeleteModal from '../../../shared/components/custom-modal/DeleteModal';
 
-  const onPressGoBack = () => {
-    navigation.goBack();
+const CollectionContainer = observer(() => {
+  const styles = style();
+  const onPressModalClose = () => {
+    collectionStore.setIsDeleteModal(false);
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      collectionStore.fetchCourseList();
+      return () => {
+        collectionStore.reset();
+      };
+    }, []),
+  );
+
   return (
-    <View>
-      <CustomTouchable
-        style={{height: '100%', width: 60, justifyContent: 'center', alignItems: 'center', marginTop: 60}}
-        onPress={onPressGoBack}>
-        <CustomText>뒤로가기</CustomText>
-      </CustomTouchable>
+    <View style={styles.container}>
+      {collectionStore.isEdit ? <EditHeader /> : <Header />}
+      <CourseListHeader />
+      <CourseList />
+      <DeleteModal
+        isVisible={collectionStore.isDeleteModal}
+        onClose={onPressModalClose}
+        onPress={collectionStore.deleteCollectionCourse}
+      />
     </View>
   );
-};
+});
 
 export default CollectionContainer;

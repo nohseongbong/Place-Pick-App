@@ -1,8 +1,13 @@
 export const IMG = {
   MY_LOCATION: require('../assets/images/icon/my_location.png'),
+  ON_BOARDING_IMG_1: require('../assets/images/img/on_boarding_imgae1.png'),
+  ON_BOARDING_IMG_2: require('../assets/images/img/on_boarding_imgae2.png'),
+  ON_BOARDING_IMG_3: require('../assets/images/img/on_boarding_imgae3.png'),
+  ON_BOARDING_IMG_4: require('../assets/images/img/on_boarding_imgae4.png'),
 };
 
 import LOGO from '../assets/images/svg/logo.svg';
+import SPLASH_LOGO from '../assets/images/svg/splash_logo.svg';
 import HOME_ON from '../assets/images/svg/tab_home_on.svg';
 import HOME_OFF from '../assets/images/svg/tab_home_off.svg';
 import COLLECTION_ON from '../assets/images/svg/tab_collection_on.svg';
@@ -13,10 +18,14 @@ import CATEGORY_FLAG from '../assets/images/svg/category_flag.svg';
 import CATEGORY_SHOP from '../assets/images/svg/category_shop.svg';
 import CATEGORY_PARK from '../assets/images/svg/category_park.svg';
 import CATEGORY_RESTAURANT from '../assets/images/svg/category_restaurant.svg';
-import COURSE_1 from '../assets/images/svg/course_1.svg';
-import COURSE_2 from '../assets/images/svg/course_2.svg';
-import COURSE_3 from '../assets/images/svg/course_3.svg';
-import COURSE_4 from '../assets/images/svg/course_4.svg';
+import CATEGORY_TRAIN from '../assets/images/svg/category_train.svg';
+import COURSE_BAR from '../assets/images/svg/bar.svg';
+import COURSE_CAFE from '../assets/images/svg/cafe.svg';
+import COURSE_CULTURE from '../assets/images/svg/culture.svg';
+import COURSE_PARK from '../assets/images/svg/park.svg';
+import COURSE_RESTAURANT from '../assets/images/svg/restaurant.svg';
+import COURSE_STORE from '../assets/images/svg/shop.svg';
+import COURSE_TRAIN from '../assets/images/svg/train.svg';
 import MORE from '../assets/images/svg/more.svg';
 import PEOPLE from '../assets/images/svg/people.svg';
 import PICK_PLACE_DEFAULT from '../assets/images/svg/pick_place_default.svg';
@@ -26,9 +35,37 @@ import SEARCH_REMOVE from '../assets/images/svg/search_remove.svg';
 import SEARCH from '../assets/images/svg/search.svg';
 import STAR from '../assets/images/svg/star.svg';
 import CLOSE from '../assets/images/svg/close.svg';
+import GOOGLE_MAP from '../assets/images/svg/google_maps.svg';
+import CONNECT_BORDER from '../assets/images/svg/connect_border.svg';
+import WRITE from '../assets/images/svg/write.svg';
+import TRASH from '../assets/images/svg/trash.svg';
+import TRAIN from '../assets/images/svg/category_bar_train.svg';
+import SHOP from '../assets/images/svg/category_bar_shop.svg';
+import CAFE from '../assets/images/svg/category_bar_cafe.svg';
+import BAR from '../assets/images/svg/category_bar_bar.svg';
+import FLAG from '../assets/images/svg/category_bar_flag.svg';
+import RESTAURANT from '../assets/images/svg/category_bar_restaurant.svg';
+import PARK from '../assets/images/svg/category_bar_park.svg';
+import SHOP_ACTIVE from '../assets/images/svg/category_bar_shop_active.svg';
+import CAFE_ACTIVE from '../assets/images/svg/category_bar_cafe_active.svg';
+import BAR_ACTIVE from '../assets/images/svg/category_bar_bar_active.svg';
+import FLAG_ACTIVE from '../assets/images/svg/category_bar_flag_active.svg';
+import RESTAURANT_ACTIVE from '../assets/images/svg/category_bar_restaurant_active.svg';
+import PARK_ACTIVE from '../assets/images/svg/category_bar_park_active.svg';
+import KAKAO_MAP from '../assets/images/svg/kakao_map_logo.svg';
+import BACK_ICON from '../assets/images/svg/back_icon.svg';
+import CHECK_OFF from '../assets/images/svg/check_off.svg';
+import CHECK_ON from '../assets/images/svg/check_on.svg';
+import PENCIL from '../assets/images/svg/pencil.svg';
+import EDIT from '../assets/images/svg/edit.svg';
+import TRASH_GRAY from '../assets/images/svg/trash_gray.svg';
+import TRASH_WHITE from '../assets/images/svg/trash_white.svg';
+import GOOGLE_ICON from '../assets/images/svg/google_icon.svg';
+import APPLE_ICON from '../assets/images/svg/apple_icon.svg';
 
 export const SVG_IMG = {
   LOGO,
+  SPLASH_LOGO,
   HOME_ON,
   COLLECTION_ON,
   HOME_OFF,
@@ -38,11 +75,15 @@ export const SVG_IMG = {
   CATEGORY_FLAG,
   CATEGORY_SHOP,
   CATEGORY_PARK,
+  CATEGORY_TRAIN,
   CATEGORY_RESTAURANT,
-  COURSE_1,
-  COURSE_2,
-  COURSE_3,
-  COURSE_4,
+  COURSE_BAR,
+  COURSE_CAFE,
+  COURSE_CULTURE,
+  COURSE_PARK,
+  COURSE_RESTAURANT,
+  COURSE_STORE,
+  COURSE_TRAIN,
   MORE,
   PEOPLE,
   PICK_PLACE_DEFAULT,
@@ -52,4 +93,31 @@ export const SVG_IMG = {
   SEARCH,
   STAR,
   CLOSE,
+  GOOGLE_MAP,
+  CONNECT_BORDER,
+  WRITE,
+  TRASH,
+  TRAIN,
+  BAR,
+  CAFE,
+  SHOP,
+  FLAG,
+  RESTAURANT,
+  PARK,
+  BAR_ACTIVE,
+  CAFE_ACTIVE,
+  SHOP_ACTIVE,
+  FLAG_ACTIVE,
+  RESTAURANT_ACTIVE,
+  PARK_ACTIVE,
+  KAKAO_MAP,
+  BACK_ICON,
+  CHECK_OFF,
+  CHECK_ON,
+  PENCIL,
+  EDIT,
+  TRASH_GRAY,
+  TRASH_WHITE,
+  GOOGLE_ICON,
+  APPLE_ICON,
 };
