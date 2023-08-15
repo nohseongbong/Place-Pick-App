@@ -7,4 +7,5 @@ declare module '@env' {
   export const GOOGLE_LOGIN_IOS_CLIENT_ID: string;
   export const APPLE_LOGIN_CLIENT_ID: string;
   export const APPLE_LOGIN_REFIRECT_URL: string;
+  export const TEST_ACCESS_TOKEN: string;
 }
