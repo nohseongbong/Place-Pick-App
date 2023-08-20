@@ -34,8 +34,7 @@ class CollectionStore {
   };
 
   deleteCollectionCourse = () => {
-    showCourseRemoveToast();
-    this.isDeleteModal = false;
+    this.fetchCourseDelete();
   };
 
   fetchCourseList = async () => {
@@ -47,6 +46,23 @@ class CollectionStore {
       });
     } catch (error) {
       console.log(error, ':CourseList error');
+    }
+  };
+
+  fetchCourseDelete = async () => {
+    try {
+      const req = this.selectedList.map(item => {
+        return item.courseId;
+      });
+      const data = await courseApi.deleteCourse({courseIdList: req});
+      console.log(data, ': CourseDelete Api');
+      showCourseRemoveToast();
+      this.fetchCourseList();
+      runInAction(() => {
+        this.isDeleteModal = false;
+      });
+    } catch (error) {
+      console.log(error, ': CourseDelete Api error');
     }
   };
 
