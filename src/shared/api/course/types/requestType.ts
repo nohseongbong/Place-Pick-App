@@ -25,5 +25,5 @@ export interface ModifyCourseReq {
 }
 
 export interface DeleteCourseReq {
-  courseId: number;
+  courseIdList: number[];
 }
