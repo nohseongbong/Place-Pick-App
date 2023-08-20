@@ -8,9 +8,10 @@ import CustomTouchable from '../customComponents/CustomTouchable';
 interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
+  onPress: () => void;
 }
 
-const CompletionCourseModal = ({isVisible, onClose}: ModalProps) => {
+const CompletionCourseModal = ({isVisible, onClose, onPress}: ModalProps) => {
   const styles = style();
 
   return (
@@ -18,7 +19,7 @@ const CompletionCourseModal = ({isVisible, onClose}: ModalProps) => {
       <View style={styles.wrap}>
         <CustomText style={styles.text}>코스가 저장되었습니다.</CustomText>
         <View style={styles.btn_wrap}>
-          <CustomTouchable style={[styles.btn]}>
+          <CustomTouchable onPress={onPress} style={[styles.btn]}>
             <CustomText style={[styles.btn_text]}>보러가기</CustomText>
           </CustomTouchable>
           <CustomTouchable style={[styles.btn, styles.btn_primary]}>
