@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {ht, wt} from '../../../../lib/responsiveSize';
+import {fs, ht, wt} from '../../../../lib/responsiveSize';
+import {fontWt, palette} from '../../../constants/palette';
 
 const style = () => {
   return StyleSheet.create({
@@ -12,6 +13,19 @@ const style = () => {
     map_wrap: {
       width: '100%',
       height: '100%',
+    },
+    marker_container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    marker_text: {
+      color: palette.TEXT,
+      fontSize: fs(11),
+      fontFamily: fontWt.Bold,
+      marginTop: ht(3),
+      width: wt(70),
+      textAlign: 'center',
     },
   });
 };
