@@ -13,6 +13,7 @@ import {collectionStore} from '../../store/collectionStore';
 import {MainStackParamList} from '../../../../shared/types/navigation/paramsType';
 import {SCREEN_NAME} from '../../../../shared/constants/navigation';
 import {CourseResType} from '../../../../shared/api/course/types/responseType';
+import {collectionDetailStore} from '../../store/collectionDetailStore';
 
 interface Props {
   model: CourseResType;
@@ -54,7 +55,8 @@ const CourseListItem = observer(({model}: Props) => {
       setIsChecked(!isChecked);
     } else {
       // 편집 상태가 아닐 때
-      navigation.navigate(SCREEN_NAME.COLLECTIONCOURSEDETAIL, {courseId: model.courseId});
+      collectionDetailStore.fetchGetCourseDetail(model.courseId);
+      navigation.navigate(SCREEN_NAME.COLLECTIONCOURSEDETAIL);
     }
   };
 

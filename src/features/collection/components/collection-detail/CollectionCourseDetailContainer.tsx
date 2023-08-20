@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
 import {ScrollView, View} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
+import {toJS} from 'mobx';
 
 import CustomText from '../../../../shared/components/customComponents/CustomText';
 import CourseMapView from '../../../../shared/components/course/components/CourseMapView';
@@ -11,20 +10,16 @@ import {collectionDetailStore} from '../../store/collectionDetailStore';
 import {SVG_IMG} from '../../../../assets/images';
 import CustomTouchable from '../../../../shared/components/customComponents/CustomTouchable';
 import {wt} from '../../../../lib/responsiveSize';
-import {MainStackParamList} from '../../../../shared/types/navigation/paramsType';
-import {SCREEN_NAME} from '../../../../shared/constants/navigation';
+import {locationCenter} from '../../../../shared/utils/locationCenter';
 
 const CollectionCourseDetailContainer = observer(() => {
   const styles = style();
-  const route = useRoute<RouteProp<MainStackParamList, SCREEN_NAME.COLLECTIONCOURSEDETAIL>>();
 
   const onPressEditCourseName = () => {
     collectionDetailStore.setIsCourseNameModal(true);
   };
 
-  useEffect(() => {
-    collectionDetailStore.fetchGetCourseDetail(route.params.courseId);
-  }, []);
+  const location = locationCenter(toJS(collectionDetailStore.courseList));
 
   return (
     <ScrollView style={styles.scroll}>
@@ -35,12 +30,8 @@ const CollectionCourseDetailContainer = observer(() => {
             <SVG_IMG.PENCIL width={wt(20)} height={wt(20)} />
           </CustomTouchable>
         </View>
-        <CourseMapView />
+        <CourseMapView location={location} courseList={toJS(collectionDetailStore.courseList)} />
         <View style={styles.course_info_wrap}>
-          {/* <View style={styles.course_info}>
-            <CustomText style={styles.course_title_text}>전체 거리</CustomText>
-            <CustomText style={styles.course_text}>5km</CustomText>
-          </View> */}
           <View style={styles.course_info}>
             <CustomText style={styles.course_title_text}>방문할 장소</CustomText>
             <CustomText style={styles.course_text}>{collectionDetailStore.courseList.length}곳</CustomText>
