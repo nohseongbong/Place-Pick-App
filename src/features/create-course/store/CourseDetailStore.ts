@@ -1,7 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {courseApi} from '../../../shared/api/course/api';
 import {courseStore} from '../../home/store/courseStore';
-import {formatCategory} from '../../../shared/utils/formatCategory';
 
 class CourseDetailStore {
   isCourseNameModal: boolean = false;
@@ -28,7 +27,7 @@ class CourseDetailStore {
             longitude,
             latitude,
             placeId: item.place_id,
-            category: formatCategory({req: item.category}),
+            category: item.category,
             placeName: item.name,
             locationOrder: index + 1,
           };
