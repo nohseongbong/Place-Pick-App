@@ -9,8 +9,12 @@ import BackPressHeader from '../shared/components/header/components/BackPressHea
 import BottomSheetBackGround from '../shared/components/background/BottomSheetBackGround';
 import CreateCourseNameModal from '../shared/components/bottomSheet/CreateCourseNameModal';
 import CompletionCourseModal from '../shared/components/custom-modal/CompletionCourseModal';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {TabStackParamList} from '../shared/types/navigation/paramsType';
+import {SCREEN_NAME} from '../shared/constants/navigation';
 
 const CourseDetailScreen = observer(() => {
+  const navigation: NavigationProp<TabStackParamList> = useNavigation();
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const complete = () => {
@@ -28,6 +32,10 @@ const CourseDetailScreen = observer(() => {
   const onPressBackGround = () => {
     Keyboard.dismiss();
     courseDetailStore.setIsCourseNameModal(false);
+  };
+
+  const onPressSeeCourse = () => {
+    navigation.navigate(SCREEN_NAME.COLLECTION);
   };
 
   useEffect(() => {
@@ -50,7 +58,7 @@ const CourseDetailScreen = observer(() => {
           complete={complete}
         />
       </KeyboardAvoidingView>
-      <CompletionCourseModal isVisible={isModal} onClose={onCloseModal} />
+      <CompletionCourseModal isVisible={isModal} onPress={onPressSeeCourse} onClose={onCloseModal} />
     </>
   );
 });
