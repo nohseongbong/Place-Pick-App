@@ -4,11 +4,20 @@ import {ConnectType} from '../../home/types/ConnectType';
 import {CourseType} from '../../../shared/types/place/placeType';
 import {courseApi} from '../../../shared/api/course/api';
 
+type Location = {
+  latitude: number;
+  longitude: number;
+};
+
 class CollectionDetailStore {
   isCourseNameModal: boolean = false;
   courseName: string = '';
   courseList: CourseType[] = [];
   courseConectList: ConnectType[] = [];
+  location: Location = {
+    latitude: 37.4979052,
+    longitude: 127.0275777,
+  };
 
   constructor() {
     makeAutoObservable(this);
@@ -28,14 +37,19 @@ class CollectionDetailStore {
       console.log(data, ': data CourseDetail');
       runInAction(() => {
         this.courseName = data.name;
+
+        this.location = {
+          latitude: data.latitude,
+          longitude: data.longitude,
+        };
         this.courseList = data.locationList.map(item => {
           return {
             place_id: item.locationOrder.toString(),
             name: item.placeName,
             category: item.category,
             location: {
-              latitude: item.ylocation,
-              longitude: item.xlocation,
+              latitude: item.latitude,
+              longitude: item.longitude,
             },
           };
         });
