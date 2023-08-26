@@ -37,7 +37,7 @@ const Course = observer(
         `kakaomap://route?sp=${start.location.latitude},${start.location.longitude}&ep=${end.location.latitude},${end.location.longitude}&by=FOOT`,
       )
         .then(res => {
-          console.log(res, '  : res ');
+          console.log(res, '  : loadMap ');
         })
         .catch(err => {
           if (Platform.OS === 'android') {
