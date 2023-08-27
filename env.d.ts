@@ -8,4 +8,6 @@ declare module '@env' {
   export const APPLE_LOGIN_CLIENT_ID: string;
   export const APPLE_LOGIN_REFIRECT_URL: string;
   export const TEST_ACCESS_TOKEN: string;
+  export const KAKAO_APP_KEY: string;
+  export const KAKAO_APP_KEY_WITH_KAKAO: string;
 }
