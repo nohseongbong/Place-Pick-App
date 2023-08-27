@@ -17,8 +17,8 @@ export function locationCenter(courseList: CourseType[]): {
   const centerLng = sumLng / coordinates.length;
 
   return {
-    latitude: centerLat,
-    longitude: centerLng,
+    latitude: isNaN(centerLat) ? 0 : centerLat,
+    longitude: isNaN(centerLng) ? 0 : centerLng,
   };
 }
 
@@ -49,7 +49,7 @@ export function centerZoom(courseList: CourseType[]): {
   const longitudeDelta = (maxLng - minLng) * 3;
 
   return {
-    latitudeDelta,
-    longitudeDelta,
+    latitudeDelta: isNaN(latitudeDelta) ? 0 : latitudeDelta,
+    longitudeDelta: isNaN(longitudeDelta) ? 0 : longitudeDelta,
   };
 }
