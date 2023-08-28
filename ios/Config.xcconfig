@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  PlacePick
+//
+//  Created by 노성봉 on 2023/08/28.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include? "tmp.xcconfig"

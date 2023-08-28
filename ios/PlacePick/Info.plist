@@ -31,10 +31,23 @@
 				<string>com.googleusercontent.apps.667768264255-1s54ch0ia23nmvfgt211bq3m5ur9cu3s</string>
 			</array>
 		</dict>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>placepick</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>${KAKAO_APP_KEY}</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakaolink</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -52,16 +65,6 @@
 	<string>주변 위치검색을 위해 권한이 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>사진 첨부를 위해 권한을 허용해 주세요.</string>
-	
-	
-	<key>KAKAO_APP_KEY</key>
-	<string>${KAKAO_APP_KEY}</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-			<string>kakaolink</string>
-	</array>
-
-
 	<key>UIAppFonts</key>
 	<array>
 		<string>Fonts/Pretendard-Black.ttf</string>
