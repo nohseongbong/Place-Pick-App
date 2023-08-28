@@ -65,6 +65,14 @@ class CourseStore {
     this.selectedCourse = 0;
   };
 
+  resetCourse = () => {
+    this.isSelectedCourse = false;
+    this.selectedCourse = 0;
+    this.courseNumber = 1;
+    this.courseList = [];
+    this.courseConectList = [];
+  };
+
   private setConnectList = () => {
     if (this.courseList.length > 1) {
       let arr: ConnectType[] = [];
