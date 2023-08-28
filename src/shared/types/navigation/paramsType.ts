@@ -1,7 +1,7 @@
 import {SCREEN_NAME, STACK_NAME} from '../../constants/navigation';
 
 export type RootStackParamList = {
-  [STACK_NAME.MAIN]: undefined;
+  [STACK_NAME.MAIN]: undefined | {screen: SCREEN_NAME.COLLECTIONCOURSEDETAIL};
   [STACK_NAME.AUTH]: undefined;
   [SCREEN_NAME.SPLASH]: undefined;
   [SCREEN_NAME.ONBOARDING]: undefined;

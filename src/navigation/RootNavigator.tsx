@@ -10,9 +10,12 @@ import AuthNavigator from './AuthNavigator';
 import CustomSafeAreaView from '../shared/components/customComponents/CustomSafeAreaView';
 import {RootStackParamList} from '../shared/types/navigation/paramsType';
 import OnBoardingScreen from '../screens/OnBoardingScreen';
+import useUrlScheme from '../shared/hooks/useUrlSheme';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
+  useUrlScheme();
+
   return (
     <>
       <CustomSafeAreaView style={{flex: 1}}>
