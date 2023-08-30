@@ -9,9 +9,10 @@ interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
   onPress: () => void;
+  onPressShare: () => void;
 }
 
-const CompletionCourseModal = ({isVisible, onClose, onPress}: ModalProps) => {
+const CompletionCourseModal = ({isVisible, onClose, onPress, onPressShare}: ModalProps) => {
   const styles = style();
 
   return (
@@ -22,7 +23,7 @@ const CompletionCourseModal = ({isVisible, onClose, onPress}: ModalProps) => {
           <CustomTouchable onPress={onPress} style={[styles.btn]}>
             <CustomText style={[styles.btn_text]}>보러가기</CustomText>
           </CustomTouchable>
-          <CustomTouchable style={[styles.btn, styles.btn_primary]}>
+          <CustomTouchable onPress={onPressShare} style={[styles.btn, styles.btn_primary]}>
             <CustomText style={[styles.btn_text, styles.btn_text_primary]}>친구에게 공유</CustomText>
           </CustomTouchable>
         </View>
