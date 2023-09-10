@@ -7,11 +7,10 @@ import BottomSheetBackGround from '../shared/components/background/BottomSheetBa
 import CreateCourseNameModal from '../shared/components/bottomSheet/CreateCourseNameModal';
 import CollectionCourseDetailContainer from '../features/collection/components/collection-detail/CollectionCourseDetailContainer';
 import {collectionDetailStore} from '../features/collection/store/collectionDetailStore';
-import {showCourseNameUpdateToast} from '../lib/toast/showToast';
 
 const CollectionCourseDetailScreen = observer(() => {
   const onPressCompleteCourseName = () => {
-    showCourseNameUpdateToast();
+    collectionDetailStore.fetchModifyCourseDetail();
     collectionDetailStore.setIsCourseNameModal(false);
     Keyboard.dismiss();
   };
