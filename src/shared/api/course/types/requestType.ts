@@ -16,11 +16,22 @@ export interface CreateCourseReq {
   name: string;
   courseLocationRequestsList: CreateCourseReqType[];
 }
+
+export type ModifyCourseReqType = {
+  location: {
+    longitude: number;
+    latitude: number;
+  };
+  placeId: string;
+  category: PlaceCategoryType | DataCategoryType;
+  placeName: string;
+  locationOrder: number;
+};
 export interface ModifyCourseReq {
   courseId: number;
   course: {
     name: string;
-    courseLocationRequestsList: CreateCourseReqType[];
+    courseLocationRequestsList: ModifyCourseReqType[];
   };
 }
 
