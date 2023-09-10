@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {courseApi} from '../../../shared/api/course/api';
 import {courseStore} from '../../home/store/courseStore';
+import {spinnerStore} from '../../../shared/store/spinnerStore';
 
 class CourseDetailStore {
   isCourseNameModal: boolean = false;
@@ -19,6 +20,7 @@ class CourseDetailStore {
 
   fetchCreateCourse = async (successFnc: () => void) => {
     try {
+      spinnerStore.setIsSpinnerState(true);
       await courseApi.createCourse({
         name: this.courseName,
         courseLocationRequestsList: courseStore.courseList.map((item, index) => {
@@ -37,6 +39,7 @@ class CourseDetailStore {
     } catch (error) {
       console.log(error, ':fetchCreateCourse  error');
     } finally {
+      spinnerStore.setIsSpinnerState(false);
       this.setIsCourseNameModal(false);
     }
   };

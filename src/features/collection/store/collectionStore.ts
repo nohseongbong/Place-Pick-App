@@ -2,6 +2,7 @@ import {makeAutoObservable, runInAction} from 'mobx';
 import {showCourseRemoveToast} from '../../../lib/toast/showToast';
 import {courseApi} from '../../../shared/api/course/api';
 import {CourseResType} from '../../../shared/api/course/types/responseType';
+import {spinnerStore} from '../../../shared/store/spinnerStore';
 
 class CollectionStore {
   isEdit: boolean = false;
@@ -39,6 +40,7 @@ class CollectionStore {
 
   fetchCourseList = async () => {
     try {
+      spinnerStore.setIsSpinnerState(true);
       const data = await courseApi.getCourseList();
       console.log(data, ':CourseList data');
       runInAction(() => {
@@ -46,6 +48,8 @@ class CollectionStore {
       });
     } catch (error) {
       console.log(error, ':CourseList error');
+    } finally {
+      spinnerStore.setIsSpinnerState(false);
     }
   };
 
