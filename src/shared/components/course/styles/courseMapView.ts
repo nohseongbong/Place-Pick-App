@@ -21,11 +21,20 @@ const style = () => {
     },
     marker_text: {
       color: palette.TEXT,
+      fontSize: fs(9),
+      fontFamily: fontWt.Bold,
+      marginTop: ht(3),
+      width: wt(90),
+      textAlign: 'center',
+    },
+    marker_num: {
+      color: palette.PRIMARY_TEXT,
       fontSize: fs(11),
       fontFamily: fontWt.Bold,
       marginTop: ht(3),
       width: wt(70),
       textAlign: 'center',
+      position: 'absolute',
     },
   });
 };
