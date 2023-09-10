@@ -22,10 +22,6 @@ const CourseDetailContainer = observer(() => {
         <CourseMapView courseList={toJS(courseStore.courseList)} location={location} />
         <View style={styles.course_info_wrap}>
           <View style={styles.course_info}>
-            <CustomText style={styles.course_title_text}>전체 거리</CustomText>
-            <CustomText style={styles.course_text}>5km</CustomText>
-          </View>
-          <View style={styles.course_info}>
             <CustomText style={styles.course_title_text}>방문할 장소</CustomText>
             <CustomText style={styles.course_text}>{courseStore.courseList.length}곳</CustomText>
           </View>
