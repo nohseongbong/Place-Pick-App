@@ -7,6 +7,7 @@ import BottomSheetBackGround from '../shared/components/background/BottomSheetBa
 import CreateCourseNameModal from '../shared/components/bottomSheet/CreateCourseNameModal';
 import CollectionCourseDetailContainer from '../features/collection/components/collection-detail/CollectionCourseDetailContainer';
 import {collectionDetailStore} from '../features/collection/store/collectionDetailStore';
+import SearchBottomSheet from '../features/collection/components/place-search/SearchBottomSheet';
 
 const CollectionCourseDetailScreen = observer(() => {
   const onPressCompleteCourseName = () => {
@@ -28,7 +29,7 @@ const CollectionCourseDetailScreen = observer(() => {
 
   return (
     <>
-      <KeyboardAvoidingView style={{flex: 1, width: '100%', height: '100%'}} behavior="position">
+      <KeyboardAvoidingView style={{flex: 1, width: '100%', height: '100%'}} behavior={'position'}>
         <BackPressHeader />
         <CollectionCourseDetailContainer />
         {collectionDetailStore.isCourseNameModal && <BottomSheetBackGround onPress={onPressBackGround} />}
@@ -40,6 +41,7 @@ const CollectionCourseDetailScreen = observer(() => {
           complete={onPressCompleteCourseName}
         />
       </KeyboardAvoidingView>
+      {collectionDetailStore.isSearch && <SearchBottomSheet />}
     </>
   );
 });

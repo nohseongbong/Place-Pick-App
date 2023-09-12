@@ -44,7 +44,7 @@ class CollectionStore {
       const data = await courseApi.getCourseList();
       console.log(data, ':CourseList data');
       runInAction(() => {
-        this.courseList = data.sort((a, b) => a.courseOrder - b.courseOrder);
+        this.courseList = data.sort((a, b) => a.courseOrder - b.courseOrder).reverse();
       });
     } catch (error) {
       console.log(error, ':CourseList error');
