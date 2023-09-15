@@ -44,8 +44,8 @@ const CollectionCourseDetailScreen = observer(() => {
           {
             title: '앱에서 보기',
             link: {
-              androidExecutionParams: [{key: 'courseId', value: '61'}],
-              iosExecutionParams: [{key: 'courseId', value: '61'}],
+              androidExecutionParams: [{key: 'courseId', value: String(collectionDetailStore.courseId)}],
+              iosExecutionParams: [{key: 'courseId', value: String(collectionDetailStore.courseId)}],
             },
           },
         ],

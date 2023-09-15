@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import {courseApi} from '../../../shared/api/course/api';
 import {courseStore} from '../../home/store/courseStore';
 import {spinnerStore} from '../../../shared/store/spinnerStore';
@@ -6,6 +6,7 @@ import {spinnerStore} from '../../../shared/store/spinnerStore';
 class CourseDetailStore {
   isCourseNameModal: boolean = false;
   courseName: string = '';
+  courseId: number = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -21,7 +22,7 @@ class CourseDetailStore {
   fetchCreateCourse = async (successFnc: () => void) => {
     try {
       spinnerStore.setIsSpinnerState(true);
-      await courseApi.createCourse({
+      const data = await courseApi.createCourse({
         name: this.courseName,
         courseLocationRequestsList: courseStore.courseList.map((item, index) => {
           const {longitude, latitude} = item.location;
@@ -34,6 +35,9 @@ class CourseDetailStore {
             locationOrder: index + 1,
           };
         }),
+      });
+      runInAction(() => {
+        this.courseId = data;
       });
       successFnc();
     } catch (error) {

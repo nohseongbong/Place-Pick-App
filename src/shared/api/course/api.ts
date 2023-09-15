@@ -14,7 +14,8 @@ export class Api {
     return data.data;
   };
   createCourse = async (course: CreateCourseReq) => {
-    await axiosInstance.post('/courses/save', course);
+    const {data} = await axiosInstance.post('/courses/save', course);
+    return data.data;
   };
   modifyCourse = async ({courseId, course}: ModifyCourseReq) => {
     await axiosInstance.put(`/courses/${courseId}`, course);
