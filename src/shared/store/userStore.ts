@@ -1,4 +1,4 @@
-import {makeAutoObservable, runInAction} from 'mobx';
+import {makeAutoObservable} from 'mobx';
 import {RegionType} from '../../features/home/types/RegionType';
 import {initLocation} from '../../features/home/constants/initLocation';
 
