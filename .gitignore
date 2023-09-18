@@ -75,3 +75,9 @@ ios/GoogleService-Info.plist
 # lock file
 *.lock
 package-lock.json
+
+
+#fastlane file
+ios/fastlane/Appfile
+android/fastlane/Appfile
+android/fastlane/place-pick-399411-7120e102affd.json

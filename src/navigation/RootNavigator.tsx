@@ -11,9 +11,12 @@ import CustomSafeAreaView from '../shared/components/customComponents/CustomSafe
 import {RootStackParamList} from '../shared/types/navigation/paramsType';
 import OnBoardingScreen from '../screens/OnBoardingScreen';
 import useUrlScheme from '../shared/hooks/useUrlSheme';
+import {spinnerStore} from '../shared/store/spinnerStore';
+import FullScreenSpinner from '../shared/components/spinner/FullScreenSpinner';
+import {observer} from 'mobx-react-lite';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
-const RootNavigator = () => {
+const RootNavigator = observer(() => {
   useUrlScheme();
 
   return (
@@ -36,8 +39,9 @@ const RootNavigator = () => {
           </RootStack.Group>
         </RootStack.Navigator>
       </CustomSafeAreaView>
+      {spinnerStore.isState && <FullScreenSpinner />}
     </>
   );
-};
+});
 
 export default RootNavigator;
