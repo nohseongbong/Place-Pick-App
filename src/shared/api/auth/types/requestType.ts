@@ -1,3 +1,4 @@
 export interface LoginReq {
-  accessToken: string | null;
+  token: string;
+  providerType: 'GOOGLE' | 'APPLE';
 }
