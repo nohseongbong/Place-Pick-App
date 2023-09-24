@@ -1,5 +1,10 @@
 import {axiosInstance} from '..';
-import {CourseDetailReq, CreateCourseReq, DeleteCourseReq, ModifyCourseReq} from './types/requestType';
+import {
+  CourseDetailReq,
+  CreateCourseReq,
+  DeleteCourseReq,
+  ModifyCourseReq,
+} from './types/requestType';
 import {CourseDetailRes, CourseListRes} from './types/responseType';
 
 export class Api {
@@ -8,7 +13,9 @@ export class Api {
 
     return data.data;
   };
-  getCourseDetail = async ({courseId}: CourseDetailReq): Promise<CourseDetailRes> => {
+  getCourseDetail = async ({
+    courseId,
+  }: CourseDetailReq): Promise<CourseDetailRes> => {
     const {data} = await axiosInstance.get(`/courses/detail/${courseId}`);
 
     return data.data;
@@ -21,7 +28,9 @@ export class Api {
     await axiosInstance.put(`/courses/${courseId}`, course);
   };
   deleteCourse = async ({courseIdList}: DeleteCourseReq) => {
-    const {data} = await axiosInstance.delete('/courses', {data: {courseIds: courseIdList}});
+    const {data} = await axiosInstance.delete('/courses', {
+      data: {courseIds: courseIdList},
+    });
     return data;
   };
 }
