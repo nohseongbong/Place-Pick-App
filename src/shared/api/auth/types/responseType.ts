@@ -8,5 +8,5 @@ export interface ResType<T> {
 }
 
 export interface LoginRes {
-  data: any;
+  token: any;
 }
