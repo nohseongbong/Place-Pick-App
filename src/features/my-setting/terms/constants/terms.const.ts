@@ -4,6 +4,7 @@ export enum LegalType {
 }
 
 export const LegalUri = {
-  TERMS: 'https://www.naver.com',
+  TERMS:
+    'https://mahogany-radium-d37.notion.site/Place-Pick-b7da0db002ad4696b071049da5e54c29?pvs=4',
   // PRIVACY_POLICY: PRIVACY_POLICY_URL,
 };
