@@ -9,7 +9,13 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  setUserLocation = ({latitude, longitude}: {latitude: number; longitude: number}) => {
+  setUserLocation = ({
+    latitude,
+    longitude,
+  }: {
+    latitude: number;
+    longitude: number;
+  }) => {
     this.userLocation.latitude = latitude;
     this.userLocation.longitude = longitude;
   };
