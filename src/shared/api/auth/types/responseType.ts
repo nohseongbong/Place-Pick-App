@@ -10,3 +10,20 @@ export interface ResType<T> {
 export interface LoginRes {
   token: any;
 }
+export interface UserInfoRes {
+  info: {
+    profileImage: string;
+    providerType: 'GOOGLE' | 'APPLE';
+    name: string;
+    email: string;
+  };
+}
+
+export interface WithdrawalRes {
+  info: {
+    profileImage: string;
+    providerType: 'GOOGLE' | 'APPLE';
+    name: string;
+    email: string;
+  };
+}
