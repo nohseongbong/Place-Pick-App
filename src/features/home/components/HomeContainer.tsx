@@ -1,3 +1,4 @@
+import {useCallback} from 'react';
 import {View} from 'react-native';
 
 import style from '../styles/homeContainerStyle';
@@ -9,10 +10,15 @@ import CustomTouchable from '../../../shared/components/customComponents/CustomT
 import CustomText from '../../../shared/components/customComponents/CustomText';
 import {bottomSheetStore} from '../store/bottomSheetStore';
 import {FocusedType} from '../constants/bottomSheetFocusedType';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {
+  NavigationProp,
+  useFocusEffect,
+  useNavigation,
+} from '@react-navigation/native';
 import {MainStackParamList} from '../../../shared/types/navigation/paramsType';
 import {SCREEN_NAME} from '../../../shared/constants/navigation';
 import CategoryBar from './bottomSheetContents/CategoryBar';
+import {homeStore} from '../store/homeStore';
 
 const HomeContainer = observer(() => {
   const styles = style();
@@ -22,6 +28,12 @@ const HomeContainer = observer(() => {
     navigation.navigate(SCREEN_NAME.COURSEDETAIL);
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      homeStore.fetchUserInfo();
+    }, []),
+  );
+
   return (
     <View style={styles.container}>
       <CategoryBar />
@@ -30,8 +42,12 @@ const HomeContainer = observer(() => {
       {courseStore.courseList.length > 1 &&
         bottomSheetStore.focusedType === FocusedType.CREATE &&
         bottomSheetStore.bottomSheetIndex !== 0 && (
-          <CustomTouchable onPress={onPressCreateCourse} style={styles.complete_course_wrap}>
-            <CustomText style={styles.complete_course_text}>코스 완성하기</CustomText>
+          <CustomTouchable
+            onPress={onPressCreateCourse}
+            style={styles.complete_course_wrap}>
+            <CustomText style={styles.complete_course_text}>
+              코스 완성하기
+            </CustomText>
           </CustomTouchable>
         )}
     </View>

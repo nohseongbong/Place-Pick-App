@@ -6,6 +6,8 @@ import {initLocation} from '../constants/initLocation';
 import {_categoryType} from '../../../shared/utils/placeCategory';
 import {googleApi} from './../../../shared/api/google/api';
 import {MarKerType} from '../../../shared/types/place/markerType';
+import {authApi} from '../../../shared/api/auth/api';
+import {authStore} from '../../../shared/store/authStore';
 
 class HomeStore {
   mapLocation: RegionType = initLocation;
@@ -25,7 +27,13 @@ class HomeStore {
     this.isNearPlace = state;
   };
 
-  setMapLocation = ({latitude, longitude}: {latitude: number; longitude: number}) => {
+  setMapLocation = ({
+    latitude,
+    longitude,
+  }: {
+    latitude: number;
+    longitude: number;
+  }) => {
     this.mapLocation.latitude = latitude;
     this.mapLocation.longitude = longitude;
   };
@@ -43,12 +51,27 @@ class HomeStore {
 
   getFetchNearPlaceList = async (): Promise<MarKerType[]> => {
     try {
-      const response = await googleApi.getGooglePlaceList({location: this.searchLocation, category: this.category});
+      const response = await googleApi.getGooglePlaceList({
+        location: this.searchLocation,
+        category: this.category,
+      });
       const result = response.data.results;
       return this._filterList(result);
     } catch (error) {
       console.log(error);
       return [];
+    }
+  };
+
+  fetchUserInfo = async () => {
+    if (!authStore.accessToken) {
+      return;
+    }
+    try {
+      const data = await authApi.userInfo();
+      console.log(data, ': user data');
+    } catch (error) {
+      console.log(error, ' userInfo error');
     }
   };
 
