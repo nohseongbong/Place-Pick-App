@@ -14,21 +14,24 @@ const TermsContainer = observer(() => {
   const route = useRoute<RouteProp<MainStackParamList, SCREEN_NAME.TERMS>>();
   const webViewRef: React.RefObject<WebView> = useRef<WebView>(null);
   const [uri, setUri] = useState<string>(LegalUri.TERMS);
+  const [title, setTitle] = useState<string>('이용 약관');
 
   useEffect(() => {
     switch (route.params?.type) {
       case LegalType.TERMS:
         setUri(LegalUri.TERMS);
+        setTitle('이용 약관');
         break;
       case LegalType.PRIVACY_POLICY:
-        // setUri(LegalUri.PRIVACY_POLICY);
+        setUri(LegalUri.PRIVACY_POLICY);
+        setTitle('개인정보처리방침');
         break;
     }
   }, []);
 
   return (
     <>
-      <BackPressTextHeader text="이용 약관" />
+      <BackPressTextHeader text={title} />
       <WebView
         style={styles.container}
         source={{uri}}
