@@ -15,6 +15,9 @@ import {SVG_IMG} from '../../../assets/images';
 import {wt} from '../../../lib/responsiveSize';
 import {handleAppleLogin} from '../../../lib/social/appleLogin';
 import {handleGoogleLogin} from '../../../lib/social/googleLogin';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
+import {STACK_NAME} from '../../../shared/constants/navigation';
 
 interface Props {
   sheetRef: React.RefObject<BottomSheetModal>;
@@ -22,8 +25,11 @@ interface Props {
 
 const LoginBottomSheet = observer(({sheetRef}: Props) => {
   const styles = style();
+  const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
-  const [backdropPressBehavior, setBackdropPressBehavior] = useState<'none' | 'close' | 'collapse'>('collapse');
+  const [backdropPressBehavior, setBackdropPressBehavior] = useState<
+    'none' | 'close' | 'collapse'
+  >('collapse');
   // ref
 
   // variables
@@ -32,13 +38,18 @@ const LoginBottomSheet = observer(({sheetRef}: Props) => {
   const onPressAppleLogin = () => {
     handleAppleLogin();
   };
-  const onPressGoogleLogin = () => {
-    handleGoogleLogin();
+  const onPressGoogleLogin = async () => {
+    try {
+      await handleGoogleLogin();
+      navigation.navigate(STACK_NAME.MAIN);
+    } catch (error) {}
   };
 
   // renders
   const renderBackdrop = useCallback(
-    (props: BottomSheetBackdropProps) => <BottomSheetBackdrop {...props} pressBehavior={backdropPressBehavior} />,
+    (props: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop {...props} pressBehavior={backdropPressBehavior} />
+    ),
     [backdropPressBehavior],
   );
 
@@ -62,11 +73,17 @@ const LoginBottomSheet = observer(({sheetRef}: Props) => {
           <View style={styles.login_btn_wrap}>
             <CustomTouchable onPress={onPressGoogleLogin} style={styles.btn}>
               <SVG_IMG.GOOGLE_ICON width={wt(24)} height={wt(24)} />
-              <CustomText style={[styles.btn_text]}>Google로 시작하기</CustomText>
+              <CustomText style={[styles.btn_text]}>
+                Google로 시작하기
+              </CustomText>
             </CustomTouchable>
-            <CustomTouchable onPress={onPressAppleLogin} style={[styles.btn, styles.apple_btn]}>
+            <CustomTouchable
+              onPress={onPressAppleLogin}
+              style={[styles.btn, styles.apple_btn]}>
               <SVG_IMG.APPLE_ICON width={wt(24)} height={wt(24)} />
-              <CustomText style={[styles.btn_text, styles.apple_text]}>Apple로 시작하기</CustomText>
+              <CustomText style={[styles.btn_text, styles.apple_text]}>
+                Apple로 시작하기
+              </CustomText>
             </CustomTouchable>
           </View>
         </View>

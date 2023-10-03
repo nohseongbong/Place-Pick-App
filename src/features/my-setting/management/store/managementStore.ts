@@ -1,4 +1,6 @@
 import {makeAutoObservable} from 'mobx';
+import {authApi} from '../../../../shared/api/auth/api';
+import {authStore} from '../../../../shared/store/authStore';
 
 class ManagementStore {
   isModal: boolean = false;
@@ -15,8 +17,16 @@ class ManagementStore {
     this.setIsModal(false);
   };
 
-  fetchWithdrawal = () => {
-    this.setIsModal(false);
+  fetchWithdrawal = async () => {
+    try {
+      const data = await authApi.withdrawal();
+      console.log(data, ' withdrawal data');
+      authStore.logout();
+    } catch (error) {
+      console.log(error, ' withdrawal error');
+    } finally {
+      this.setIsModal(false);
+    }
   };
 }
 

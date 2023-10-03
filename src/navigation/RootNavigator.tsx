@@ -22,7 +22,11 @@ const RootNavigator = observer(() => {
   return (
     <>
       <CustomSafeAreaView style={{flex: 1}}>
-        <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={'transparent'}
+          translucent={true}
+        />
         <RootStack.Navigator
           screenOptions={{
             headerShown: false,
@@ -31,11 +35,20 @@ const RootNavigator = observer(() => {
             animation: Platform.OS === 'android' ? 'default' : 'fade',
           }}
           initialRouteName={SCREEN_NAME.SPLASH}>
-          <RootStack.Screen name={SCREEN_NAME.SPLASH} component={SplashScreen} />
-          <RootStack.Screen name={SCREEN_NAME.ONBOARDING} component={OnBoardingScreen} />
+          <RootStack.Screen
+            name={SCREEN_NAME.SPLASH}
+            component={SplashScreen}
+          />
+          <RootStack.Screen
+            name={SCREEN_NAME.ONBOARDING}
+            component={OnBoardingScreen}
+          />
           <RootStack.Screen name={STACK_NAME.MAIN} component={MainNavigator} />
           <RootStack.Group screenOptions={{animation: 'slide_from_bottom'}}>
-            <RootStack.Screen name={STACK_NAME.AUTH} component={AuthNavigator} />
+            <RootStack.Screen
+              name={STACK_NAME.AUTH}
+              component={AuthNavigator}
+            />
           </RootStack.Group>
         </RootStack.Navigator>
       </CustomSafeAreaView>
