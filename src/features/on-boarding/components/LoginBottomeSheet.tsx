@@ -15,17 +15,14 @@ import {SVG_IMG} from '../../../assets/images';
 import {wt} from '../../../lib/responsiveSize';
 import {handleAppleLogin} from '../../../lib/social/appleLogin';
 import {handleGoogleLogin} from '../../../lib/social/googleLogin';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
-import {STACK_NAME} from '../../../shared/constants/navigation';
 
 interface Props {
   sheetRef: React.RefObject<BottomSheetModal>;
+  action: () => void;
 }
 
-const LoginBottomSheet = observer(({sheetRef}: Props) => {
+const LoginBottomSheet = observer(({sheetRef, action}: Props) => {
   const styles = style();
-  const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
   const [backdropPressBehavior, setBackdropPressBehavior] = useState<
     'none' | 'close' | 'collapse'
@@ -40,8 +37,7 @@ const LoginBottomSheet = observer(({sheetRef}: Props) => {
   };
   const onPressGoogleLogin = async () => {
     try {
-      await handleGoogleLogin();
-      navigation.navigate(STACK_NAME.MAIN);
+      await handleGoogleLogin({action: action});
     } catch (error) {}
   };
 

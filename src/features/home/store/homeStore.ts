@@ -6,8 +6,6 @@ import {initLocation} from '../constants/initLocation';
 import {_categoryType} from '../../../shared/utils/placeCategory';
 import {googleApi} from './../../../shared/api/google/api';
 import {MarKerType} from '../../../shared/types/place/markerType';
-import {authApi} from '../../../shared/api/auth/api';
-import {authStore} from '../../../shared/store/authStore';
 
 class HomeStore {
   mapLocation: RegionType = initLocation;
@@ -60,18 +58,6 @@ class HomeStore {
     } catch (error) {
       console.log(error);
       return [];
-    }
-  };
-
-  fetchUserInfo = async () => {
-    if (!authStore.accessToken) {
-      return;
-    }
-    try {
-      const data = await authApi.userInfo();
-      console.log(data, ': user data');
-    } catch (error) {
-      console.log(error, ' userInfo error');
     }
   };
 
