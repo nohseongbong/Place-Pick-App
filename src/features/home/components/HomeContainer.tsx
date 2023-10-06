@@ -1,4 +1,4 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
 import {View} from 'react-native';
 
 import style from '../styles/homeContainerStyle';
@@ -15,24 +15,43 @@ import {
   useFocusEffect,
   useNavigation,
 } from '@react-navigation/native';
-import {MainStackParamList} from '../../../shared/types/navigation/paramsType';
+import {
+  MainStackParamList,
+  TabStackParamList,
+} from '../../../shared/types/navigation/paramsType';
 import {SCREEN_NAME} from '../../../shared/constants/navigation';
 import CategoryBar from './bottomSheetContents/CategoryBar';
-import {homeStore} from '../store/homeStore';
+import {authStore} from '../../../shared/store/authStore';
+import LoginBottomSheet from '../../on-boarding/components/LoginBottomeSheet';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 const HomeContainer = observer(() => {
   const styles = style();
   const navigation: NavigationProp<MainStackParamList> = useNavigation();
+  const navigationTab: NavigationProp<TabStackParamList> = useNavigation();
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const onPressCreateCourse = () => {
     navigation.navigate(SCREEN_NAME.COURSEDETAIL);
   };
 
+  const loginAction = () => {
+    bottomSheetRef.current?.close();
+    navigationTab.navigate(SCREEN_NAME.COLLECTION);
+  };
+
   useFocusEffect(
     useCallback(() => {
-      homeStore.fetchUserInfo();
+      authStore.fetchUserInfo();
     }, []),
   );
+
+  useEffect(() => {
+    if (authStore.isLoginModal) {
+      bottomSheetRef.current?.present();
+      authStore.setIsLoginModal(false);
+    }
+  }, [authStore.isLoginModal]);
 
   return (
     <View style={styles.container}>
@@ -50,6 +69,8 @@ const HomeContainer = observer(() => {
             </CustomText>
           </CustomTouchable>
         )}
+
+      <LoginBottomSheet sheetRef={bottomSheetRef} action={loginAction} />
     </View>
   );
 });
