@@ -24,17 +24,19 @@ class CourseDetailStore {
       spinnerStore.setIsSpinnerState(true);
       const data = await courseApi.createCourse({
         name: this.courseName,
-        courseLocationRequestsList: courseStore.courseList.map((item, index) => {
-          const {longitude, latitude} = item.location;
-          return {
-            longitude,
-            latitude,
-            placeId: item.place_id,
-            category: item.category,
-            placeName: item.name,
-            locationOrder: index + 1,
-          };
-        }),
+        courseLocationRequestsList: courseStore.courseList.map(
+          (item, index) => {
+            const {longitude, latitude} = item.location;
+            return {
+              longitude,
+              latitude,
+              placeId: item.place_id,
+              category: item.category,
+              placeName: item.name,
+              locationOrder: index + 1,
+            };
+          },
+        ),
       });
       runInAction(() => {
         this.courseId = data;
