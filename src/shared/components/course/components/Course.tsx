@@ -37,7 +37,7 @@ const Course = observer(
         `kakaomap://route?sp=${start.location.latitude},${start.location.longitude}&ep=${end.location.latitude},${end.location.longitude}&by=FOOT`,
       )
         .then(res => {
-          console.log(res, '  : res ');
+          console.log(res, '  : loadMap ');
         })
         .catch(err => {
           if (Platform.OS === 'android') {
@@ -76,12 +76,14 @@ const Course = observer(
               <View />
             )}
           </View>
-          {isMore && onPressRemoveCourse && onPressEditCourse && (
+          {isMore && onPressEditCourse && (
             <View style={styles.more_content_wrap}>
-              <CustomTouchable onPress={() => onPressRemoveCourse(index)} style={styles.more_content_btn}>
-                <SVG_IMG.TRASH width={16} height={16} />
-                <CustomText style={[styles.more_content_btn_text, {color: palette.PRIMARY}]}>삭제하기</CustomText>
-              </CustomTouchable>
+              {onPressRemoveCourse && (
+                <CustomTouchable onPress={() => onPressRemoveCourse(index)} style={styles.more_content_btn}>
+                  <SVG_IMG.TRASH width={16} height={16} />
+                  <CustomText style={[styles.more_content_btn_text, {color: palette.PRIMARY}]}>삭제하기</CustomText>
+                </CustomTouchable>
+              )}
               <CustomTouchable onPress={() => onPressEditCourse(index)} style={styles.more_content_btn}>
                 <SVG_IMG.WRITE width={16} height={16} />
                 <CustomText style={styles.more_content_btn_text}>수정하기</CustomText>

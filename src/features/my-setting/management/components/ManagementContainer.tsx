@@ -8,9 +8,19 @@ import Logout from './Logout';
 import UserInfo from './UserInfo';
 import WithdrawalModal from '../../../../shared/components/custom-modal/WithdrawalModal';
 import {managementStore} from '../store/managementStore';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {TabStackParamList} from '../../../../shared/types/navigation/paramsType';
+import {SCREEN_NAME} from '../../../../shared/constants/navigation';
 
 const ManagementContainer = observer(() => {
   const styles = style();
+  const navigation: NavigationProp<TabStackParamList> = useNavigation();
+  const onPressDeleteUser = () => {
+    try {
+      managementStore.fetchWithdrawal();
+      navigation.navigate(SCREEN_NAME.HOME);
+    } catch (error) {}
+  };
 
   return (
     <>
@@ -22,7 +32,7 @@ const ManagementContainer = observer(() => {
       <WithdrawalModal
         isVisible={managementStore.isModal}
         onClose={managementStore.onCloseModal}
-        onPress={managementStore.fetchWithdrawal}
+        onPress={onPressDeleteUser}
       />
     </>
   );

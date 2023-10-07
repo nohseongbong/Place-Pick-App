@@ -9,6 +9,7 @@ const style = () => {
       borderRadius: 16,
       ...getPlatformStyles,
       backgroundColor: palette.BACKGROUND,
+      overflow: 'hidden',
     },
     selected_wrap: {
       width: '100%',
@@ -65,7 +66,6 @@ const style = () => {
       marginLeft: wt(5),
     },
     more_content_wrap: {
-      width: '102%',
       height: ht(62),
       backgroundColor: palette.INNER_BACKGOUND,
       flexDirection: 'row',

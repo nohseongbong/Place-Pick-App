@@ -25,6 +25,11 @@ const MySettingContainer = () => {
       case '이용약관':
         navigation.navigate(SCREEN_NAME.TERMS, {type: LegalType.TERMS});
         break;
+      case '개인정보처리방침':
+        navigation.navigate(SCREEN_NAME.TERMS, {
+          type: LegalType.PRIVACY_POLICY,
+        });
+        break;
     }
   };
 
@@ -32,12 +37,22 @@ const MySettingContainer = () => {
     <>
       <BackPressTextHeader text="설정" />
       <View style={styles.container}>
-        <CustomTouchable onPress={() => onPress('계정관리')} style={styles.btn_wrap}>
+        <CustomTouchable
+          onPress={() => onPress('계정관리')}
+          style={styles.btn_wrap}>
           <CustomText style={styles.title}>계정 관리</CustomText>
           <SVG_IMG.BACK_ICON rotation={180} width={wt(6)} height={ht(11)} />
         </CustomTouchable>
-        <CustomTouchable onPress={() => onPress('이용약관')} style={[styles.btn_wrap, {borderBottomWidth: 0}]}>
+        <CustomTouchable
+          onPress={() => onPress('이용약관')}
+          style={[styles.btn_wrap]}>
           <CustomText style={styles.title}>이용 약관</CustomText>
+          <SVG_IMG.BACK_ICON rotation={180} width={wt(6)} height={ht(11)} />
+        </CustomTouchable>
+        <CustomTouchable
+          onPress={() => onPress('개인정보처리방침')}
+          style={[styles.btn_wrap, {borderBottomWidth: 0}]}>
+          <CustomText style={styles.title}>개인정보처리방침</CustomText>
           <SVG_IMG.BACK_ICON rotation={180} width={wt(6)} height={ht(11)} />
         </CustomTouchable>
       </View>

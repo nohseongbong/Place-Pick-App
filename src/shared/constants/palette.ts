@@ -16,6 +16,7 @@ export enum palette {
   PRIMARY_TEXT = '#fff',
   SUB_BORDER = '#e9ecef',
   DISABLED = '#ffeefd',
+  KAKAO = '#FFE812',
 }
 
 export enum fontWt {

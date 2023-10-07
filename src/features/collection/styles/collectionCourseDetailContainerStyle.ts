@@ -70,6 +70,21 @@ const style = () => {
       paddingVertical: ht(10),
       paddingHorizontal: wt(5),
     },
+    kakao_share_wrap: {
+      paddingHorizontal: wt(23),
+      paddingVertical: ht(12),
+      alignItems: 'center',
+      backgroundColor: palette.KAKAO,
+      borderRadius: 35,
+      position: 'absolute',
+      bottom: ht(65),
+      zIndex: 100,
+    },
+    kakao_share_text: {
+      color: palette.TEXT,
+      fontSize: fs(14),
+      fontFamily: fontWt.Medium,
+    },
   });
 };
 

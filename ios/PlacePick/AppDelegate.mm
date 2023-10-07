@@ -1,3 +1,4 @@
+#import <React/RCTLinkingManager.h> 
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
@@ -5,6 +6,7 @@
 
 // env
  #import "RNCConfig.h"
+ #import <CodePush/CodePush.h>
 
 @implementation AppDelegate
 
@@ -25,7 +27,8 @@
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
 #else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  // return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  return [CodePush bundleURL];
 #endif
 }
 
@@ -37,6 +40,14 @@
 - (BOOL)concurrentRootEnabled
 {
   return true;
+}
+
+
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
 }
 
 @end

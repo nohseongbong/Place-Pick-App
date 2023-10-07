@@ -1,5 +1,8 @@
 import {Platform} from 'react-native';
-import {appleAuth, appleAuthAndroid} from '@invertase/react-native-apple-authentication';
+import {
+  appleAuth,
+  appleAuthAndroid,
+} from '@invertase/react-native-apple-authentication';
 
 import uuid from 'react-native-uuid';
 import {APPLE_LOGIN_CLIENT_ID, APPLE_LOGIN_REFIRECT_URL} from '@env';
@@ -11,7 +14,9 @@ export const handleAppleLogin = async () => {
         requestedOperation: appleAuth.Operation.LOGIN,
         requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
       });
-      const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
+      const credentialState = await appleAuth.getCredentialStateForUser(
+        appleAuthRequestResponse.user,
+      );
       console.log(appleAuthRequestResponse, ': ios - apple login');
       if (credentialState === appleAuth.State.AUTHORIZED) {
         const {identityToken} = appleAuthRequestResponse;

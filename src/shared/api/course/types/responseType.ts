@@ -21,8 +21,8 @@ export type CourseDetailResType = {
   category: PlaceCategoryType;
   locationOrder: number;
   placeName: string;
-  xlocation: number;
-  ylocation: number;
+  latitude: number;
+  longitude: number;
 };
 
 export type CourseListRes = CourseResType[];
@@ -32,6 +32,6 @@ export interface CourseDetailRes {
   name: string;
   createdAt: Date;
   locationList: CourseDetailResType[];
-  xlocation: number;
-  ylocation: number;
+  latitude: number;
+  longitude: number;
 }

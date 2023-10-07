@@ -13,11 +13,19 @@ import {wt} from '../../../lib/responsiveSize';
 import {palette} from '../../../shared/constants/palette';
 import OnboardingButtons from './OnboardingButtons';
 import LoginBottomSheet from './LoginBottomeSheet';
+import {STACK_NAME} from '../../../shared/constants/navigation';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
 
 const OnboardingContainer = () => {
   const styles = style();
+  const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
   const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const loginAction = () => {
+    navigation.navigate(STACK_NAME.MAIN);
+  };
 
   const onPressStart = () => {
     bottomSheetRef.current?.present();
@@ -46,16 +54,22 @@ const OnboardingContainer = () => {
             <View style={styles.list_wrap} key={`${index}_item`}>
               <CustomText style={styles.text} numberOfLines={2}>
                 {item.text}
-                <CustomText style={styles.highlightText}>{item.highlight}</CustomText>
+                <CustomText style={styles.highlightText}>
+                  {item.highlight}
+                </CustomText>
                 {item.remainder}
               </CustomText>
-              <Image style={styles.image} source={item.image} resizeMode="contain" />
+              <Image
+                style={styles.image}
+                source={item.image}
+                resizeMode="contain"
+              />
             </View>
           );
         })}
       </Swiper>
       <OnboardingButtons onPress={onPressStart} />
-      <LoginBottomSheet sheetRef={bottomSheetRef} />
+      <LoginBottomSheet sheetRef={bottomSheetRef} action={loginAction} />
     </View>
   );
 };

@@ -25,7 +25,13 @@ class HomeStore {
     this.isNearPlace = state;
   };
 
-  setMapLocation = ({latitude, longitude}: {latitude: number; longitude: number}) => {
+  setMapLocation = ({
+    latitude,
+    longitude,
+  }: {
+    latitude: number;
+    longitude: number;
+  }) => {
     this.mapLocation.latitude = latitude;
     this.mapLocation.longitude = longitude;
   };
@@ -43,7 +49,10 @@ class HomeStore {
 
   getFetchNearPlaceList = async (): Promise<MarKerType[]> => {
     try {
-      const response = await googleApi.getGooglePlaceList({location: this.searchLocation, category: this.category});
+      const response = await googleApi.getGooglePlaceList({
+        location: this.searchLocation,
+        category: this.category,
+      });
       const result = response.data.results;
       return this._filterList(result);
     } catch (error) {
