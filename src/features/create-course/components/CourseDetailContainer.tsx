@@ -19,14 +19,23 @@ const CourseDetailContainer = observer(() => {
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
         <CustomText style={styles.title_text}>내가 만든 나만의 코스</CustomText>
-        <CourseMapView courseList={toJS(courseStore.courseList)} location={location} />
+        <CourseMapView
+          courseList={toJS(courseStore.courseList)}
+          location={location}
+        />
         <View style={styles.course_info_wrap}>
           <View style={styles.course_info}>
-            <CustomText style={styles.course_title_text}>방문할 장소</CustomText>
-            <CustomText style={styles.course_text}>{courseStore.courseList.length}곳</CustomText>
+            <CustomText style={styles.course_title_text}>
+              방문할 장소
+            </CustomText>
+            <CustomText style={styles.course_text}>
+              {courseStore.courseList.length}곳
+            </CustomText>
           </View>
         </View>
-        <CustomText style={styles.course_list_title_text}>방문할 장소</CustomText>
+        <CustomText style={styles.course_list_title_text}>
+          방문할 장소
+        </CustomText>
         <View style={styles.course_list_wrap}>
           {courseStore.courseList.map((item, index) => {
             return (
