@@ -66,9 +66,13 @@ const HomeBottomSheet = observer(() => {
           </>
         );
       }}
-      enableHandlePanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}
+      enableHandlePanningGesture={
+        bottomSheetStore.focusedType !== FocusedType.DETAIL
+      }
       enableOverDrag={bottomSheetStore.focusedType !== FocusedType.DETAIL}
-      enableContentPanningGesture={bottomSheetStore.focusedType !== FocusedType.DETAIL}>
+      enableContentPanningGesture={
+        bottomSheetStore.focusedType !== FocusedType.DETAIL
+      }>
       {bottomSheetStore.focusedType === FocusedType.DETAIL && <PlaceDetail />}
       {bottomSheetStore.focusedType === FocusedType.CREATE && <CreateCourse />}
       {bottomSheetStore.focusedType === FocusedType.SEARCH && <PlaceSearch />}
