@@ -37,15 +37,23 @@ const PlaceDetail = observer(() => {
           <CustomText numberOfLines={3} style={styles.place_info_name_text}>
             {placeDetailStore.name}
           </CustomText>
-          <CustomText style={styles.place_info_address_text}>{placeDetailStore.formatted_address}</CustomText>
+          <CustomText style={styles.place_info_address_text}>
+            {placeDetailStore.formatted_address}
+          </CustomText>
           <View style={styles.place_info_rating_wrap}>
             <SVG_IMG.STAR width={16} height={16} />
-            <CustomText style={styles.place_info_rating_text}>{placeDetailStore.rating}</CustomText>
+            <CustomText style={styles.place_info_rating_text}>
+              {placeDetailStore.rating}
+            </CustomText>
             <SVG_IMG.PEOPLE width={16} height={16} />
-            <CustomText style={styles.place_info_rating_text}>{placeDetailStore.user_ratings_total}</CustomText>
+            <CustomText style={styles.place_info_rating_text}>
+              {placeDetailStore.user_ratings_total}
+            </CustomText>
           </View>
         </View>
-        <CustomTouchable style={styles.close_wrap} onPress={onPressHidePlaceDetail}>
+        <CustomTouchable
+          style={styles.close_wrap}
+          onPress={onPressHidePlaceDetail}>
           <SVG_IMG.CLOSE width={17} height={17} />
         </CustomTouchable>
       </View>
@@ -53,8 +61,12 @@ const PlaceDetail = observer(() => {
         <CustomTouchable onPress={onPressPlaceDetail} style={styles.btn_wrap}>
           <CustomText style={styles.btn_text}>상세 정보</CustomText>
         </CustomTouchable>
-        <CustomTouchable onPress={onPressAddPlace} style={[styles.btn_wrap, {backgroundColor: palette.PRIMARY}]}>
-          <CustomText style={[styles.btn_text, {color: palette.BACKGROUND}]}>장소 선택</CustomText>
+        <CustomTouchable
+          onPress={onPressAddPlace}
+          style={[styles.btn_wrap, {backgroundColor: palette.PRIMARY}]}>
+          <CustomText style={[styles.btn_text, {color: palette.BACKGROUND}]}>
+            장소 선택
+          </CustomText>
         </CustomTouchable>
       </View>
     </View>
