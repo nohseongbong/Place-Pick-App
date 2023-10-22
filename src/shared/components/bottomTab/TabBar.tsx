@@ -10,6 +10,7 @@ import CustomText from '../customComponents/CustomText';
 import {collectionStore} from '../../../features/collection/store/collectionStore';
 import DeleteBar from '../../../features/collection/components/collection-list/DeleteBar';
 import {authStore} from '../../store/authStore';
+import {SCREEN_NAME} from '../../constants/navigation';
 
 const TabBar = observer(
   ({state, descriptors, navigation}: BottomTabBarProps) => {
@@ -44,8 +45,10 @@ const TabBar = observer(
               target: route.key,
               canPreventDefault: true,
             });
-
-            if (!authStore.accessToken) {
+            if (
+              !authStore.accessToken &&
+              route.name === SCREEN_NAME.COLLECTION
+            ) {
               authStore.setIsLoginModal(true);
               return;
             }
