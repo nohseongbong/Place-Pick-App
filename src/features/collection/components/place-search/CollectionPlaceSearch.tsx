@@ -47,13 +47,19 @@ const CollectionPlaceSearch = observer(() => {
         <View style={styles.item_info_wrap}>
           <CustomText style={styles.item_name}>{place.name}</CustomText>
           <View style={styles.item_adress}>
-            <CustomText style={styles.item_text}>{place.formatted_address}</CustomText>
+            <CustomText style={styles.item_text}>
+              {place.formatted_address}
+            </CustomText>
           </View>
           <View style={styles.item_rating}>
             <SVG_IMG.STAR width={10} height={10} />
-            <CustomText style={styles.item_rating_text}>{place.rating ?? 0}</CustomText>
+            <CustomText style={styles.item_rating_text}>
+              {place.rating ?? 0}
+            </CustomText>
             <SVG_IMG.PEOPLE width={12} height={8} />
-            <CustomText style={styles.item_rating_text}>{place.user_ratings_total ?? 0}</CustomText>
+            <CustomText style={styles.item_rating_text}>
+              {place.user_ratings_total ?? 0}
+            </CustomText>
           </View>
         </View>
       </CustomTouchable>
@@ -66,8 +72,15 @@ const CollectionPlaceSearch = observer(() => {
     return (
       <CustomTouchable
         onPress={onPressTab}
-        style={[styles.tab, collectionSearchStore.activeTab === item && styles.active_tab]}>
-        <CustomText style={[styles.tab_text, collectionSearchStore.activeTab === item && styles.active_tab_text]}>
+        style={[
+          styles.tab,
+          collectionSearchStore.activeTab === item && styles.active_tab,
+        ]}>
+        <CustomText
+          style={[
+            styles.tab_text,
+            collectionSearchStore.activeTab === item && styles.active_tab_text,
+          ]}>
           {item}
         </CustomText>
       </CustomTouchable>
@@ -98,7 +111,9 @@ const CollectionPlaceSearch = observer(() => {
             value={collectionSearchStore.searchText}
             onChangeText={collectionSearchStore.setSearchText}
           />
-          <CustomTouchable onPress={onPressRemoveSearchText} style={styles.search_remove_btn}>
+          <CustomTouchable
+            onPress={onPressRemoveSearchText}
+            style={styles.search_remove_btn}>
             <SVG_IMG.SEARCH_REMOVE width={16} height={16} />
           </CustomTouchable>
         </View>
@@ -117,8 +132,12 @@ const CollectionPlaceSearch = observer(() => {
       {isBlank(collectionSearchStore.searchText) ? (
         <View style={styles.not_search_wrap}>
           <SVG_IMG.PLACE_ICON width={26} height={32} />
-          <CustomText style={[styles.not_search_text, {marginTop: 10}]}>가고싶은 곳을</CustomText>
-          <CustomText style={styles.not_search_text}>자유롭게 검색해보세요!</CustomText>
+          <CustomText style={[styles.not_search_text, {marginTop: 10}]}>
+            가고싶은 곳을
+          </CustomText>
+          <CustomText style={styles.not_search_text}>
+            자유롭게 검색해보세요!
+          </CustomText>
         </View>
       ) : (
         <BottomSheetScrollView contentContainerStyle={styles.list_wrap}>

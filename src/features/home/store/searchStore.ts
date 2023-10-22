@@ -45,6 +45,7 @@ class SearchStore {
       .searchGooglePlaces({query: this.searchText})
       .then(response => {
         const result = response.data;
+        console.log(result, ':result');
         if (!result || !result.results) {
           return;
         }

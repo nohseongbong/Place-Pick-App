@@ -32,6 +32,10 @@ const HomeContainer = observer(() => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const onPressCreateCourse = () => {
+    if (!authStore.accessToken) {
+      authStore.setIsLoginModal(true);
+      return;
+    }
     navigation.navigate(SCREEN_NAME.COURSEDETAIL);
   };
 
@@ -49,9 +53,10 @@ const HomeContainer = observer(() => {
   useEffect(() => {
     if (authStore.isLoginModal) {
       bottomSheetRef.current?.present();
-      authStore.setIsLoginModal(false);
     }
   }, [authStore.isLoginModal]);
+
+  console.log(authStore.accessToken, ': 토큰');
 
   return (
     <View style={styles.container}>
@@ -60,7 +65,8 @@ const HomeContainer = observer(() => {
       <HomeBottomSheet />
       {courseStore.courseList.length > 1 &&
         bottomSheetStore.focusedType === FocusedType.CREATE &&
-        bottomSheetStore.bottomSheetIndex !== 0 && (
+        bottomSheetStore.bottomSheetIndex !== 0 &&
+        !authStore.isLoginModal && (
           <CustomTouchable
             onPress={onPressCreateCourse}
             style={styles.complete_course_wrap}>
@@ -69,7 +75,6 @@ const HomeContainer = observer(() => {
             </CustomText>
           </CustomTouchable>
         )}
-
       <LoginBottomSheet sheetRef={bottomSheetRef} action={loginAction} />
     </View>
   );

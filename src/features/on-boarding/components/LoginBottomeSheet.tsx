@@ -15,6 +15,7 @@ import {SVG_IMG} from '../../../assets/images';
 import {wt} from '../../../lib/responsiveSize';
 import {handleAppleLogin} from '../../../lib/social/appleLogin';
 import {handleGoogleLogin} from '../../../lib/social/googleLogin';
+import {authStore} from '../../../shared/store/authStore';
 
 interface Props {
   sheetRef: React.RefObject<BottomSheetModal>;
@@ -50,9 +51,11 @@ const LoginBottomSheet = observer(({sheetRef, action}: Props) => {
   );
 
   const handleSheetChanges = useCallback((index: number) => {
-    if (index === 0) {
+    if (index <= 0) {
       sheetRef.current?.forceClose();
       setBackdropPressBehavior('close');
+      authStore.setIsLoginModal(false);
+      console.log(index, ': index');
     }
   }, []);
 
@@ -60,6 +63,7 @@ const LoginBottomSheet = observer(({sheetRef, action}: Props) => {
     <BottomSheetModalProvider>
       <BottomSheetModal
         ref={sheetRef}
+        style={{zIndex: 100000000000000}}
         index={1}
         onChange={handleSheetChanges}
         backdropComponent={renderBackdrop}
