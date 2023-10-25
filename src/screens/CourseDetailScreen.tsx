@@ -21,6 +21,7 @@ const CourseDetailScreen = observer(() => {
 
   const complete = () => {
     courseDetailStore.fetchCreateCourse(successModal);
+    Keyboard.dismiss();
   };
 
   const successModal = () => {
@@ -46,7 +47,8 @@ const CourseDetailScreen = observer(() => {
       const response = await KakaoShareLink.sendFeed({
         content: {
           title: '노성봉님께서 데이트 코스를 공유했습니다.',
-          imageUrl: 'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg',
+          imageUrl:
+            'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg',
           link: {
             webUrl: 'placepick://',
             mobileWebUrl: 'placepick://',
@@ -57,8 +59,12 @@ const CourseDetailScreen = observer(() => {
           {
             title: '앱에서 보기',
             link: {
-              androidExecutionParams: [{key: 'courseId', value: String(courseDetailStore.courseId)}],
-              iosExecutionParams: [{key: 'courseId', value: String(courseDetailStore.courseId)}],
+              androidExecutionParams: [
+                {key: 'courseId', value: String(courseDetailStore.courseId)},
+              ],
+              iosExecutionParams: [
+                {key: 'courseId', value: String(courseDetailStore.courseId)},
+              ],
             },
           },
         ],
@@ -78,10 +84,16 @@ const CourseDetailScreen = observer(() => {
 
   return (
     <>
-      <KeyboardAvoidingView style={{flex: 1, width: '100%', height: '100%'}} behavior="position">
+      <KeyboardAvoidingView
+        style={{flex: 1, width: '100%', height: '100%'}}
+        behavior="position">
         <BackPressHeader />
         <CourseDetailContainer />
-        {courseDetailStore.isCourseNameModal ? <BottomSheetBackGround onPress={onPressBackGround} /> : <Complete />}
+        {courseDetailStore.isCourseNameModal ? (
+          <BottomSheetBackGround onPress={onPressBackGround} />
+        ) : (
+          <Complete />
+        )}
         <CreateCourseNameModal
           isState={courseDetailStore.isCourseNameModal}
           setIsState={courseDetailStore.setIsCourseNameModal}

@@ -13,7 +13,9 @@ const Complete = observer(() => {
     courseDetailStore.setIsCourseNameModal(true);
   };
   return (
-    <CustomTouchable onPress={onPressComplete} style={styles.complete_course_wrap}>
+    <CustomTouchable
+      onPress={onPressComplete}
+      style={styles.complete_course_wrap}>
       <CustomText style={styles.complete_course_text}>저장하기</CustomText>
     </CustomTouchable>
   );

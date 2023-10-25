@@ -3,6 +3,7 @@ import {spinnerStore} from './spinnerStore';
 import {authApi} from '../api/auth/api';
 import {LoginReq} from '../api/auth/types/requestType';
 import {userStore} from './userStore';
+import {removeStorage, setStorage} from '../../lib/storage';
 
 interface LoginProp extends LoginReq {
   action: () => void;
@@ -28,6 +29,7 @@ class AuthStore {
       runInAction(() => {
         this.accessToken = data.token;
       });
+      await setStorage('AuthLogin', {token, providerType});
       this.fetchUserInfo();
       action();
     } catch (error) {
@@ -50,8 +52,9 @@ class AuthStore {
     }
   };
 
-  logout = () => {
+  logout = async () => {
     this.accessToken = '';
+    await removeStorage('AuthLogin');
   };
 }
 

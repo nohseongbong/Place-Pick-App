@@ -6,17 +6,28 @@ import CustomTouchable from '../../../../shared/components/customComponents/Cust
 import CustomText from '../../../../shared/components/customComponents/CustomText';
 import style from '../styles/logoutStyle';
 import {managementStore} from '../store/managementStore';
+import {authStore} from '../../../../shared/store/authStore';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {TabStackParamList} from '../../../../shared/types/navigation/paramsType';
+import {SCREEN_NAME} from '../../../../shared/constants/navigation';
 
 const Logout = observer(() => {
   const styles = style();
+  const navigation: NavigationProp<TabStackParamList> = useNavigation();
 
   const onPressWithdrawal = () => {
     managementStore.setIsModal(true);
   };
 
+  const onPressLogout = () => {
+    authStore.logout();
+    navigation.navigate(SCREEN_NAME.HOME);
+    console.log('눌림');
+  };
+
   return (
     <View style={styles.container}>
-      <CustomTouchable style={styles.logout_wrap}>
+      <CustomTouchable onPress={onPressLogout} style={styles.logout_wrap}>
         <CustomText style={styles.content_text}>로그아웃</CustomText>
       </CustomTouchable>
       <CustomText onPress={onPressWithdrawal} style={styles.withdrawal_text}>

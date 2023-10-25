@@ -38,6 +38,7 @@ class CourseDetailStore {
           },
         ),
       });
+
       runInAction(() => {
         this.courseId = data;
       });

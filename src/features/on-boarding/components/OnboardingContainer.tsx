@@ -16,6 +16,7 @@ import LoginBottomSheet from './LoginBottomeSheet';
 import {STACK_NAME} from '../../../shared/constants/navigation';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../../../shared/types/navigation/paramsType';
+import {setStorage} from '../../../lib/storage';
 
 const OnboardingContainer = () => {
   const styles = style();
@@ -31,7 +32,12 @@ const OnboardingContainer = () => {
     bottomSheetRef.current?.present();
   };
 
+  const firstLaunch = async () => {
+    await setStorage('FirstLaunch', true);
+  };
+
   useEffect(() => {
+    firstLaunch();
     GoogleSignin.configure({
       iosClientId: GOOGLE_LOGIN_IOS_CLIENT_ID,
       webClientId: GOOGLE_LOGIN_AOS_CLIENT_ID,

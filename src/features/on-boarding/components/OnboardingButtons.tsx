@@ -24,8 +24,12 @@ const OnboardingButtons = ({onPress}: Props) => {
       <CustomText onPress={onPressGuestMode} style={[styles.text]}>
         서비스 둘러보기
       </CustomText>
-      <CustomTouchable onPress={onPress} style={[styles.button_wrap, styles.button_start_wrap]}>
-        <CustomText style={[styles.text, styles.start_text]}>시작하기</CustomText>
+      <CustomTouchable
+        onPress={onPress}
+        style={[styles.button_wrap, styles.button_start_wrap]}>
+        <CustomText style={[styles.text, styles.start_text]}>
+          시작하기
+        </CustomText>
       </CustomTouchable>
     </View>
   );
