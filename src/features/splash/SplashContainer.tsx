@@ -24,7 +24,6 @@ const SplashContainer = () => {
       getGeoLocation();
     }
     const isFirstLaunch = await getStorage('FirstLaunch');
-    console.log(isFirstLaunch, ': isFirstLaunch');
     setTimeout(() => {
       checkAuthLogin();
       if (!isFirstLaunch || isFirstLaunch === undefined) {
