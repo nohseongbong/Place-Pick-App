@@ -77,12 +77,14 @@ const style = () => {
       backgroundColor: palette.BACKGROUND,
       borderRadius: 16,
       marginVertical: ht(8),
+      justifyContent: 'space-between',
     },
     select_place_text: {
       fontSize: fs(16),
       fontFamily: fontWt.Bold,
       color: palette.SUB_TEXT,
       marginLeft: wt(8),
+      flex: 1,
     },
     add_place_wrap: {
       width: '100%',
@@ -151,6 +153,9 @@ const style = () => {
       borderColor: palette.BORDER,
       borderRadius: 8,
       marginLeft: wt(30),
+    },
+    close_wrap: {
+      padding: 10,
     },
   });
 };

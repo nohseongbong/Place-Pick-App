@@ -77,8 +77,8 @@ const CourseDetailScreen = observer(() => {
 
   useEffect(() => {
     return () => {
-      courseDetailStore.resetCourseDetail();
-      courseStore.resetCourse();
+      // courseDetailStore.resetCourseDetail();
+      // courseStore.resetCourse();
     };
   }, []);
 
