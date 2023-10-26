@@ -16,7 +16,10 @@ import {IMG} from '../../../assets/images';
 import {MarKerType} from '../../../shared/types/place/markerType';
 import {courseStore} from '../store/courseStore';
 import {PlaceType} from '../../../shared/types/place/placeType';
-import {CategoryIconView, CourseCategoryIconView} from '../../../shared/components/category-icon/CategoryIcon';
+import {
+  CategoryIconView,
+  CourseCategoryIconView,
+} from '../../../shared/components/category-icon/CategoryIcon';
 
 const HomeMap = observer(() => {
   const styles = style();
@@ -36,9 +39,7 @@ const HomeMap = observer(() => {
   );
 
   const onPressNearPlaceBtn = async () => {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const markers = await homeStore.getFetchNearPlaceList();
-    setMarkers(markers);
+    await homeStore.getFetchNearPlaceList();
   };
 
   const onPressMyLocation = () => {
@@ -57,7 +58,9 @@ const HomeMap = observer(() => {
   }, []);
 
   const MarkerView = (marker: MarKerType, index: number) => {
-    if (courseStore.courseList.find(item => item.place_id === marker.place_id)) {
+    if (
+      courseStore.courseList.find(item => item.place_id === marker.place_id)
+    ) {
       return null;
     }
     return (
@@ -87,7 +90,9 @@ const HomeMap = observer(() => {
         <View style={styles.marker_container}>
           <View style={styles.selected_icon_wrap}>
             <CourseCategoryIconView type={marker.category} width={28} />
-            <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
+            <CustomText style={styles.selected_icon_text}>
+              {index + 1}
+            </CustomText>
           </View>
           <CustomText numberOfLines={3} style={styles.marker_text}>
             {marker.name}
@@ -103,7 +108,9 @@ const HomeMap = observer(() => {
 
   useEffect(() => {
     const fetchDetail = async () => {
-      const obj = await placeDetailStore.fetchPlaceDetail(placeDetailStore.place_id);
+      const obj = await placeDetailStore.fetchPlaceDetail(
+        placeDetailStore.place_id,
+      );
       if (obj && !markers.find(item => item.place_id === obj.place_id)) {
         const arr = [...markers, obj];
         setMarkers(arr);
@@ -116,15 +123,26 @@ const HomeMap = observer(() => {
     placeDetailStore.setIsSearchPlaceDetail(false);
   }, [placeDetailStore.place_id]);
 
+  useEffect(() => {
+    setMarkers(toJS(homeStore.placeList));
+  }, [homeStore.placeList]);
+
   return (
     <View style={styles.container}>
       {homeStore.isNearPlace && (
-        <CustomTouchable onPress={onPressNearPlace} style={styles.near_place_btn}>
-          <CustomText style={styles.near_place_btn_text}>이 지역 검색</CustomText>
+        <CustomTouchable
+          onPress={onPressNearPlace}
+          style={styles.near_place_btn}>
+          <CustomText style={styles.near_place_btn_text}>
+            이 지역 검색
+          </CustomText>
         </CustomTouchable>
       )}
       {Platform.OS === 'ios' && (
-        <CustomTouchable activeOpacity={0.3} style={styles.my_location_btn_wrap} onPress={onPressMyLocation}>
+        <CustomTouchable
+          activeOpacity={0.3}
+          style={styles.my_location_btn_wrap}
+          onPress={onPressMyLocation}>
           <Image source={IMG.MY_LOCATION} style={styles.my_location_btn_img} />
         </CustomTouchable>
       )}
