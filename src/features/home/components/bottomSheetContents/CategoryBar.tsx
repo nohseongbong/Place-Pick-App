@@ -8,7 +8,10 @@ import {fontWt, palette} from '../../../../shared/constants/palette';
 import style from '../../styles/categoryBarStyle';
 import {categoryList} from '../../constants/category';
 import {homeStore} from '../../store/homeStore';
-import {AtiveCategoryBarIconView, CategoryBarIconView} from '../../../../shared/components/category-icon/CategoryIcon';
+import {
+  AtiveCategoryBarIconView,
+  CategoryBarIconView,
+} from '../../../../shared/components/category-icon/CategoryIcon';
 
 const CategoryBar = observer(() => {
   const styles = style();
@@ -46,21 +49,32 @@ const CategoryBar = observer(() => {
         break;
     }
 
-    const onPressCategory = () => {
+    const onPressCategory = async () => {
       homeStore.setCategory(item);
       homeStore.setIsNearPlace(true);
+      await homeStore.getFetchNearPlaceList();
     };
     return (
       <CustomTouchable
         onPress={onPressCategory}
-        style={[styles.category_item, homeStore.category === item && {borderColor: color}]}>
+        style={[
+          styles.category_item,
+          homeStore.category === item && {borderColor: color},
+        ]}>
         {homeStore.category === item ? (
           <AtiveCategoryBarIconView type={name} width={20} />
         ) : (
           <CategoryBarIconView type={name} width={20} />
         )}
 
-        <CustomText style={[styles.item_text, homeStore.category === item && {color: color, fontFamily: fontWt.Bold}]}>
+        <CustomText
+          style={[
+            styles.item_text,
+            homeStore.category === item && {
+              color: color,
+              fontFamily: fontWt.Bold,
+            },
+          ]}>
           {name}
         </CustomText>
       </CustomTouchable>
