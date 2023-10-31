@@ -22,7 +22,6 @@ const Logout = observer(() => {
   const onPressLogout = () => {
     authStore.logout();
     navigation.navigate(SCREEN_NAME.HOME);
-    console.log('눌림');
   };
 
   return (
