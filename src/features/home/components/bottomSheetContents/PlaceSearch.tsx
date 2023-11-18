@@ -104,10 +104,10 @@ const PlaceSearch = observer(() => {
   });
 
   useEffect(() => {
-    return () => {
-      searchStore.resetSearch();
-      courseStore.resetSelectedCourse();
-    };
+    // return () => {
+    //   searchStore.resetSearch();
+    //   courseStore.resetSelectedCourse();
+    // };
   }, []);
 
   return (
