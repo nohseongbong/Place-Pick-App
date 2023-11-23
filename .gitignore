@@ -21,6 +21,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 ios/.xcode.env.local
+# 추가
+tmp.xcconfig
+
 
 # Android/IntelliJ
 #
