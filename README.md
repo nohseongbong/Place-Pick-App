@@ -81,7 +81,7 @@ npm install react-native-config
 최상위 폴더에 .env 파일 생성 후 밑에 처럼 환경변수 설정:
 
 ```
-GOOGLE_API_KEY=12345671235123
+GOOGLE_API_KEY=
 ```
 
 android/app/build.gradle 파일에 밑에 코드 추가:
