@@ -50,7 +50,10 @@ class CollectionDetailStore {
 
   setEditCourseList = (place: any) => {
     this.courseList = this.courseList.map((item, index) => {
-      const result = {...place, location: {latitude: place.location.lat, longitude: place.location.lng}};
+      const result = {
+        ...place,
+        location: {latitude: place.location.lat, longitude: place.location.lng},
+      };
       if (this.selectedCourse === index) {
         return result;
       } else {
