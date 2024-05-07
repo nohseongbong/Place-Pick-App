@@ -19,6 +19,20 @@ export enum palette {
   KAKAO = '#FFE812',
 }
 
+export enum fontSize {
+  Title = 34,
+  Subtitle = 24,
+  Heading = 20,
+  Headline = 18,
+  Body = 26,
+  BodyReading = 16,
+  Callout = 14,
+  CalloutReading = 14,
+  Subhead = 15,
+  Caption = 12,
+  Caption2 = 10,
+}
+
 export enum fontWt {
   Black = 'Pretendard-Black',
   Bold = 'Pretendard-Bold',
@@ -29,4 +43,58 @@ export enum fontWt {
   Regular = 'Pretendard-Regular',
   SemiBold = 'Pretendard-SemiBold',
   Thim = 'Pretendard-Thim',
+}
+
+export const ColorType = {
+  primary: {
+    normal: '#FF78EF',
+    right: '#FFEEFD',
+    black: '#212429',
+  },
+  basic: {
+    body: '#343A40',
+    secondary: '#868E96',
+    tertiary: '#CDD3D9',
+    quaternary: '#E9ECEF',
+    background: '#FFFFFF',
+    alternative: '#F4F4F4',
+  },
+  line: {
+    normal: '#CDD3D9',
+    alternative: '#E9ECEF',
+  },
+  status: {
+    positive: '#00BF40',
+    cautionary: '#FF9200',
+    destructive: '#FF4242',
+  },
+  category: {
+    restaurant: '#FFAAA5',
+    cafe: '#FFD0A5',
+    bar: '#C1A5FF',
+    shop: '#FFA5F4',
+    culture: '#A5B9FF',
+    park: '#A5FFA8',
+  },
+};
+
+export enum ThemeType {
+  normal,
+  right,
+  black,
+  body,
+  secondary,
+  tertiary,
+  quaternary,
+  background,
+  alternative,
+  positive,
+  cautionary,
+  destructive,
+  restaurant,
+  cafe,
+  bar,
+  shop,
+  culture,
+  park,
 }

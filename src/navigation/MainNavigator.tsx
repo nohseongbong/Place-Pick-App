@@ -17,10 +17,19 @@ const MainNavigator = () => {
       initialRouteName={STACK_NAME.TAB}
       screenOptions={{headerShown: false, animation: 'fade_from_bottom'}}>
       <Stack.Screen name={STACK_NAME.TAB} component={TabNavigator} />
-      <Stack.Screen name={SCREEN_NAME.COURSEDETAIL} component={CourseDetailScreen} />
-      <Stack.Screen name={SCREEN_NAME.COLLECTIONCOURSEDETAIL} component={CollectionCourseDetailScreen} />
+      <Stack.Screen
+        name={SCREEN_NAME.COURSEDETAIL}
+        component={CourseDetailScreen}
+      />
+      <Stack.Screen
+        name={SCREEN_NAME.COLLECTIONCOURSEDETAIL}
+        component={CollectionCourseDetailScreen}
+      />
       <Stack.Screen name={SCREEN_NAME.MYSETTING} component={MySettingScreen} />
-      <Stack.Screen name={SCREEN_NAME.MANAGEMENT} component={ManagementScreen} />
+      <Stack.Screen
+        name={SCREEN_NAME.MANAGEMENT}
+        component={ManagementScreen}
+      />
       <Stack.Screen name={SCREEN_NAME.TERMS} component={TermsScreen} />
     </Stack.Navigator>
   );

@@ -12,7 +12,9 @@ const useUrlScheme = () => {
     let inx = url.split('?courseId=');
     if (inx[1]) {
       collectionDetailStore.fetchGetCourseDetail(Number(inx[1]));
-      navigation.navigate(STACK_NAME.MAIN, {screen: SCREEN_NAME.COLLECTIONCOURSEDETAIL});
+      navigation.navigate(STACK_NAME.MAIN, {
+        screen: SCREEN_NAME.COLLECTIONCOURSEDETAIL,
+      });
     }
   };
   useEffect(() => {

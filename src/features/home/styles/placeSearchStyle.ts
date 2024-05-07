@@ -5,27 +5,27 @@ import {fs, ht, wt} from '../../../lib/responsiveSize';
 const style = () => {
   return StyleSheet.create({
     container: {
-      flex: 1,
+      width: '100%',
+      height: ht(52),
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: palette.BACKGROUND,
     },
     search_bar_wrap: {
       width: '100%',
-      height: ht(50),
+      height: ht(52),
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      paddingHorizontal: wt(20),
     },
     search_text_wrap: {
-      width: '88%',
+      width: '100%',
       height: ht(37),
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: palette.INNER_BACKGOUND,
-      borderRadius: 32,
+      borderRadius: 10,
       paddingHorizontal: wt(10),
     },
     search_input: {

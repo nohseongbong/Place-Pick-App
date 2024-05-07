@@ -33,7 +33,8 @@ const CollectionCourseDetailScreen = observer(() => {
       const response = await KakaoShareLink.sendFeed({
         content: {
           title: '노성봉님께서 데이트 코스를 공유했습니다.',
-          imageUrl: 'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg',
+          imageUrl:
+            'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg',
           link: {
             webUrl: 'placepick://',
             mobileWebUrl: 'placepick://',
@@ -44,8 +45,18 @@ const CollectionCourseDetailScreen = observer(() => {
           {
             title: '앱에서 보기',
             link: {
-              androidExecutionParams: [{key: 'courseId', value: String(collectionDetailStore.courseId)}],
-              iosExecutionParams: [{key: 'courseId', value: String(collectionDetailStore.courseId)}],
+              androidExecutionParams: [
+                {
+                  key: 'courseId',
+                  value: String(collectionDetailStore.courseId),
+                },
+              ],
+              iosExecutionParams: [
+                {
+                  key: 'courseId',
+                  value: String(collectionDetailStore.courseId),
+                },
+              ],
             },
           },
         ],
@@ -64,10 +75,14 @@ const CollectionCourseDetailScreen = observer(() => {
 
   return (
     <View style={{flex: 1, alignItems: 'center', width: '100%'}}>
-      <KeyboardAvoidingView style={{flex: 1, width: '100%', height: '100%'}} behavior={'position'}>
+      <KeyboardAvoidingView
+        style={{flex: 1, width: '100%', height: '100%'}}
+        behavior={'position'}>
         <BackPressHeader />
         <CollectionCourseDetailContainer />
-        {collectionDetailStore.isCourseNameModal && <BottomSheetBackGround onPress={onPressBackGround} />}
+        {collectionDetailStore.isCourseNameModal && (
+          <BottomSheetBackGround onPress={onPressBackGround} />
+        )}
         <CreateCourseNameModal
           isState={collectionDetailStore.isCourseNameModal}
           setIsState={collectionDetailStore.setIsCourseNameModal}
@@ -93,7 +108,12 @@ const CollectionCourseDetailScreen = observer(() => {
           ...getPlatformStyles,
         }}>
         <SVG_IMG.KAKAO_ICON width={20} height={20} />
-        <CustomText style={{color: palette.TEXT, fontSize: fs(14), fontFamily: fontWt.Medium}}>
+        <CustomText
+          style={{
+            color: palette.TEXT,
+            fontSize: fs(14),
+            fontFamily: fontWt.Medium,
+          }}>
           카카오톡 공유하기
         </CustomText>
       </CustomTouchable>

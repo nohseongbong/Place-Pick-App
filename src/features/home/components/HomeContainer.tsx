@@ -56,8 +56,6 @@ const HomeContainer = observer(() => {
     }
   }, [authStore.isLoginModal]);
 
-  console.log(authStore.accessToken, ': 토큰');
-
   return (
     <View style={styles.container}>
       <CategoryBar />

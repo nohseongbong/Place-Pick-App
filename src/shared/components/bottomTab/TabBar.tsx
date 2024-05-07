@@ -76,7 +76,7 @@ const TabBar = observer(
               onPress={onPress}
               onLongPress={onLongPress}
               style={styles.icon}>
-              {label === '코스 만들기' ? (
+              {label === '홈' ? (
                 isFocused ? (
                   <SVG_IMG.HOME_ON width={20} height={20} />
                 ) : (
