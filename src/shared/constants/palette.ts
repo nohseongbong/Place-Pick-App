@@ -24,7 +24,7 @@ export enum fontSize {
   Subtitle = 24,
   Heading = 20,
   Headline = 18,
-  Body = 26,
+  Body = 16,
   BodyReading = 16,
   Callout = 14,
   CalloutReading = 14,
@@ -75,6 +75,13 @@ export const ColorType = {
     shop: '#FFA5F4',
     culture: '#A5B9FF',
     park: '#A5FFA8',
+  },
+  gray: {
+    200: '#f7f8f9',
+    250: '#f0f2f4',
+  },
+  material: {
+    dimming: '#515153',
   },
 };
 
