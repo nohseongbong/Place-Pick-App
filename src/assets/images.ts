@@ -64,6 +64,125 @@ import GOOGLE_ICON from '../assets/images/svg/google_icon.svg';
 import APPLE_ICON from '../assets/images/svg/apple_icon.svg';
 import KAKAO_ICON from '../assets/images/svg/kakao.svg';
 
+// new icon
+import info from '../assets/images/icon/svg/info.svg';
+import arrow_left from '../assets/images/icon/svg/arrow_left.svg';
+import bakery from '../assets/images/icon/svg/bakery.svg';
+import beer_hop from '../assets/images/icon/svg/beer_hop.svg';
+import all from '../assets/images/icon/svg/all.svg';
+import coffee from '../assets/images/icon/svg/coffee.svg';
+import calender from '../assets/images/icon/svg/calender.svg';
+import check from '../assets/images/icon/svg/check.svg';
+import chicken from '../assets/images/icon/svg/chicken.svg';
+import chinese_food from '../assets/images/icon/svg/chinese_food.svg';
+import clock_alarm from '../assets/images/icon/svg/clock_alarm.svg';
+import close from '../assets/images/icon/svg/close.svg';
+import close_circle from '../assets/images/icon/svg/close_circle.svg';
+import dessert from '../assets/images/icon/svg/dessert.svg';
+import favorite from '../assets/images/icon/svg/favorite_folder.svg';
+import fish from '../assets/images/icon/svg/fish.svg';
+import fusion from '../assets/images/icon/svg/fusion_world_cuisine.svg';
+import burger from '../assets/images/icon/svg/hamburger.svg';
+import home from '../assets/images/icon/svg/home.svg';
+import japnaese_food from '../assets/images/icon/svg/japanese_food.svg';
+import journey from '../assets/images/icon/svg/journey.svg';
+import korean_food from '../assets/images/icon/svg/korean_food.svg';
+import list from '../assets/images/icon/svg/list.svg';
+import map from '../assets/images/icon/svg/map.svg';
+import menu from '../assets/images/icon/svg/menu.svg';
+import noodle from '../assets/images/icon/svg/noodle.svg';
+import pencil from '../assets/images/icon/svg/pencil.svg';
+import picture from '../assets/images/icon/svg/picture.svg';
+import pizza from '../assets/images/icon/svg/pizza.svg';
+import plus from '../assets/images/icon/svg/plus.svg';
+import profile from '../assets/images/icon/svg/profile.svg';
+import refresh from '../assets/images/icon/svg/refresh.svg';
+import rice_bowl from '../assets/images/icon/svg/rice_bowl.svg';
+import roast from '../assets/images/icon/svg/roast.svg';
+import salad from '../assets/images/icon/svg/salad.svg';
+import samgyetang from '../assets/images/icon/svg/samgyetang.svg';
+import sea_food from '../assets/images/icon/svg/seafood.svg';
+import search from '../assets/images/icon/svg/search.svg';
+import settings from '../assets/images/icon/svg/settings.svg';
+import share from '../assets/images/icon/svg/share.svg';
+import snack_bar from '../assets/images/icon/svg/snack_bar.svg';
+import star from '../assets/images/icon/svg/star.svg';
+import star_outline from '../assets/images/icon/svg/star_outline.svg';
+import stick from '../assets/images/icon/svg/stick.svg';
+import taco from '../assets/images/icon/svg/taco.svg';
+import track_order from '../assets/images/icon/svg/track_order.svg';
+import trash from '../assets/images/icon/svg/trash.svg';
+import user from '../assets/images/icon/svg/user_account.svg';
+import walking from '../assets/images/icon/svg/walking.svg';
+import wine from '../assets/images/icon/svg/wine.svg';
+import restaurant from '../assets/images/icon/svg/restaurant.svg';
+import cafe from '../assets/images/icon/svg/cafe.svg';
+import park from '../assets/images/icon/svg/park.svg';
+import train from '../assets/images/icon/svg/train.svg';
+import flag from '../assets/images/icon/svg/flag.svg';
+import shop from '../assets/images/icon/svg/shop.svg';
+import bar from '../assets/images/icon/svg/bar.svg';
+
+export const SVG_ICON = {
+  restaurant,
+  park,
+  train,
+  flag,
+  shop,
+  info,
+  arrow_left,
+  bakery,
+  bar,
+  beer_hop,
+  all,
+  cafe,
+  calender,
+  check,
+  chicken,
+  chinese_food,
+  clock_alarm,
+  close,
+  close_circle,
+  dessert,
+  favorite,
+  fish,
+  fusion,
+  burger,
+  home,
+  japnaese_food,
+  journey,
+  korean_food,
+  list,
+  map,
+  menu,
+  noodle,
+  pencil,
+  picture,
+  pizza,
+  plus,
+  profile,
+  refresh,
+  rice_bowl,
+  roast,
+  salad,
+  samgyetang,
+  sea_food,
+  search,
+  settings,
+  share,
+  snack_bar,
+  star,
+  star_outline,
+  stick,
+  taco,
+  track_order,
+  trash,
+  user,
+  walking,
+  wine,
+  coffee,
+};
+
 export const SVG_IMG = {
   LOGO,
   SPLASH_LOGO,
