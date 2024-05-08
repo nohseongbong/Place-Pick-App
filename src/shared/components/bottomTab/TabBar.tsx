@@ -5,12 +5,12 @@ import {observer} from 'mobx-react-lite';
 import {palette} from '../../constants/palette';
 import style from './tabBarStyle';
 import CustomTouchable from '../customComponents/CustomTouchable';
-import {SVG_IMG} from '../../../assets/images';
 import CustomText from '../customComponents/CustomText';
 import {collectionStore} from '../../../features/collection/store/collectionStore';
 import DeleteBar from '../../../features/collection/components/collection-list/DeleteBar';
 import {authStore} from '../../store/authStore';
 import {SCREEN_NAME} from '../../constants/navigation';
+import SvgComponent from '../svg-component/SvgComponent';
 
 const TabBar = observer(
   ({state, descriptors, navigation}: BottomTabBarProps) => {
@@ -77,16 +77,29 @@ const TabBar = observer(
               onLongPress={onLongPress}
               style={styles.icon}>
               {label === '홈' ? (
-                isFocused ? (
-                  <SVG_IMG.HOME_ON width={20} height={20} />
-                ) : (
-                  <SVG_IMG.HOME_OFF width={20} height={20} />
-                )
-              ) : isFocused ? (
-                <SVG_IMG.COLLECTION_ON width={20} height={20} />
+                <SvgComponent
+                  icon="home"
+                  color="basic"
+                  theme="tertiary"
+                  activeColor="basic"
+                  activeTheme="body"
+                  isActive={isFocused}
+                  width={20}
+                  height={20}
+                />
               ) : (
-                <SVG_IMG.COLLECTION_OFF width={20} height={20} />
+                <SvgComponent
+                  icon="favorite"
+                  color="basic"
+                  theme="tertiary"
+                  activeColor="basic"
+                  activeTheme="body"
+                  isActive={isFocused}
+                  width={20}
+                  height={20}
+                />
               )}
+
               <CustomText
                 style={[
                   styles.icon_text,
