@@ -4,6 +4,7 @@ export const IMG = {
   ON_BOARDING_IMG_2: require('../assets/images/img/on_boarding_imgae2.png'),
   ON_BOARDING_IMG_3: require('../assets/images/img/on_boarding_imgae3.png'),
   ON_BOARDING_IMG_4: require('../assets/images/img/on_boarding_imgae4.png'),
+  dummy_img: require('../assets/images/img/dummy_img.png'),
 };
 
 import LOGO from '../assets/images/svg/logo.svg';
@@ -119,15 +120,17 @@ import restaurant from '../assets/images/icon/svg/restaurant.svg';
 import cafe from '../assets/images/icon/svg/cafe.svg';
 import park from '../assets/images/icon/svg/park.svg';
 import train from '../assets/images/icon/svg/train.svg';
-import flag from '../assets/images/icon/svg/flag.svg';
+import culture from '../assets/images/icon/svg/culture.svg';
 import shop from '../assets/images/icon/svg/shop.svg';
 import bar from '../assets/images/icon/svg/bar.svg';
+import kakao from '../assets/images/icon/svg/kakao.svg';
+import kakao_map from '../assets/images/icon/svg/kakao_map.svg';
 
 export const SVG_ICON = {
   restaurant,
   park,
   train,
-  flag,
+  culture,
   shop,
   info,
   arrow_left,
@@ -181,6 +184,8 @@ export const SVG_ICON = {
   walking,
   wine,
   coffee,
+  kakao,
+  kakao_map,
 };
 
 export const SVG_IMG = {
