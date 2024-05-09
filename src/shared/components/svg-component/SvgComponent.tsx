@@ -1,25 +1,25 @@
 import React, {useCallback} from 'react';
-import {ColorType, ThemeType} from '../../constants/palette';
+import {CategoryColor, ColorType, ThemeType} from '../../constants/palette';
 import {SVG_ICON} from '../../../assets/images';
 import {SvgProps} from 'react-native-svg';
 
 type SvgComponentProps = {
   icon: keyof typeof SVG_ICON;
   isStroke?: boolean;
-  isActive?: boolean;
+  isDisable?: boolean;
   color?: keyof typeof ColorType;
   theme?: keyof typeof ThemeType;
-  activeColor?: keyof typeof ColorType;
-  activeTheme?: keyof typeof ThemeType;
+  disableColor?: keyof typeof ColorType;
+  disableTheme?: keyof typeof ThemeType;
 } & SvgProps;
 
 function SvgComponent({
   icon,
   color,
   theme,
-  isActive,
-  activeColor,
-  activeTheme,
+  isDisable,
+  disableColor,
+  disableTheme,
   isStroke,
   ...rest
 }: SvgComponentProps) {
@@ -27,22 +27,30 @@ function SvgComponent({
 
   const handleColor = useCallback(() => {
     if (color && theme) {
-      if (isActive) {
+      if (isDisable && disableColor && disableTheme) {
         // @ts-ignore
-        return ColorType[activeColor][activeTheme];
+        return ColorType[disableColor][disableTheme];
       } else {
-        // @ts-ignore
-        return ColorType[color][theme];
+        if (Object.values(CategoryColor).includes(icon)) {
+          // @ts-ignore
+          return CategoryColor[icon];
+        } else {
+          // @ts-ignore
+          return ColorType[color][theme];
+        }
       }
     } else {
-      undefined;
+      if (Object.keys(CategoryColor).includes(icon)) {
+        // @ts-ignore
+        return CategoryColor[icon];
+      }
     }
-  }, [color, theme]);
+  }, [color, theme, icon, isDisable]);
 
   return (
     <IconComponent
       {...rest}
-      fill={!isStroke && handleColor()}
+      fill={!isStroke ? handleColor() : undefined}
       stroke={isStroke ? handleColor() : undefined}
     />
   );
