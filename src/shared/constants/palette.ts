@@ -77,8 +77,8 @@ export const ColorType = {
     park: '#A5FFA8',
   },
   gray: {
-    200: '#f7f8f9',
-    250: '#f0f2f4',
+    '200': '#f7f8f9',
+    '250': '#f0f2f4',
   },
   material: {
     dimming: '#515153',
@@ -105,3 +105,12 @@ export enum ThemeType {
   culture,
   park,
 }
+
+export const CategoryColor = {
+  bar: ColorType.category.bar,
+  restaurant: ColorType.category.restaurant,
+  cafe: ColorType.category.cafe,
+  shop: ColorType.category.shop,
+  culture: ColorType.category.culture,
+  park: ColorType.category.park,
+};
