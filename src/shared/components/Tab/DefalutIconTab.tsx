@@ -10,7 +10,9 @@ import {SVG_ICON} from '../../../assets/images';
 
 // styles
 import style from './tab.style';
+import {ColorType} from '../../constants/palette';
 
+type ColorKeyType = keyof typeof ColorType.category;
 interface Props {
   list: {
     key: string;
@@ -19,14 +21,24 @@ interface Props {
   selected: string;
   onPressTab: (item: string) => void;
 }
-
 function DefalutIconTab({list, selected, onPressTab}: Props) {
   return (
     <View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={style.container}>
           {list.map(item => {
-            const isActive = selected === item.key;
+            const isDisable = selected !== item.key;
+            const isAll = item.key === 'all';
+            const handleColor = isDisable
+              ? 'basic'
+              : isAll
+              ? 'primary'
+              : 'category';
+            const handleTheme = isDisable
+              ? 'secondary'
+              : isAll
+              ? 'normal'
+              : (item.key as ColorKeyType);
             return (
               <CustomTouchable
                 key={item.key}
@@ -36,23 +48,34 @@ function DefalutIconTab({list, selected, onPressTab}: Props) {
                     <View style={style.icon}>
                       <SvgComponent
                         icon={item.key as keyof typeof SVG_ICON}
-                        isStroke={item.key === 'all'}
-                        color="basic"
-                        theme="secondary"
-                        activeColor="primary"
-                        activeTheme="normal"
-                        isActive={isActive}
+                        isStroke={isAll}
+                        color={isAll ? 'primary' : 'category'}
+                        theme={isAll ? 'normal' : (item.key as ColorKeyType)}
+                        disableColor="basic"
+                        disableTheme="secondary"
+                        isDisable={isDisable}
                       />
                     </View>
                     <CustomText
-                      color={isActive ? 'primary' : 'basic'}
-                      theme={isActive ? 'normal' : 'secondary'}
+                      color={handleColor}
+                      theme={handleTheme}
                       fs="Body"
                       fw="Bold">
                       {item.text}
                     </CustomText>
                   </View>
-                  {isActive && <View style={style.bar} />}
+                  {!isDisable && (
+                    <View
+                      style={[
+                        style.bar,
+                        {
+                          backgroundColor: isAll
+                            ? ColorType.primary.normal
+                            : ColorType.category[item.key as ColorKeyType],
+                        },
+                      ]}
+                    />
+                  )}
                 </View>
               </CustomTouchable>
             );

@@ -5,6 +5,8 @@ import {fs as font} from '../../../lib/responsiveSize';
 interface Props extends TextProps {
   color?: keyof typeof ColorType;
   theme?: keyof typeof ThemeType;
+  disableColor?: keyof typeof ColorType;
+  disableTheme?: keyof typeof ThemeType;
   fw?: keyof typeof fontWt;
   fs?: keyof typeof fontSize;
 }

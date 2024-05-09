@@ -22,7 +22,14 @@ interface Props {
 }
 
 const Course = observer(
-  ({item, index, isMoreState, courseConectList, onPressRemoveCourse, onPressEditCourse}: Props) => {
+  ({
+    item,
+    index,
+    isMoreState,
+    courseConectList,
+    onPressRemoveCourse,
+    onPressEditCourse,
+  }: Props) => {
     const styles = style();
     const [isMore, setIsMore] = useState<boolean>(false);
 
@@ -41,7 +48,9 @@ const Course = observer(
         })
         .catch(err => {
           if (Platform.OS === 'android') {
-            Linking.openURL('https://play.google.com/store/apps/details?id=net.daum.android.map&hl=ko-KR');
+            Linking.openURL(
+              'https://play.google.com/store/apps/details?id=net.daum.android.map&hl=ko-KR',
+            );
           } else {
             Linking.openURL(
               'https://apps.apple.com/kr/app/%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A7%B5-%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD-no-1-%EC%A7%80%EB%8F%84%EC%95%B1/id304608425',
@@ -56,16 +65,30 @@ const Course = observer(
         <CustomTouchable activeOpacity={1} style={styles.container}>
           <View style={styles.selected_wrap}>
             <View style={styles.selected_icon_wrap}>
-              {item?.category === PlaceCategoryType.BAR && <SVG_IMG.COURSE_BAR width={22} height={22} />}
-              {item?.category === PlaceCategoryType.PARK && <SVG_IMG.COURSE_PARK width={22} height={22} />}
-              {item?.category === PlaceCategoryType.FOOD && <SVG_IMG.COURSE_RESTAURANT width={22} height={22} />}
-              {item?.category === PlaceCategoryType.STORE && <SVG_IMG.COURSE_STORE width={22} height={22} />}
-              {item?.category === PlaceCategoryType.CAFE && <SVG_IMG.COURSE_CAFE width={22} height={22} />}
-              {item?.category === PlaceCategoryType.TRAIN && <SVG_IMG.COURSE_TRAIN width={22} height={22} />}
+              {item?.category === PlaceCategoryType.BAR && (
+                <SVG_IMG.COURSE_BAR width={22} height={22} />
+              )}
+              {item?.category === PlaceCategoryType.PARK && (
+                <SVG_IMG.COURSE_PARK width={22} height={22} />
+              )}
+              {item?.category === PlaceCategoryType.FOOD && (
+                <SVG_IMG.COURSE_RESTAURANT width={22} height={22} />
+              )}
+              {item?.category === PlaceCategoryType.STORE && (
+                <SVG_IMG.COURSE_STORE width={22} height={22} />
+              )}
+              {item?.category === PlaceCategoryType.CAFE && (
+                <SVG_IMG.COURSE_CAFE width={22} height={22} />
+              )}
+              {item?.category === PlaceCategoryType.TRAIN && (
+                <SVG_IMG.COURSE_TRAIN width={22} height={22} />
+              )}
               {item?.category === PlaceCategoryType.POINT_OF_INTEREST && (
                 <SVG_IMG.COURSE_CULTURE width={22} height={22} />
               )}
-              <CustomText style={styles.selected_icon_text}>{index + 1}</CustomText>
+              <CustomText style={styles.selected_icon_text}>
+                {index + 1}
+              </CustomText>
             </View>
             <CustomText style={styles.selected_text}>{item.name}</CustomText>
             {isMoreState ? (
@@ -79,14 +102,26 @@ const Course = observer(
           {isMore && onPressEditCourse && (
             <View style={styles.more_content_wrap}>
               {onPressRemoveCourse && (
-                <CustomTouchable onPress={() => onPressRemoveCourse(index)} style={styles.more_content_btn}>
+                <CustomTouchable
+                  onPress={() => onPressRemoveCourse(index)}
+                  style={styles.more_content_btn}>
                   <SVG_IMG.TRASH width={16} height={16} />
-                  <CustomText style={[styles.more_content_btn_text, {color: palette.PRIMARY}]}>삭제하기</CustomText>
+                  <CustomText
+                    style={[
+                      styles.more_content_btn_text,
+                      {color: palette.PRIMARY},
+                    ]}>
+                    삭제하기
+                  </CustomText>
                 </CustomTouchable>
               )}
-              <CustomTouchable onPress={() => onPressEditCourse(index)} style={styles.more_content_btn}>
+              <CustomTouchable
+                onPress={() => onPressEditCourse(index)}
+                style={styles.more_content_btn}>
                 <SVG_IMG.WRITE width={16} height={16} />
-                <CustomText style={styles.more_content_btn_text}>수정하기</CustomText>
+                <CustomText style={styles.more_content_btn_text}>
+                  수정하기
+                </CustomText>
               </CustomTouchable>
             </View>
           )}
@@ -95,9 +130,13 @@ const Course = observer(
         {courseConectList.length !== 0 && courseConectList[index] && (
           <View style={styles.connect_wrap}>
             <SVG_IMG.CONNECT_BORDER />
-            <CustomTouchable onPress={onPressLoadMap} style={styles.connect_btn_wrap}>
+            <CustomTouchable
+              onPress={onPressLoadMap}
+              style={styles.connect_btn_wrap}>
               <SVG_IMG.KAKAO_MAP width={24} height={24} />
-              <CustomText style={styles.connect_btn_text}>카카오 맵에서 길찾기</CustomText>
+              <CustomText style={styles.connect_btn_text}>
+                카카오 맵에서 길찾기
+              </CustomText>
             </CustomTouchable>
           </View>
         )}
