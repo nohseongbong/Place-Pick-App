@@ -8,13 +8,19 @@ interface Props {
 
 export const CategoryIconView = ({type, width}: Props) => {
   const category: {[key: string]: JSX.Element} = {
-    restaurant: <SVG_IMG.CATEGORY_RESTAURANT width={wt(width)} height={wt(width)} />,
+    restaurant: (
+      <SVG_IMG.CATEGORY_RESTAURANT width={wt(width)} height={wt(width)} />
+    ),
     bar: <SVG_IMG.CATEGORY_BAR width={wt(width)} height={wt(width)} />,
     park: <SVG_IMG.CATEGORY_PARK width={wt(width)} height={wt(width)} />,
     store: <SVG_IMG.CATEGORY_SHOP width={wt(width)} height={wt(width)} />,
     cafe: <SVG_IMG.CATEGORY_CAFE width={wt(width)} height={wt(width)} />,
-    transit_station: <SVG_IMG.CATEGORY_TRAIN width={wt(width)} height={wt(width)} />,
-    point_of_interest: <SVG_IMG.CATEGORY_FLAG width={wt(width)} height={wt(width)} />,
+    transit_station: (
+      <SVG_IMG.CATEGORY_TRAIN width={wt(width)} height={wt(width)} />
+    ),
+    point_of_interest: (
+      <SVG_IMG.CATEGORY_FLAG width={wt(width)} height={wt(width)} />
+    ),
   };
   return category[type];
 };
