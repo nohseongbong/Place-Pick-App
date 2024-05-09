@@ -54,7 +54,7 @@ function IconTextButton({
   const handleColor = useCallback(() => {
     if (color && theme) {
       if (isDisable) {
-        return ColorType.gray[200];
+        return ColorType.gray['200'];
       } else {
         // @ts-ignore
         return ColorType[color][theme];
