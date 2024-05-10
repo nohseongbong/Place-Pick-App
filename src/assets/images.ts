@@ -4,6 +4,7 @@ export const IMG = {
   ON_BOARDING_IMG_2: require('../assets/images/img/on_boarding_imgae2.png'),
   ON_BOARDING_IMG_3: require('../assets/images/img/on_boarding_imgae3.png'),
   ON_BOARDING_IMG_4: require('../assets/images/img/on_boarding_imgae4.png'),
+  default_img: require('../assets/images/img/default_img.png'),
   dummy_img: require('../assets/images/img/dummy_img.png'),
 };
 
