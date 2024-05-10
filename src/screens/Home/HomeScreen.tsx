@@ -1,6 +1,5 @@
 import {View} from 'react-native';
 import MainHeader from '../../shared/components/header/components/MainHeader';
-import PlaceSearch from '../../features/home/components/bottomSheetContents/PlaceSearch';
 import style from './styles/HomeScreenStyle';
 import HomeTitle from './components/HomeTitle';
 import {useState} from 'react';
@@ -12,6 +11,9 @@ import CategoryText from '../../shared/components/Category/CategoryText';
 import CategoryMarker from '../../shared/components/Maker/CategoryMarker';
 import SelectMarker from '../../shared/components/Maker/SelectMarker';
 import DefalutIconTab from '../../shared/components/Tab/DefalutIconTab';
+import Search from '../../shared/components/Search/Search';
+import PlaceCalendar from '../../shared/components/Calendar/PlaceCalendar';
+import WeeksCalendar from '../../shared/components/Calendar/WeekCalendar';
 
 const HomeScreen = () => {
   const [selected, setSelected] = useState<string>('map');
@@ -67,6 +69,9 @@ const HomeScreen = () => {
         textColor="basic"
         textTheme="background"
       />
+
+      <WeeksCalendar />
+      <PlaceCalendar />
       <CategoryIcon text="홍대입구" />
       <CategoryText text="홈대입구" />
       <CategoryMarker icon="restaurant" />
@@ -75,7 +80,7 @@ const HomeScreen = () => {
       <CategoryMarker icon="culture" />
       <CategoryMarker icon="park" />
       <SelectMarker category="bar" placeName="야호" number={1} />
-      <PlaceSearch />
+      <Search />
       <HomeTitle />
     </View>
   );
