@@ -25,7 +25,7 @@ const style = () => {
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: palette.INNER_BACKGOUND,
-      borderRadius: 10,
+      borderRadius: 16,
       paddingHorizontal: wt(10),
     },
     search_input: {

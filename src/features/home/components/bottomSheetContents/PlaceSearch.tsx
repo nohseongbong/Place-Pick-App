@@ -40,7 +40,7 @@ const PlaceSearch = observer(() => {
             refProp={searchRef}
             style={styles.search_input}
             keyboardType="web-search"
-            placeholder="검색"
+            placeholder="가고 싶은 장소를 검색해보세요"
             onSubmitEditing={searchStore.fetchGoogleSearchPlace}
             value={searchStore.searchText}
             onChangeText={searchStore.setSearchText}
