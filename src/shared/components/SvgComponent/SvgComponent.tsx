@@ -7,6 +7,7 @@ type SvgComponentProps = {
   icon: keyof typeof SVG_ICON;
   isStroke?: boolean;
   isDisable?: boolean;
+  isDefault?: boolean;
   color?: keyof typeof ColorType;
   theme?: keyof typeof ThemeType;
   disableColor?: keyof typeof ColorType;
@@ -18,15 +19,17 @@ function SvgComponent({
   color,
   theme,
   isDisable,
+  isDefault,
   disableColor,
   disableTheme,
   isStroke,
   ...rest
 }: SvgComponentProps) {
   const IconComponent = SVG_ICON[icon];
+  const isColor = color && theme;
 
   const handleColor = useCallback(() => {
-    if (color && theme) {
+    if (isColor) {
       if (isDisable && disableColor && disableTheme) {
         // @ts-ignore
         return ColorType[disableColor][disableTheme];
@@ -43,16 +46,23 @@ function SvgComponent({
       if (Object.keys(CategoryColor).includes(icon)) {
         // @ts-ignore
         return CategoryColor[icon];
+      } else {
       }
     }
   }, [color, theme, icon, isDisable]);
 
   return (
-    <IconComponent
-      {...rest}
-      fill={!isStroke ? handleColor() : undefined}
-      stroke={isStroke ? handleColor() : undefined}
-    />
+    <>
+      {!isDefault ? (
+        <IconComponent
+          {...rest}
+          fill={!isStroke && handleColor()}
+          stroke={isStroke && handleColor()}
+        />
+      ) : (
+        <IconComponent {...rest} />
+      )}
+    </>
   );
 }
 
