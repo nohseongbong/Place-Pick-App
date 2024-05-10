@@ -1,6 +1,6 @@
 // components
 import {View} from 'react-native';
-import SvgComponent from '../svg-component/SvgComponent';
+import SvgComponent from '../SvgComponent/SvgComponent';
 
 // styles
 import style from './marker.style';

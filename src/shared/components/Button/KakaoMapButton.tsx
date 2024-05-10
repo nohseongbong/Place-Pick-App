@@ -3,7 +3,7 @@ import {Linking, Platform, View} from 'react-native';
 // components
 import CustomText from '../customComponents/CustomText';
 import CustomTouchable from '../customComponents/CustomTouchable';
-import SvgComponent from '../svg-component/SvgComponent';
+import SvgComponent from '../SvgComponent/SvgComponent';
 
 // styles
 import buttonStyle from './button.style';

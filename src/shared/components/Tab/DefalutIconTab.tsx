@@ -1,7 +1,7 @@
 import {ScrollView, View} from 'react-native';
 
 // component
-import SvgComponent from '../svg-component/SvgComponent';
+import SvgComponent from '../SvgComponent/SvgComponent';
 import CustomTouchable from '../customComponents/CustomTouchable';
 import CustomText from '../customComponents/CustomText';
 

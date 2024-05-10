@@ -10,7 +10,7 @@ import {collectionStore} from '../../../features/collection/store/collectionStor
 import DeleteBar from '../../../features/collection/components/collection-list/DeleteBar';
 import {authStore} from '../../store/authStore';
 import {SCREEN_NAME} from '../../constants/navigation';
-import SvgComponent from '../svg-component/SvgComponent';
+import SvgComponent from '../SvgComponent/SvgComponent';
 
 const TabBar = observer(
   ({state, descriptors, navigation}: BottomTabBarProps) => {
@@ -80,10 +80,10 @@ const TabBar = observer(
                 <SvgComponent
                   icon="home"
                   color="basic"
-                  theme="tertiary"
-                  activeColor="basic"
-                  activeTheme="body"
-                  isActive={isFocused}
+                  theme="body"
+                  disableColor="basic"
+                  disableTheme="tertiary"
+                  isDisable={!isFocused}
                   width={20}
                   height={20}
                 />
@@ -91,10 +91,10 @@ const TabBar = observer(
                 <SvgComponent
                   icon="favorite"
                   color="basic"
-                  theme="tertiary"
-                  activeColor="basic"
-                  activeTheme="body"
-                  isActive={isFocused}
+                  theme="body"
+                  disableColor="basic"
+                  disableTheme="tertiary"
+                  isDisable={!isFocused}
                   width={20}
                   height={20}
                 />
