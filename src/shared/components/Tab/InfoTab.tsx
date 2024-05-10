@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 
 // components
-import SvgComponent from '../svg-component/SvgComponent';
+import SvgComponent from '../SvgComponent/SvgComponent';
 import CustomTouchable from '../customComponents/CustomTouchable';
 import CustomText from '../customComponents/CustomText';
 
@@ -24,7 +24,7 @@ function InfoTab({list, selected, onPressTab}: Props) {
   return (
     <View style={style.info_container}>
       {list.map(item => {
-        const isActive = selected === item.key;
+        const isDisable = selected !== item.key;
         return (
           <CustomTouchable
             style={style.tab}
@@ -35,20 +35,20 @@ function InfoTab({list, selected, onPressTab}: Props) {
                 icon={item.key as keyof typeof SVG_ICON}
                 isStroke={item.key === 'all'}
                 color="basic"
-                theme="secondary"
-                activeColor="basic"
-                activeTheme="body"
-                isActive={isActive}
+                theme="body"
+                disableColor="basic"
+                disableTheme="secondary"
+                isDisable={isDisable}
               />
             </View>
             <CustomText
-              color={isActive ? 'basic' : 'basic'}
-              theme={isActive ? 'body' : 'secondary'}
+              color={!isDisable ? 'basic' : 'basic'}
+              theme={!isDisable ? 'body' : 'secondary'}
               fs="Body"
               fw="Bold">
               {item.text}
             </CustomText>
-            {isActive && <View style={style.info_bar} />}
+            {!isDisable && <View style={style.info_bar} />}
           </CustomTouchable>
         );
       })}
