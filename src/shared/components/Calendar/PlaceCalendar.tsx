@@ -86,7 +86,7 @@ function PlaceCalendar() {
       renderArrow={direction => (
         <SvgComponent
           icon="arrow_left"
-          rotation={direction === 'right' ? 180 : 0}
+          style={{transform: [{scaleX: direction === 'right' ? -1 : 1}]}}
         />
       )}
       onDayPress={day => {

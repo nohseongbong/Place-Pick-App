@@ -5,7 +5,9 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'center',
-    paddingBottom: 3,
+    padding: 3,
+    backgroundColor: ColorType.basic.background,
+    alignSelf: 'flex-start',
   },
   bubble: {
     width: 40,

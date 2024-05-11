@@ -6,6 +6,7 @@ import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
 // components
 import {ColorType} from '../../constants/palette';
 import {View} from 'react-native';
+import SvgComponent from '../SvgComponent/SvgComponent';
 
 LocaleConfig.locales.fr = {
   monthNames: [
@@ -95,6 +96,17 @@ function WeeksCalendar() {
           [selected]: marking,
         }}
         staticHeader={false}
+        showScrollIndicator={false}
+        pastScrollRange={2}
+        futureScrollRange={2}
+        calendarWidth={335}
+        calendarStyle={{backgroundColor: 'red'}}
+        renderArrow={direction => (
+          <SvgComponent
+            icon="arrow_left"
+            style={{transform: [{scaleX: direction === 'right' ? -1 : 1}]}}
+          />
+        )}
       />
     </View>
   );

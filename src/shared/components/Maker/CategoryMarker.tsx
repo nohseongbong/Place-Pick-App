@@ -18,7 +18,7 @@ interface Props {
 
 function CategoryMarker({icon}: Props) {
   return (
-    <View style={[style.container, shadowStyle.marker]}>
+    <View style={[style.container]}>
       <View style={[style.bubble, shadowStyle.marker]}>
         <SvgComponent icon={icon as keyof typeof SVG_ICON} />
       </View>

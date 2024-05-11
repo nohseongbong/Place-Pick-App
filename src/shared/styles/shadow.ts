@@ -9,7 +9,7 @@ const shadowStyle = StyleSheet.create({
       : {
           shadowColor: '#000',
           shadowOffset: {width: 0, height: -4},
-          shadowOpacity: 0.2,
+          shadowOpacity: 0.1,
           shadowRadius: 5,
         },
   marker:
@@ -19,8 +19,8 @@ const shadowStyle = StyleSheet.create({
         }
       : {
           shadowColor: '#000',
-          shadowOffset: {width: 0, height: 10},
-          shadowOpacity: 0.5,
+          shadowOffset: {width: 0, height: 3},
+          shadowOpacity: 0.1,
           shadowRadius: 3,
         },
 });

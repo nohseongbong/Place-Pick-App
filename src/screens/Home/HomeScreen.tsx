@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import MainHeader from '../../shared/components/header/components/MainHeader';
 import style from './styles/HomeScreenStyle';
 import HomeTitle from './components/HomeTitle';
@@ -42,46 +42,47 @@ const HomeScreen = () => {
 
   return (
     <View style={style.container}>
-      <MainHeader />
-      <DefalutIconTab
-        list={test2}
-        selected={selected2}
-        onPressTab={onPressTab2}
-      />
-      <InfoTab list={test} selected={selected} onPressTab={onPressTab} />
-      <IconTextButton
-        style={{paddingVertical: 10}}
-        size="padding"
-        color="primary"
-        theme="background"
-        textColor="basic"
-        textTheme="secondary"
-        icon="arrow_left"
-        isRight
-        text="버튼"
-        isDisable
-      />
-      <TextButton
-        color="primary"
-        theme="normal"
-        text="코스 완성하기"
-        size="full"
-        textColor="basic"
-        textTheme="background"
-      />
-
-      <WeeksCalendar />
-      <PlaceCalendar />
-      <CategoryIcon text="홍대입구" />
-      <CategoryText text="홈대입구" />
-      <CategoryMarker icon="restaurant" />
-      <CategoryMarker icon="cafe" />
-      <CategoryMarker icon="bar" />
-      <CategoryMarker icon="culture" />
-      <CategoryMarker icon="park" />
-      <SelectMarker category="bar" placeName="야호" number={1} />
-      <Search />
-      <HomeTitle />
+      <ScrollView>
+        <MainHeader />
+        <DefalutIconTab
+          list={test2}
+          selected={selected2}
+          onPressTab={onPressTab2}
+        />
+        <InfoTab list={test} selected={selected} onPressTab={onPressTab} />
+        <IconTextButton
+          style={{paddingVertical: 10}}
+          size="padding"
+          color="primary"
+          theme="background"
+          textColor="basic"
+          textTheme="secondary"
+          icon="arrow_left"
+          isRight
+          text="버튼"
+          isDisable
+        />
+        <TextButton
+          color="primary"
+          theme="normal"
+          text="코스 완성하기"
+          size="full"
+          textColor="basic"
+          textTheme="background"
+        />
+        <WeeksCalendar />
+        <PlaceCalendar />
+        <CategoryIcon text="홍대입구" />
+        <CategoryText text="홈대입구" />
+        <CategoryMarker icon="restaurant" />
+        <CategoryMarker icon="cafe" />
+        <CategoryMarker icon="bar" />
+        <CategoryMarker icon="culture" />
+        <CategoryMarker icon="park" />
+        <SelectMarker category="bar" placeName="야호" number={1} />
+        <Search />
+        <HomeTitle />
+      </ScrollView>
     </View>
   );
 };
